@@ -16,11 +16,11 @@ class BinNode: SKSpriteNode {
     static let binHitCategory = 2;
     
     class func trashbin(location: CGPoint) -> BinNode {
-        let sprite = BinNode(imageNamed: "Trashbin.png")
+        let sprite = BinNode(imageNamed: "TN_trashbin.png")
         sprite.name = "Trash"
         sprite.position = location
         
-        sprite.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "Trashbin.png"), size: sprite.size)
+        sprite.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "TN_trashbin.png"), size: sprite.size)
         if let physics = sprite.physicsBody {
             physics.affectedByGravity = false;
             physics.allowsRotation = false;

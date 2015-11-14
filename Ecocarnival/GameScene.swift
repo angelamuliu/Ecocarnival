@@ -22,7 +22,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var trashNode:TrashNode = TrashNode.trash(CGPoint(x: 550, y: 550))
     
     override func didMoveToView(view: SKView) {
+        self.physicsWorld.contactDelegate = self
+        
         self.addChild(trashNode)
+        
+        let trashbinNode:BinNode = BinNode.trashbin(CGPoint(x: 0, y: 300))
+        self.addChild(trashbinNode)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -59,8 +64,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     
-    
+    // http://stackoverflow.com/questions/26438108/ios-swift-didbegincontact-not-being-called
     func didBeginContact(contact: SKPhysicsContact) {
+        
         print("CONTACT")
 //        SKPhysicsBody *firstBody, *secondBody;
 //        
