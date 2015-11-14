@@ -15,7 +15,7 @@ import SpriteKit
 // http://www.raywenderlich.com/84341/create-breakout-game-sprite-kit-swift
 // http://stackoverflow.com/questions/28245653/how-to-throw-skspritenode
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var isTouchingTrash = false
     var touchPoint:CGPoint = CGPoint()
@@ -57,5 +57,26 @@ class GameScene: SKScene {
             trashNode.physicsBody!.velocity=velocity
         }
     }
+    
+    
+    
+    func didBeginContact(contact: SKPhysicsContact) {
+        print("CONTACT")
+//        SKPhysicsBody *firstBody, *secondBody;
+//        
+//        firstBody = contact.bodyA;
+//        secondBody = contact.bodyB;
+//        
+//        if(firstBody.categoryBitMask == spikeHitCategory || secondBody.categoryBitMask == spikeHitCategory)
+//        {
+//            
+//            NSLog(@"balloon hit the spikes");
+//            //setup your methods and other things here
+//            
+//        }
+    }
+    
+    
+    
 }
 

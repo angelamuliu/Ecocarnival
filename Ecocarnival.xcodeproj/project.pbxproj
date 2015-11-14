@@ -18,6 +18,7 @@
 		0B49D5BD1BF65D54000C5CA5 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0B49D5BC1BF65D54000C5CA5 /* GameScene.sks */; };
 		0B49D5BF1BF65EB2000C5CA5 /* TrashNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B49D5BE1BF65EB2000C5CA5 /* TrashNode.swift */; };
 		0B49D5C11BF65F7A000C5CA5 /* OldShit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B49D5C01BF65F7A000C5CA5 /* OldShit.swift */; };
+		0B6B15681BF6EB9500370ABF /* BinNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6B15671BF6EB9500370ABF /* BinNode.swift */; };
 		0BC3F0081BF3C5BB0040C009 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC3F0071BF3C5BB0040C009 /* Model.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		0B49D5BC1BF65D54000C5CA5 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = ../GameScene.sks; sourceTree = "<group>"; };
 		0B49D5BE1BF65EB2000C5CA5 /* TrashNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrashNode.swift; sourceTree = "<group>"; };
 		0B49D5C01BF65F7A000C5CA5 /* OldShit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldShit.swift; sourceTree = "<group>"; };
+		0B6B15671BF6EB9500370ABF /* BinNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinNode.swift; sourceTree = "<group>"; };
 		0BC3F0071BF3C5BB0040C009 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +113,7 @@
 				0B1E63291BF103C200C4F460 /* AppDelegate.swift */,
 				0B1E632D1BF103C200C4F460 /* GameViewController.swift */,
 				0B49D5BE1BF65EB2000C5CA5 /* TrashNode.swift */,
+				0B6B15671BF6EB9500370ABF /* BinNode.swift */,
 				0B1E63591BF104F900C4F460 /* GameScene.swift */,
 				0B49D5C01BF65F7A000C5CA5 /* OldShit.swift */,
 				0BC3F0071BF3C5BB0040C009 /* Model.swift */,
@@ -278,6 +281,7 @@
 				0B1E635A1BF104F900C4F460 /* GameScene.swift in Sources */,
 				0B49D5C11BF65F7A000C5CA5 /* OldShit.swift in Sources */,
 				0B1E632E1BF103C200C4F460 /* GameViewController.swift in Sources */,
+				0B6B15681BF6EB9500370ABF /* BinNode.swift in Sources */,
 				0B49D5BF1BF65EB2000C5CA5 /* TrashNode.swift in Sources */,
 				0B1E632A1BF103C200C4F460 /* AppDelegate.swift in Sources */,
 				0BC3F0081BF3C5BB0040C009 /* Model.swift in Sources */,

@@ -6,12 +6,19 @@
 //  Copyright © 2015 amliu. All rights reserved.
 //
 
+
 import Foundation
 import SpriteKit
 
+/**
+ All trash nodes, including compost, trash, and recyclables.
+ All trash has a trash hit category of 1.
+*/
 class TrashNode: SKSpriteNode {
+    static let trashHitCategory = 1;
+    
     class func trash(location: CGPoint) -> TrashNode {
-        let sprite = TrashNode(imageNamed:"Player.png")
+        let sprite = TrashNode(imageNamed: "Player.png")
         sprite.name = "Trash"
         sprite.position = location
         
@@ -25,6 +32,10 @@ class TrashNode: SKSpriteNode {
             physics.dynamic = true;
             physics.linearDamping = 0.75
             physics.angularDamping = 0.75
+            
+            sprite.physicsBody!.categoryBitMask = UInt32(trashHitCategory);
+            sprite.physicsBody!.contactTestBitMask = UInt32(BinNode.binHitCategory);
+            sprite.physicsBody!.collisionBitMask = UInt32(BinNode.binHitCategory);
         }
         
         return sprite
