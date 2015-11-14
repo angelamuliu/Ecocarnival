@@ -18,7 +18,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         let scene = GameScene(fileNamed: "GameScene.sks")
+         let scene = TN_GameScene(fileNamed: "TN_GameScene.sks")
         scene!.scaleMode = .AspectFill
         
         let skView = self.view as! SKView

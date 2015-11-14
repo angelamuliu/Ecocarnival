@@ -16,29 +16,37 @@ import SpriteKit
 */
 class TrashNode: SKSpriteNode {
     static let trashHitCategory = UInt32(1);
+    static let imageAssets = ["TN_trash1.png"]
     
+    // ------------------------------------------------------------
+    // Base trash initialize methods for trash, recyclables, and misc items
     class func trash(location: CGPoint) -> TrashNode {
-        let sprite = TrashNode(imageNamed: "Player.png")
-        sprite.name = "Trash"
+        let imageString = chooseImage()
+        let sprite = TrashNode(imageNamed: imageString)
+        sprite.name = Constants.trash
         sprite.position = location
         sprite.zPosition = 5
         
-        sprite.xScale = 2
-        sprite.yScale = 2
         
-        sprite.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "Player.png"), size: sprite.size)
+        sprite.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: imageString), size: sprite.size)
         if let physics = sprite.physicsBody {
             physics.affectedByGravity = true
             physics.allowsRotation = true
-            physics.dynamic = true;
+            physics.dynamic = true
             physics.linearDamping = 0.75
             physics.angularDamping = 0.75
             
-            sprite.physicsBody!.categoryBitMask = trashHitCategory;
-            sprite.physicsBody!.contactTestBitMask = BinNode.binHitCategory;
-            sprite.physicsBody!.collisionBitMask = BinNode.binHitCategory;
+            sprite.physicsBody!.categoryBitMask = Constants.trashHitCategory
+            sprite.physicsBody!.contactTestBitMask = Constants.binHitCategory
+            sprite.physicsBody!.collisionBitMask = Constants.binHitCategory
         }
         
         return sprite
+    }
+    
+    // ------------------------------------------------------------
+    // Helper methods
+    class func chooseImage() -> String {
+        return imageAssets[Int(arc4random_uniform(UInt32(imageAssets.count)))]
     }
 }

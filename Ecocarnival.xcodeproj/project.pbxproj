@@ -14,12 +14,13 @@
 		0B1E63361BF103C200C4F460 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B1E63341BF103C200C4F460 /* LaunchScreen.storyboard */; };
 		0B1E63411BF103C200C4F460 /* EcocarnivalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E63401BF103C200C4F460 /* EcocarnivalTests.swift */; };
 		0B1E634C1BF103C200C4F460 /* EcocarnivalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E634B1BF103C200C4F460 /* EcocarnivalUITests.swift */; };
-		0B1E635A1BF104F900C4F460 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E63591BF104F900C4F460 /* GameScene.swift */; };
-		0B49D5BD1BF65D54000C5CA5 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0B49D5BC1BF65D54000C5CA5 /* GameScene.sks */; };
+		0B1E635A1BF104F900C4F460 /* TN_GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E63591BF104F900C4F460 /* TN_GameScene.swift */; };
+		0B49D5BD1BF65D54000C5CA5 /* TN_GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0B49D5BC1BF65D54000C5CA5 /* TN_GameScene.sks */; };
 		0B49D5BF1BF65EB2000C5CA5 /* TrashNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B49D5BE1BF65EB2000C5CA5 /* TrashNode.swift */; };
 		0B49D5C11BF65F7A000C5CA5 /* OldShit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B49D5C01BF65F7A000C5CA5 /* OldShit.swift */; };
 		0B6B15681BF6EB9500370ABF /* BinNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6B15671BF6EB9500370ABF /* BinNode.swift */; };
-		0BC3F0081BF3C5BB0040C009 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC3F0071BF3C5BB0040C009 /* Model.swift */; };
+		0B6B156A1BF7092C00370ABF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6B15691BF7092C00370ABF /* Constants.swift */; };
+		0BC3F0081BF3C5BB0040C009 /* TN_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC3F0071BF3C5BB0040C009 /* TN_Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,12 +54,13 @@
 		0B1E63471BF103C200C4F460 /* EcocarnivalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EcocarnivalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B1E634B1BF103C200C4F460 /* EcocarnivalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcocarnivalUITests.swift; sourceTree = "<group>"; };
 		0B1E634D1BF103C200C4F460 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0B1E63591BF104F900C4F460 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-		0B49D5BC1BF65D54000C5CA5 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = ../GameScene.sks; sourceTree = "<group>"; };
+		0B1E63591BF104F900C4F460 /* TN_GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TN_GameScene.swift; sourceTree = "<group>"; };
+		0B49D5BC1BF65D54000C5CA5 /* TN_GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = TN_GameScene.sks; path = ../TN_GameScene.sks; sourceTree = "<group>"; };
 		0B49D5BE1BF65EB2000C5CA5 /* TrashNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrashNode.swift; sourceTree = "<group>"; };
 		0B49D5C01BF65F7A000C5CA5 /* OldShit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldShit.swift; sourceTree = "<group>"; };
 		0B6B15671BF6EB9500370ABF /* BinNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinNode.swift; sourceTree = "<group>"; };
-		0BC3F0071BF3C5BB0040C009 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		0B6B15691BF7092C00370ABF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0BC3F0071BF3C5BB0040C009 /* TN_Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TN_Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,14 +111,15 @@
 		0B1E63281BF103C200C4F460 /* Ecocarnival */ = {
 			isa = PBXGroup;
 			children = (
-				0B49D5BC1BF65D54000C5CA5 /* GameScene.sks */,
+				0B49D5BC1BF65D54000C5CA5 /* TN_GameScene.sks */,
 				0B1E63291BF103C200C4F460 /* AppDelegate.swift */,
 				0B1E632D1BF103C200C4F460 /* GameViewController.swift */,
 				0B49D5BE1BF65EB2000C5CA5 /* TrashNode.swift */,
+				0B6B15691BF7092C00370ABF /* Constants.swift */,
 				0B6B15671BF6EB9500370ABF /* BinNode.swift */,
-				0B1E63591BF104F900C4F460 /* GameScene.swift */,
+				0B1E63591BF104F900C4F460 /* TN_GameScene.swift */,
 				0B49D5C01BF65F7A000C5CA5 /* OldShit.swift */,
-				0BC3F0071BF3C5BB0040C009 /* Model.swift */,
+				0BC3F0071BF3C5BB0040C009 /* TN_Model.swift */,
 				0B1E632F1BF103C200C4F460 /* Main.storyboard */,
 				0B1E63321BF103C200C4F460 /* Assets.xcassets */,
 				0B1E63341BF103C200C4F460 /* LaunchScreen.storyboard */,
@@ -251,7 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B1E63361BF103C200C4F460 /* LaunchScreen.storyboard in Resources */,
-				0B49D5BD1BF65D54000C5CA5 /* GameScene.sks in Resources */,
+				0B49D5BD1BF65D54000C5CA5 /* TN_GameScene.sks in Resources */,
 				0B1E63331BF103C200C4F460 /* Assets.xcassets in Resources */,
 				0B1E63311BF103C200C4F460 /* Main.storyboard in Resources */,
 			);
@@ -278,13 +281,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B1E635A1BF104F900C4F460 /* GameScene.swift in Sources */,
+				0B1E635A1BF104F900C4F460 /* TN_GameScene.swift in Sources */,
 				0B49D5C11BF65F7A000C5CA5 /* OldShit.swift in Sources */,
 				0B1E632E1BF103C200C4F460 /* GameViewController.swift in Sources */,
 				0B6B15681BF6EB9500370ABF /* BinNode.swift in Sources */,
 				0B49D5BF1BF65EB2000C5CA5 /* TrashNode.swift in Sources */,
 				0B1E632A1BF103C200C4F460 /* AppDelegate.swift in Sources */,
-				0BC3F0081BF3C5BB0040C009 /* Model.swift in Sources */,
+				0BC3F0081BF3C5BB0040C009 /* TN_Model.swift in Sources */,
+				0B6B156A1BF7092C00370ABF /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
