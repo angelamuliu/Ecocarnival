@@ -15,12 +15,13 @@ import SpriteKit
  All trash has a trash hit category of 1.
 */
 class TrashNode: SKSpriteNode {
-    static let trashHitCategory = 1;
+    static let trashHitCategory = UInt32(1);
     
     class func trash(location: CGPoint) -> TrashNode {
         let sprite = TrashNode(imageNamed: "Player.png")
         sprite.name = "Trash"
         sprite.position = location
+        sprite.zPosition = 5
         
         sprite.xScale = 2
         sprite.yScale = 2
@@ -33,9 +34,9 @@ class TrashNode: SKSpriteNode {
             physics.linearDamping = 0.75
             physics.angularDamping = 0.75
             
-            sprite.physicsBody!.categoryBitMask = UInt32(trashHitCategory);
-            sprite.physicsBody!.contactTestBitMask = UInt32(BinNode.binHitCategory);
-            sprite.physicsBody!.collisionBitMask = UInt32(BinNode.binHitCategory);
+            sprite.physicsBody!.categoryBitMask = trashHitCategory;
+            sprite.physicsBody!.contactTestBitMask = BinNode.binHitCategory;
+            sprite.physicsBody!.collisionBitMask = BinNode.binHitCategory;
         }
         
         return sprite

@@ -13,7 +13,6 @@ import SpriteKit
 
 // http://spin.atomicobject.com/2014/12/29/spritekit-physics-tutorial-swift/
 // http://www.raywenderlich.com/84341/create-breakout-game-sprite-kit-swift
-// http://stackoverflow.com/questions/28245653/how-to-throw-skspritenode
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -22,7 +21,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var trashNode:TrashNode = TrashNode.trash(CGPoint(x: 550, y: 550))
     
     override func didMoveToView(view: SKView) {
-        self.physicsWorld.contactDelegate = self
+        self.physicsWorld.contactDelegate = self // Needed for collision detection
+        
+        let bgImage = SKSpriteNode(imageNamed: "TN_bg.png") // Load BG
+        bgImage.zPosition = 1
+        bgImage.setScale(2)
+        bgImage.position = CGPointMake(self.size.width/2, self.size.height/2)
+        self.addChild(bgImage)
         
         self.addChild(trashNode)
         
@@ -54,9 +59,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         isTouchingTrash = false
     }
     
+    // http://stackoverflow.com/questions/28245653/how-to-throw-skspritenode
     override func update(currentTime: CFTimeInterval) {
         if isTouchingTrash {
-            let dt:CGFloat = 1.0/30.0
+            let dt:CGFloat = 1.0/10.0
             let distance = CGVector(dx: touchPoint.x-trashNode.position.x, dy: touchPoint.y-trashNode.position.y)
             let velocity = CGVector(dx: distance.dx/dt, dy: distance.dy/dt)
             trashNode.physicsBody!.velocity=velocity
@@ -66,20 +72,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // http://stackoverflow.com/questions/26438108/ios-swift-didbegincontact-not-being-called
     func didBeginContact(contact: SKPhysicsContact) {
+        let firstBody = contact.bodyA
+        let secondBody = contact.bodyB
         
-        print("CONTACT")
-//        SKPhysicsBody *firstBody, *secondBody;
-//        
-//        firstBody = contact.bodyA;
-//        secondBody = contact.bodyB;
-//        
-//        if(firstBody.categoryBitMask == spikeHitCategory || secondBody.categoryBitMask == spikeHitCategory)
-//        {
-//            
-//            NSLog(@"balloon hit the spikes");
-//            //setup your methods and other things here
-//            
-//        }
+        if (firstBody.categoryBitMask == TrashNode.trashHitCategory || secondBody.categoryBitMask == BinNode.binHitCategory) {
+            print("CONTACT")
+        }
     }
     
     
