@@ -8,13 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		0B1E632A1BF103C200C4F460 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E63291BF103C200C4F460 /* AppDelegate.swift */; };
-		0B1E632C1BF103C200C4F460 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B1E632B1BF103C200C4F460 /* art.scnassets */; };
 		0B1E632E1BF103C200C4F460 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E632D1BF103C200C4F460 /* GameViewController.swift */; };
 		0B1E63311BF103C200C4F460 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B1E632F1BF103C200C4F460 /* Main.storyboard */; };
 		0B1E63331BF103C200C4F460 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B1E63321BF103C200C4F460 /* Assets.xcassets */; };
 		0B1E63361BF103C200C4F460 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B1E63341BF103C200C4F460 /* LaunchScreen.storyboard */; };
 		0B1E63411BF103C200C4F460 /* EcocarnivalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E63401BF103C200C4F460 /* EcocarnivalTests.swift */; };
 		0B1E634C1BF103C200C4F460 /* EcocarnivalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E634B1BF103C200C4F460 /* EcocarnivalUITests.swift */; };
+		0B1E635A1BF104F900C4F460 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E63591BF104F900C4F460 /* GameScene.swift */; };
+		0B49D5BD1BF65D54000C5CA5 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0B49D5BC1BF65D54000C5CA5 /* GameScene.sks */; };
+		0B49D5BF1BF65EB2000C5CA5 /* TrashNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B49D5BE1BF65EB2000C5CA5 /* TrashNode.swift */; };
+		0B49D5C11BF65F7A000C5CA5 /* OldShit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B49D5C01BF65F7A000C5CA5 /* OldShit.swift */; };
+		0BC3F0081BF3C5BB0040C009 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC3F0071BF3C5BB0040C009 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +41,6 @@
 /* Begin PBXFileReference section */
 		0B1E63261BF103C200C4F460 /* Ecocarnival.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ecocarnival.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B1E63291BF103C200C4F460 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0B1E632B1BF103C200C4F460 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		0B1E632D1BF103C200C4F460 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		0B1E63301BF103C200C4F460 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0B1E63321BF103C200C4F460 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +52,11 @@
 		0B1E63471BF103C200C4F460 /* EcocarnivalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EcocarnivalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B1E634B1BF103C200C4F460 /* EcocarnivalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcocarnivalUITests.swift; sourceTree = "<group>"; };
 		0B1E634D1BF103C200C4F460 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0B1E63591BF104F900C4F460 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		0B49D5BC1BF65D54000C5CA5 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = ../GameScene.sks; sourceTree = "<group>"; };
+		0B49D5BE1BF65EB2000C5CA5 /* TrashNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrashNode.swift; sourceTree = "<group>"; };
+		0B49D5C01BF65F7A000C5CA5 /* OldShit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldShit.swift; sourceTree = "<group>"; };
+		0BC3F0071BF3C5BB0040C009 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +107,13 @@
 		0B1E63281BF103C200C4F460 /* Ecocarnival */ = {
 			isa = PBXGroup;
 			children = (
+				0B49D5BC1BF65D54000C5CA5 /* GameScene.sks */,
 				0B1E63291BF103C200C4F460 /* AppDelegate.swift */,
-				0B1E632B1BF103C200C4F460 /* art.scnassets */,
 				0B1E632D1BF103C200C4F460 /* GameViewController.swift */,
+				0B49D5BE1BF65EB2000C5CA5 /* TrashNode.swift */,
+				0B1E63591BF104F900C4F460 /* GameScene.swift */,
+				0B49D5C01BF65F7A000C5CA5 /* OldShit.swift */,
+				0BC3F0071BF3C5BB0040C009 /* Model.swift */,
 				0B1E632F1BF103C200C4F460 /* Main.storyboard */,
 				0B1E63321BF103C200C4F460 /* Assets.xcassets */,
 				0B1E63341BF103C200C4F460 /* LaunchScreen.storyboard */,
@@ -235,8 +247,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B1E632C1BF103C200C4F460 /* art.scnassets in Resources */,
 				0B1E63361BF103C200C4F460 /* LaunchScreen.storyboard in Resources */,
+				0B49D5BD1BF65D54000C5CA5 /* GameScene.sks in Resources */,
 				0B1E63331BF103C200C4F460 /* Assets.xcassets in Resources */,
 				0B1E63311BF103C200C4F460 /* Main.storyboard in Resources */,
 			);
@@ -263,8 +275,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B1E635A1BF104F900C4F460 /* GameScene.swift in Sources */,
+				0B49D5C11BF65F7A000C5CA5 /* OldShit.swift in Sources */,
 				0B1E632E1BF103C200C4F460 /* GameViewController.swift in Sources */,
+				0B49D5BF1BF65EB2000C5CA5 /* TrashNode.swift in Sources */,
 				0B1E632A1BF103C200C4F460 /* AppDelegate.swift in Sources */,
+				0BC3F0081BF3C5BB0040C009 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,6 +507,7 @@
 				0B1E63521BF103C200C4F460 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0B1E63531BF103C200C4F460 /* Build configuration list for PBXNativeTarget "EcocarnivalTests" */ = {
 			isa = XCConfigurationList;
@@ -499,6 +516,7 @@
 				0B1E63551BF103C200C4F460 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0B1E63561BF103C200C4F460 /* Build configuration list for PBXNativeTarget "EcocarnivalUITests" */ = {
 			isa = XCConfigurationList;
@@ -507,6 +525,7 @@
 				0B1E63581BF103C200C4F460 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
