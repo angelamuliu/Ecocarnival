@@ -108,6 +108,8 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             if (TN_Model.checkMatchingBin(firstCategory, secondCategory: secondCategory)) {
                 game.increaseScore()
                 scoreLabel.text = String(game.score)
+            } else { // Looks like the trash went into the wrong bin
+                
             }
             if let trashNode = TN_Model.getTrashNodeFromBody(contact.bodyA, secondBody: contact.bodyB) {
                 trashNode.removeFromParent()

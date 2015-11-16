@@ -21,6 +21,7 @@
 		0B6B15681BF6EB9500370ABF /* BinNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6B15671BF6EB9500370ABF /* BinNode.swift */; };
 		0B6B156A1BF7092C00370ABF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6B15691BF7092C00370ABF /* Constants.swift */; };
 		0BC3F0081BF3C5BB0040C009 /* TN_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC3F0071BF3C5BB0040C009 /* TN_Model.swift */; };
+		0BF25E7B1BFA6AB30044F247 /* UI_Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF25E7A1BFA6AB30044F247 /* UI_Components.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		0B6B15671BF6EB9500370ABF /* BinNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinNode.swift; sourceTree = "<group>"; };
 		0B6B15691BF7092C00370ABF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0BC3F0071BF3C5BB0040C009 /* TN_Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TN_Model.swift; sourceTree = "<group>"; };
+		0BF25E7A1BFA6AB30044F247 /* UI_Components.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UI_Components.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				0B49D5BE1BF65EB2000C5CA5 /* TrashNode.swift */,
 				0B6B15691BF7092C00370ABF /* Constants.swift */,
 				0B6B15671BF6EB9500370ABF /* BinNode.swift */,
+				0BF25E7A1BFA6AB30044F247 /* UI_Components.swift */,
 				0B1E63591BF104F900C4F460 /* TN_GameScene.swift */,
 				0B49D5C01BF65F7A000C5CA5 /* OldShit.swift */,
 				0BC3F0071BF3C5BB0040C009 /* TN_Model.swift */,
@@ -282,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B1E635A1BF104F900C4F460 /* TN_GameScene.swift in Sources */,
+				0BF25E7B1BFA6AB30044F247 /* UI_Components.swift in Sources */,
 				0B49D5C11BF65F7A000C5CA5 /* OldShit.swift in Sources */,
 				0B1E632E1BF103C200C4F460 /* GameViewController.swift in Sources */,
 				0B6B15681BF6EB9500370ABF /* BinNode.swift in Sources */,
