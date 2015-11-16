@@ -25,7 +25,7 @@ class TrashNode: SKSpriteNode {
         let sprite = TrashNode(imageNamed: imageString)
         sprite.name = Constants.trash
         sprite.position = location
-        sprite.zPosition = 5
+        sprite.zPosition = Constants.zTrash
         
         
         sprite.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: imageString), size: sprite.size)

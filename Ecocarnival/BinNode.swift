@@ -22,7 +22,7 @@ class BinNode: SKSpriteNode {
         let sprite = BinNode(imageNamed: "TN_trashbin.png")
         sprite.name = Constants.trash
         sprite.position = location
-        sprite.zPosition = 10
+        sprite.zPosition = Constants.zBin
         
         sprite.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width:10, height: sprite.size.height))
         if let physics = sprite.physicsBody {
@@ -45,7 +45,7 @@ class BinNode: SKSpriteNode {
         let sprite = BinNode(imageNamed: "TN_recyclebin.png")
         sprite.name = Constants.recycle
         sprite.position = location
-        sprite.zPosition = 10
+        sprite.zPosition = Constants.zBin
         
         sprite.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width:50, height: sprite.size.height))
         if let physics = sprite.physicsBody {
@@ -68,7 +68,7 @@ class BinNode: SKSpriteNode {
         let sprite = BinNode(color: UIColor.blueColor(), size: CGSizeMake(width, 50))
         sprite.name = Constants.misc
         sprite.position = location
-        sprite.zPosition = 10
+        sprite.zPosition = Constants.zBin
         
         sprite.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width:width, height: 50))
         if let physics = sprite.physicsBody {

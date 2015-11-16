@@ -23,13 +23,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Ecocarnival/GameViewController.swift"
-            timestampString = "469135564.364163"
+            filePath = "Ecocarnival/GameScene.swift"
+            timestampString = "469173188.739238"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "touchesMoved(_:withEvent:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -39,14 +39,62 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Ecocarnival/GameScene.swift"
-            timestampString = "469173188.739238"
+            filePath = "Ecocarnival/TrashNode.swift"
+            timestampString = "469382428.765592"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "touchesMoved(_:withEvent:)"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "trash(_:)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ecocarnival/Constants.swift"
+            timestampString = "469382648.900337"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "Constants"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "globalinit_33_2B480B247CFA96146D3BF5F348670A1A_func0"
+                  moduleName = "Ecocarnival"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Angela/Programming/iOS_Swift/Ecocarnival/Ecocarnival/Constants.swift"
+                  timestampString = "469382536.471323"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Ecocarnival.Constants.trash.unsafeMutableAddressor : Swift.String"
+                  moduleName = "Ecocarnival"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Angela/Programming/iOS_Swift/Ecocarnival/Ecocarnival/Constants.swift"
+                  timestampString = "469382536.471584"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

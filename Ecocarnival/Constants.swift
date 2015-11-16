@@ -7,8 +7,14 @@
 //
 
 import Foundation
+import UIKit
 
 struct Constants {
+    // Z Indexes of different types to ensure consistent layering
+    static let zTrash = CGFloat(5)
+    static let zBin = CGFloat(10)
+    static let zUI = CGFloat(100)
+    
     // Different types of trash and bins
     static let trash = "Trash"
     static let recycle = "Recycle"

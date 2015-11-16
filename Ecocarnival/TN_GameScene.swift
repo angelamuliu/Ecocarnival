@@ -34,9 +34,11 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Load UI
         scoreLabel.text = String(game.score)
-        scoreLabel.zPosition = 2
+        scoreLabel.zPosition = Constants.zUI
         scoreLabel.setScale(2)
-        scoreLabel.position = CGPoint(x: self.size.width - 50, y: self.size.height - 175)
+        scoreLabel.position = CGPoint(x: self.size.width, y: self.size.height)
+        scoreLabel.verticalAlignmentMode = .Top // Our position should be the top right point of the text
+        scoreLabel.horizontalAlignmentMode = .Right
         self.addChild(scoreLabel)
         
         self.addChild(trashNode)
@@ -57,9 +59,11 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             let touchLocation = touch.locationInNode(self)
             print(touchLocation)
             if let body = physicsWorld.bodyAtPoint(touchLocation) {
-                if body.node!.name == "Trash" {
-                    isTouchingTrash = true
-                    touchPoint = touchLocation
+                if let node = body.node {
+                    if node.name == "Trash" {
+                        isTouchingTrash = true
+                        touchPoint = touchLocation
+                    }
                 }
             }
         }

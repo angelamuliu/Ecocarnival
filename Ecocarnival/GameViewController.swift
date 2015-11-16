@@ -17,13 +17,24 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-         let scene = TN_GameScene(fileNamed: "TN_GameScene.sks")
-        scene!.scaleMode = .AspectFill
+//        
+//         let scene = TN_GameScene(fileNamed: "TN_GameScene.sks")
+//        scene!.scaleMode = .AspectFill
+//        
+//        let skView = self.view as! SKView
+////        skView.showsFPS = true
+////        skView.showsNodeCount = true
+//        
+//        skView.presentScene(scene)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        let scene = TN_GameScene(fileNamed: "TN_GameScene.sks")
+        scene!.scaleMode = .ResizeFill
         
         let skView = self.view as! SKView
-//        skView.showsFPS = true
-//        skView.showsNodeCount = true
+        //        skView.showsFPS = true
+        //        skView.showsNodeCount = true
         
         skView.presentScene(scene)
     }
