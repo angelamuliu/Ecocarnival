@@ -114,7 +114,8 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
                 game.increaseScore()
                 scoreLabel.text = String(game.score)
             } else { // Looks like the trash went into the wrong bin
-                
+                game.decreaseLife()
+                UI_Components.updateLifeNodes(game.life, lifeNodes: lifeNodes)
             }
             if let trashNode = TN_Model.getTrashNodeFromBody(contact.bodyA, secondBody: contact.bodyB) {
                 trashNode.removeFromParent()

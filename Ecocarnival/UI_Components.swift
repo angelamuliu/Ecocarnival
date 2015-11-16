@@ -41,5 +41,15 @@ class UI_Components {
         return lifeNodes
     }
     
+    /**
+     Updates the life bar to match a number that's passed in
+    */
+    class func updateLifeNodes(lifeCount: Int, lifeNodes:[SKSpriteNode]) {
+        let missingLife = lifeNodes.count - lifeCount
+        for (var i = 0; i < missingLife; i++) {
+            lifeNodes[lifeNodes.count - 1 - i].texture = SKTexture(imageNamed:"TN_nolife")
+        }
+    }
+    
     
 }
