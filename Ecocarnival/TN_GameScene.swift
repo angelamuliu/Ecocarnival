@@ -65,7 +65,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             let nodeAtPoint = self.nodeAtPoint(touchLocation)
             
             if let nodeName = nodeAtPoint.name {
-                if nodeName == "Trash" {
+                if nodeName == Constants.trash {
                     isTouchingTrash = true
                     touchPoint = touchLocation
                     touchedTrash = nodeAtPoint
@@ -108,6 +108,9 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             if (TN_Model.checkMatchingBin(firstCategory, secondCategory: secondCategory)) {
                 game.increaseScore()
                 scoreLabel.text = String(game.score)
+            }
+            if let trashNode = TN_Model.getTrashNodeFromBody(contact.bodyA, secondBody: contact.bodyB) {
+                trashNode.removeFromParent()
             }
         }
         
