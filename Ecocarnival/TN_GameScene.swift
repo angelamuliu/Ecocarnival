@@ -20,7 +20,11 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     var scoreLabel = SKLabelNode()
     var isTouchingTrash = false
     var touchPoint:CGPoint = CGPoint()
+    var touchedTrash:SKNode? // The trashnode currently being interacted with
+    
+    
     var trashNode:TrashNode = TrashNode.trash(CGPoint(x: 550, y: 220))
+    var trashNode2:TrashNode = TrashNode.trash(CGPoint(x: 570, y: 250))
     
     override func didMoveToView(view: SKView) {
         self.physicsWorld.contactDelegate = self // Needed for collision detection
@@ -42,6 +46,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(scoreLabel)
         
         self.addChild(trashNode)
+        self.addChild(trashNode2)
         
         // Setup trash and recycle bins
         let trashbinNode:BinNode = BinNode.trashbin(CGPoint(x: 50, y: self.frame.size.height/2))
@@ -57,13 +62,13 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch:AnyObject in touches {
             let touchLocation = touch.locationInNode(self)
-            print(touchLocation)
-            if let body = physicsWorld.bodyAtPoint(touchLocation) {
-                if let node = body.node {
-                    if node.name == "Trash" {
-                        isTouchingTrash = true
-                        touchPoint = touchLocation
-                    }
+            let nodeAtPoint = self.nodeAtPoint(touchLocation)
+            
+            if let nodeName = nodeAtPoint.name {
+                if nodeName == "Trash" {
+                    isTouchingTrash = true
+                    touchPoint = touchLocation
+                    touchedTrash = nodeAtPoint
                 }
             }
         }
@@ -79,15 +84,16 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         isTouchingTrash = false
+        touchedTrash = nil
     }
     
     // http://stackoverflow.com/questions/28245653/how-to-throw-skspritenode
     override func update(currentTime: CFTimeInterval) {
         if isTouchingTrash {
             let dt:CGFloat = 1.0/12.0
-            let distance = CGVector(dx: touchPoint.x-trashNode.position.x, dy: touchPoint.y-trashNode.position.y)
+            let distance = CGVector(dx: touchPoint.x-touchedTrash!.position.x, dy: touchPoint.y-touchedTrash!.position.y)
             let velocity = CGVector(dx: distance.dx/dt, dy: distance.dy/dt)
-            trashNode.physicsBody!.velocity=velocity
+            touchedTrash!.physicsBody!.velocity=velocity
         }
     }
     
@@ -103,9 +109,9 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
                 game.increaseScore()
                 scoreLabel.text = String(game.score)
             }
-            
-
         }
+        
+        contact.bodyA.node
     }
     
     

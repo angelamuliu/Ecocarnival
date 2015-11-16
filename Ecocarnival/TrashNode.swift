@@ -38,8 +38,9 @@ class TrashNode: SKSpriteNode {
             
             sprite.physicsBody!.categoryBitMask = Constants.trashNodeCategory
             // What the trash node will respond to when touching or colliding
-            sprite.physicsBody!.contactTestBitMask = Constants.trashBinCategory | Constants.recycleBinCategory | Constants.miscBinCategory
+//            sprite.physicsBody!.contactTestBitMask = Constants.trashBinCategory | Constants.recycleBinCategory | Constants.miscBinCategory
             sprite.physicsBody!.collisionBitMask = Constants.trashBinCategory | Constants.recycleBinCategory | Constants.miscBinCategory
+            sprite.physicsBody!.collisionBitMask = ~Constants.trashNodeCategory;  // Trash nodes can overlap with other trash nodes
         }
         
         return sprite

@@ -27,8 +27,8 @@ struct Constants {
     static let recycleNodeCategory = UInt32(2)
     static let miscNodeCategory = UInt32(3)
     
-    static let trashBinCategory = UInt32(1)
-    static let recycleBinCategory = UInt32(2)
-    static let miscBinCategory = UInt32(3)
+    static let trashBinCategory = UInt32(4)
+    static let recycleBinCategory = UInt32(5)
+    static let miscBinCategory = UInt32(6)
     
 }

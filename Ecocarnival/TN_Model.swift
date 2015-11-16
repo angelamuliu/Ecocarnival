@@ -10,6 +10,7 @@
 // Trash Ninja Game Logic
 
 import Foundation
+import SpriteKit
 
 class TN_Model {
     
@@ -29,15 +30,31 @@ class TN_Model {
         life--
     }
     
+    /**
+     Creates a random TrashNode
+     */
+    func createTrash() {
+        
+    }
+    
     // ------------------------------------------------------------
     // Helper functions
     
-    // Given two categories, returns true if the node and bin are matching. False otherwise
+    /**
+     Given two categories, returns true if the node and bin are matching. False otherwise
+    */
     class func checkMatchingBin(firstCategory:UInt32, secondCategory:UInt32) -> Bool {
         if (firstCategory == secondCategory) {
             return true
         }
         return false;
+    }
+    
+    /**
+     Given two bodies (e.g. from the didBeginContact()) returns the trashnode
+    */
+    class func getTrashNodeFromBody(firstContact:SKPhysicsBody, secondBody: SKPhysicsBody) {
+        
     }
     
 }
