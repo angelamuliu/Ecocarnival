@@ -17,7 +17,12 @@ import SpriteKit
 class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     
     var game = TN_Model()
+    
+    // UI
     var scoreLabel = SKLabelNode()
+    var lifeNodes = [SKSpriteNode]()
+    
+    // Game Interaction
     var isTouchingTrash = false
     var touchPoint:CGPoint = CGPoint()
     var touchedTrash:SKNode? // The trashnode currently being interacted with
@@ -37,13 +42,13 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
 //        self.addChild(bgImage)
         
         // Load UI
-        scoreLabel.text = String(game.score)
-        scoreLabel.zPosition = Constants.zUI
-        scoreLabel.setScale(2)
-        scoreLabel.position = CGPoint(x: self.size.width, y: self.size.height)
-        scoreLabel.verticalAlignmentMode = .Top // Our position should be the top right point of the text
-        scoreLabel.horizontalAlignmentMode = .Right
+        scoreLabel = UI_Components.createScoreLabel(String(game.score), position: CGPoint(x: self.size.width, y: self.size.height))
         self.addChild(scoreLabel)
+        lifeNodes = UI_Components.createLifeNodes(5, startPosition: CGPoint(x:0, y:self.size.height))
+        for lifeNode in lifeNodes {
+            self.addChild(lifeNode)
+        }
+
         
         self.addChild(trashNode)
         self.addChild(trashNode2)
@@ -63,7 +68,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         for touch:AnyObject in touches {
             let touchLocation = touch.locationInNode(self)
             let nodeAtPoint = self.nodeAtPoint(touchLocation)
-            
+            print(touchLocation)
             if let nodeName = nodeAtPoint.name {
                 if nodeName == Constants.trash {
                     isTouchingTrash = true
