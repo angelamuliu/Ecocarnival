@@ -12,9 +12,17 @@ struct Constants {
     // Different types of trash and bins
     static let trash = "Trash"
     static let recycle = "Recycle"
+    static let misc = "Misc"
     
     // Collision categories for bins, trash, and non-collision items
     static let noCollisionCategory = UInt32(0)
-    static let trashHitCategory = UInt32(1)
-    static let binHitCategory = UInt32(2)
+    
+    static let trashNodeCategory = UInt32(1)
+    static let recycleNodeCategory = UInt32(2)
+    static let miscNodeCategory = UInt32(3)
+    
+    static let trashBinCategory = UInt32(1)
+    static let recycleBinCategory = UInt32(2)
+    static let miscBinCategory = UInt32(3)
+    
 }

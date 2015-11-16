@@ -17,18 +17,27 @@ import SpriteKit
 class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     
     var game = TN_Model()
+    var scoreLabel = SKLabelNode()
     var isTouchingTrash = false
     var touchPoint:CGPoint = CGPoint()
-    var trashNode:TrashNode = TrashNode.trash(CGPoint(x: 550, y: 550))
+    var trashNode:TrashNode = TrashNode.trash(CGPoint(x: 550, y: 220))
     
     override func didMoveToView(view: SKView) {
         self.physicsWorld.contactDelegate = self // Needed for collision detection
         
-        let bgImage = SKSpriteNode(imageNamed: "TN_bg.png") // Load BG
-        bgImage.zPosition = 1
-        bgImage.setScale(2)
-        bgImage.position = CGPointMake(self.size.width/2, self.size.height/2)
-        self.addChild(bgImage)
+        // Load BG
+//        let bgImage = SKSpriteNode(imageNamed: "TN_bg.png")
+//        bgImage.zPosition = 1
+//        bgImage.setScale(2)
+//        bgImage.position = CGPointMake(self.size.width/2, self.size.height/2)
+//        self.addChild(bgImage)
+        
+        // Load UI
+        scoreLabel.text = String(game.score)
+        scoreLabel.zPosition = 2
+        scoreLabel.setScale(2)
+        scoreLabel.position = CGPoint(x: self.size.width - 50, y: self.size.height - 175)
+        self.addChild(scoreLabel)
         
         self.addChild(trashNode)
         
@@ -38,11 +47,15 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         let recyclebinNode:BinNode = BinNode.recyclebin(CGPoint(x: self.frame.size.width-50, y: self.frame.size.height/2))
         self.addChild(recyclebinNode)
         
+        // Setup the offscreen 'misc' bin
+//        let miscbinNode:BinNode = BinNode.miscbin(CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2), width: self.frame.size.width)
+//        self.addChild(miscbinNode)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch:AnyObject in touches {
             let touchLocation = touch.locationInNode(self)
+            print(touchLocation)
             if let body = physicsWorld.bodyAtPoint(touchLocation) {
                 if body.node!.name == "Trash" {
                     isTouchingTrash = true
@@ -76,14 +89,18 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     // http://stackoverflow.com/questions/26438108/ios-swift-didbegincontact-not-being-called
-    func didBeginContact(contact: SKPhysicsContact) {
-        let firstBody = contact.bodyA
-        let secondBody = contact.bodyB
+    func didBeginContact(contact: SKPhysicsContact) {        
+        let firstCategory = contact.bodyA.categoryBitMask
+        let secondCategory = contact.bodyB.categoryBitMask
         
-//        firstBody.node!.name ==
-        
-        if (firstBody.categoryBitMask == TrashNode.trashHitCategory || secondBody.categoryBitMask == BinNode.binHitCategory) {
-            print("CONTACT")
+        if (firstCategory != Constants.noCollisionCategory && secondCategory != Constants.noCollisionCategory) {
+            // Did a trash node hit a trash can? Doing checks for all proper matches
+            if (TN_Model.checkMatchingBin(firstCategory, secondCategory: secondCategory)) {
+                game.increaseScore()
+                scoreLabel.text = String(game.score)
+            }
+            
+
         }
     }
     

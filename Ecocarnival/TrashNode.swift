@@ -36,9 +36,10 @@ class TrashNode: SKSpriteNode {
             physics.linearDamping = 0.75
             physics.angularDamping = 0.75
             
-            sprite.physicsBody!.categoryBitMask = Constants.trashHitCategory
-            sprite.physicsBody!.contactTestBitMask = Constants.binHitCategory
-            sprite.physicsBody!.collisionBitMask = Constants.binHitCategory
+            sprite.physicsBody!.categoryBitMask = Constants.trashNodeCategory
+            // What the trash node will respond to when touching or colliding
+            sprite.physicsBody!.contactTestBitMask = Constants.trashBinCategory | Constants.recycleBinCategory | Constants.miscBinCategory
+            sprite.physicsBody!.collisionBitMask = Constants.trashBinCategory | Constants.recycleBinCategory | Constants.miscBinCategory
         }
         
         return sprite

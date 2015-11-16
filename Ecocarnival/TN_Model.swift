@@ -29,4 +29,15 @@ class TN_Model {
         life--
     }
     
+    // ------------------------------------------------------------
+    // Helper functions
+    
+    // Given two categories, returns true if the node and bin are matching. False otherwise
+    class func checkMatchingBin(firstCategory:UInt32, secondCategory:UInt32) -> Bool {
+        if (firstCategory == secondCategory) {
+            return true
+        }
+        return false;
+    }
+    
 }
