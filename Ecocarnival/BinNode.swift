@@ -25,8 +25,14 @@ class BinNode: SKSpriteNode {
             physics.affectedByGravity = false;
             physics.allowsRotation = false;
             physics.dynamic = false;
+            
+            // Bins can contact and collide with any sort of "trash node"
+            physics.contactTestBitMask = Constants.trashNodeCategory | Constants.recycleNodeCategory | Constants.miscNodeCategory
+            physics.collisionBitMask = Constants.trashNodeCategory | Constants.recycleNodeCategory | Constants.miscNodeCategory;
         }
     }
+    
+    // ------------------------------------------------------------
     
     /**
      Trash bin for all trash nodes
@@ -37,9 +43,6 @@ class BinNode: SKSpriteNode {
         sprite.setupBin(location, physicsSize: CGSize(width:10, height: sprite.size.height))
         
         sprite.physicsBody!.categoryBitMask = Constants.trashBinCategory
-        sprite.physicsBody!.contactTestBitMask = Constants.trashNodeCategory | Constants.recycleNodeCategory | Constants.miscNodeCategory
-        sprite.physicsBody!.collisionBitMask = Constants.trashNodeCategory | Constants.recycleNodeCategory | Constants.miscNodeCategory;
-        
         return sprite;
     }
     
@@ -52,9 +55,6 @@ class BinNode: SKSpriteNode {
         sprite.setupBin(location, physicsSize: CGSize(width:10, height: sprite.size.height))
         
         sprite.physicsBody!.categoryBitMask = Constants.recycleBinCategory
-        sprite.physicsBody!.contactTestBitMask = Constants.trashNodeCategory | Constants.recycleNodeCategory | Constants.miscNodeCategory
-        sprite.physicsBody!.collisionBitMask = Constants.trashNodeCategory | Constants.recycleNodeCategory | Constants.miscNodeCategory;
-        
         return sprite;
     }
     
@@ -67,9 +67,6 @@ class BinNode: SKSpriteNode {
         sprite.setupBin(location, physicsSize: CGSize(width:width, height: 50))
         
         sprite.physicsBody!.categoryBitMask = Constants.miscBinCategory
-        sprite.physicsBody!.contactTestBitMask = Constants.trashNodeCategory | Constants.recycleNodeCategory | Constants.miscNodeCategory
-        sprite.physicsBody!.collisionBitMask = Constants.trashNodeCategory | Constants.recycleNodeCategory | Constants.miscNodeCategory;
-        
         return sprite;
     }
 }

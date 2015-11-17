@@ -46,8 +46,12 @@ class UI_Components {
     */
     class func updateLifeNodes(lifeCount: Int, lifeNodes:[SKSpriteNode]) {
         let missingLife = lifeNodes.count - lifeCount
-        for (var i = 0; i < missingLife; i++) {
-            lifeNodes[lifeNodes.count - 1 - i].texture = SKTexture(imageNamed:"TN_nolife")
+        if lifeCount >= 0 {
+            for (var i = 0; i < missingLife; i++) {
+                lifeNodes[lifeNodes.count - 1 - i].texture = SKTexture(imageNamed:"TN_nolife")
+            }
+        } else {
+            // It's game over lmao
         }
     }
     

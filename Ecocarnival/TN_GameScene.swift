@@ -28,8 +28,8 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     var touchedTrash:SKNode? // The trashnode currently being interacted with
     
     
-    var trashNode:TrashNode = TrashNode.trash(CGPoint(x: 550, y: 220))
-    var trashNode2:TrashNode = TrashNode.trash(CGPoint(x: 570, y: 250))
+//    var trashNode:TrashNode = TrashNode.trash(CGPoint(x: 550, y: 220))
+    var trashNode2:TrashNode = TrashNode.recyclable(CGPoint(x: 570, y: 250))
     
     override func didMoveToView(view: SKView) {
         self.physicsWorld.contactDelegate = self // Needed for collision detection
@@ -50,7 +50,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         }
 
         
-        self.addChild(trashNode)
+//        self.addChild(trashNode)
         self.addChild(trashNode2)
         
         // Setup trash and recycle bins
@@ -69,12 +69,10 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             let touchLocation = touch.locationInNode(self)
             let nodeAtPoint = self.nodeAtPoint(touchLocation)
             print(touchLocation)
-            if let nodeName = nodeAtPoint.name {
-                if nodeName == Constants.trash {
-                    isTouchingTrash = true
-                    touchPoint = touchLocation
-                    touchedTrash = nodeAtPoint
-                }
+            if nodeAtPoint is TrashNode {
+                isTouchingTrash = true
+                touchPoint = touchLocation
+                touchedTrash = nodeAtPoint
             }
         }
     }
@@ -115,19 +113,14 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
                 scoreLabel.text = String(game.score)
             } else { // Looks like the trash went into the wrong bin
                 game.decreaseLife()
+                print(game.life)
                 UI_Components.updateLifeNodes(game.life, lifeNodes: lifeNodes)
             }
             if let trashNode = TN_Model.getTrashNodeFromBody(contact.bodyA, secondBody: contact.bodyB) {
                 trashNode.removeFromParent()
+                self.addChild(TrashNode.generateRandomTrash(CGPoint(x: 500, y: 250)))
             }
         }
-        
-        contact.bodyA.node
-    }
-    
-    func generateRandomTrash() -> TrashNode {
-        var trashNode:TrashNode = TrashNode.trash(CGPoint(x: 550, y: 220))
-        return trashNode
     }
     
     
