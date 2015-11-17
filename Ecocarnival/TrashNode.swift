@@ -56,9 +56,9 @@ class TrashNode: SKSpriteNode {
         return sprite
     }
     
-    class func recyclable(location: CGPoint) -> TrashNode {
-
-    }
+//    class func recyclable(location: CGPoint) -> TrashNode {
+//
+//    }
     
     // ------------------------------------------------------------
     // Helper methods
