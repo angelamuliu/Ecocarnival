@@ -12,7 +12,7 @@ import SceneKit
 import SpriteKit
 
 
-class GameViewController: UIViewController {
+class TN_GameViewController: UIViewController {
     
     
     override func viewDidLoad() {
@@ -33,9 +33,6 @@ class GameViewController: UIViewController {
         scene!.scaleMode = .ResizeFill
         
         let skView = self.view as! SKView
-        //        skView.showsFPS = true
-        //        skView.showsNodeCount = true
-        
         skView.presentScene(scene)
     }
     
