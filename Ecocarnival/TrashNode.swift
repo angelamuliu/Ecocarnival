@@ -15,40 +15,54 @@ import SpriteKit
  All trash has a trash hit category of 1.
 */
 class TrashNode: SKSpriteNode {
-    static let trashHitCategory = UInt32(1);
-    static let imageAssets = ["TN_trash1.png"]
+    static let trashImageAssets = ["TN_trash1.png"]
     
-    // ------------------------------------------------------------
-    // Base trash initialize methods for trash, recyclables, and misc items
-    class func trash(location: CGPoint) -> TrashNode {
-        let imageString = chooseImage()
-        let sprite = TrashNode(imageNamed: imageString)
-        sprite.name = Constants.trash
-        sprite.position = location
-        sprite.zPosition = Constants.zTrash
-        
-        
-        sprite.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: imageString), size: sprite.size)
-        if let physics = sprite.physicsBody {
+    // Generic setup shared for all trash
+    func setupTrash(location:CGPoint) {
+        self.position = location
+        self.zPosition = Constants.zTrash
+    }
+    // Physics setup that happens after image is chosen
+    func setupPhysics() {
+        if let physics = self.physicsBody {
             physics.affectedByGravity = true
             physics.allowsRotation = true
             physics.dynamic = true
             physics.linearDamping = 0.75
             physics.angularDamping = 0.75
-            
-            sprite.physicsBody!.categoryBitMask = Constants.trashNodeCategory
-            // What the trash node will respond to when touching or colliding
-//            sprite.physicsBody!.contactTestBitMask = Constants.trashBinCategory | Constants.recycleBinCategory | Constants.miscBinCategory
-            sprite.physicsBody!.collisionBitMask = Constants.trashBinCategory | Constants.recycleBinCategory | Constants.miscBinCategory
-            sprite.physicsBody!.collisionBitMask = ~Constants.trashNodeCategory;  // Trash nodes can overlap with other trash nodes
         }
+    }
+    
+    // ------------------------------------------------------------
+    
+    /**
+     Trash node for stuff that goes in the trash can
+    */
+    class func trash(location: CGPoint) -> TrashNode {
+        let imageString = chooseImage(trashImageAssets)
+        let sprite = TrashNode(imageNamed: imageString)
+        sprite.name = Constants.trash
+        sprite.setupTrash(location)
+        
+        sprite.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: imageString), size: sprite.size)
+        sprite.setupPhysics()
+        
+        sprite.physicsBody!.categoryBitMask = Constants.trashNodeCategory
+        
+        // What the trash node will respond to when touching or colliding
+        sprite.physicsBody!.collisionBitMask = Constants.trashBinCategory | Constants.recycleBinCategory | Constants.miscBinCategory
+        sprite.physicsBody!.collisionBitMask = ~Constants.trashNodeCategory;  // Trash nodes can overlap with other trash nodes
         
         return sprite
     }
     
+    class func recyclable(location: CGPoint) -> TrashNode {
+
+    }
+    
     // ------------------------------------------------------------
     // Helper methods
-    class func chooseImage() -> String {
-        return imageAssets[Int(arc4random_uniform(UInt32(imageAssets.count)))]
+    class func chooseImage(imageSet:[String]) -> String {
+        return imageSet[Int(arc4random_uniform(UInt32(imageSet.count)))]
     }
 }

@@ -18,7 +18,6 @@
 		0B1E635A1BF104F900C4F460 /* TN_GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E63591BF104F900C4F460 /* TN_GameScene.swift */; };
 		0B49D5BD1BF65D54000C5CA5 /* TN_GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0B49D5BC1BF65D54000C5CA5 /* TN_GameScene.sks */; };
 		0B49D5BF1BF65EB2000C5CA5 /* TrashNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B49D5BE1BF65EB2000C5CA5 /* TrashNode.swift */; };
-		0B49D5C11BF65F7A000C5CA5 /* OldShit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B49D5C01BF65F7A000C5CA5 /* OldShit.swift */; };
 		0B6B15681BF6EB9500370ABF /* BinNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6B15671BF6EB9500370ABF /* BinNode.swift */; };
 		0B6B156A1BF7092C00370ABF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6B15691BF7092C00370ABF /* Constants.swift */; };
 		0BC3F0081BF3C5BB0040C009 /* TN_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC3F0071BF3C5BB0040C009 /* TN_Model.swift */; };
@@ -60,7 +59,6 @@
 		0B1E63591BF104F900C4F460 /* TN_GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TN_GameScene.swift; sourceTree = "<group>"; };
 		0B49D5BC1BF65D54000C5CA5 /* TN_GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = TN_GameScene.sks; path = ../TN_GameScene.sks; sourceTree = "<group>"; };
 		0B49D5BE1BF65EB2000C5CA5 /* TrashNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrashNode.swift; sourceTree = "<group>"; };
-		0B49D5C01BF65F7A000C5CA5 /* OldShit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldShit.swift; sourceTree = "<group>"; };
 		0B6B15671BF6EB9500370ABF /* BinNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinNode.swift; sourceTree = "<group>"; };
 		0B6B15691BF7092C00370ABF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0BC3F0071BF3C5BB0040C009 /* TN_Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TN_Model.swift; sourceTree = "<group>"; };
@@ -92,6 +90,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B1BEFD31BFB7B27001EABE3 /* TrashNinja */ = {
+			isa = PBXGroup;
+			children = (
+				0B1E63591BF104F900C4F460 /* TN_GameScene.swift */,
+				0B6B15671BF6EB9500370ABF /* BinNode.swift */,
+				0B1E632D1BF103C200C4F460 /* TN_GameViewController.swift */,
+				0BC3F0071BF3C5BB0040C009 /* TN_Model.swift */,
+				0B49D5BE1BF65EB2000C5CA5 /* TrashNode.swift */,
+				0B49D5BC1BF65D54000C5CA5 /* TN_GameScene.sks */,
+			);
+			name = TrashNinja;
+			sourceTree = "<group>";
+		};
 		0B1E631D1BF103C200C4F460 = {
 			isa = PBXGroup;
 			children = (
@@ -117,18 +128,12 @@
 			children = (
 				0B1E63291BF103C200C4F460 /* AppDelegate.swift */,
 				0B1E63321BF103C200C4F460 /* Assets.xcassets */,
-				0B6B15671BF6EB9500370ABF /* BinNode.swift */,
 				0B6B15691BF7092C00370ABF /* Constants.swift */,
 				0B1E63371BF103C200C4F460 /* Info.plist */,
 				0B1E63341BF103C200C4F460 /* LaunchScreen.storyboard */,
 				0B1E632F1BF103C200C4F460 /* Main.storyboard */,
-				0B49D5C01BF65F7A000C5CA5 /* OldShit.swift */,
 				0B1BEFD11BFB73B8001EABE3 /* SplashViewController.swift */,
-				0B49D5BC1BF65D54000C5CA5 /* TN_GameScene.sks */,
-				0B1E63591BF104F900C4F460 /* TN_GameScene.swift */,
-				0B1E632D1BF103C200C4F460 /* TN_GameViewController.swift */,
-				0BC3F0071BF3C5BB0040C009 /* TN_Model.swift */,
-				0B49D5BE1BF65EB2000C5CA5 /* TrashNode.swift */,
+				0B1BEFD31BFB7B27001EABE3 /* TrashNinja */,
 				0BF25E7A1BFA6AB30044F247 /* UI_Components.swift */,
 			);
 			path = Ecocarnival;
@@ -289,7 +294,6 @@
 			files = (
 				0B1E635A1BF104F900C4F460 /* TN_GameScene.swift in Sources */,
 				0BF25E7B1BFA6AB30044F247 /* UI_Components.swift in Sources */,
-				0B49D5C11BF65F7A000C5CA5 /* OldShit.swift in Sources */,
 				0B1E632E1BF103C200C4F460 /* TN_GameViewController.swift in Sources */,
 				0B6B15681BF6EB9500370ABF /* BinNode.swift in Sources */,
 				0B49D5BF1BF65EB2000C5CA5 /* TrashNode.swift in Sources */,

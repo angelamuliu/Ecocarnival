@@ -125,6 +125,11 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         contact.bodyA.node
     }
     
+    func generateRandomTrash() -> TrashNode {
+        var trashNode:TrashNode = TrashNode.trash(CGPoint(x: 550, y: 220))
+        return trashNode
+    }
+    
     
     
 }
