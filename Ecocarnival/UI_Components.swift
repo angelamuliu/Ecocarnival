@@ -55,5 +55,15 @@ class UI_Components {
         }
     }
     
+    class func createGameOverDialog(screenSize: CGSize) -> UIView {
+        let dialog = UIView(frame: CGRect(x: 0, y: 0, width: screenSize.width/2, height: screenSize.height/2))
+        dialog.backgroundColor = UIColor.whiteColor()
+        
+        let restartButton = UIButton()
+        restartButton.setTitle("TEST", forState: UIControlState.Normal)
+        dialog.addSubview(restartButton)
+        return dialog
+    }
+    
     
 }

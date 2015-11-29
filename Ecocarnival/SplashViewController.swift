@@ -20,9 +20,7 @@ class SplashViewController: UIViewController {
         backgroundImageView.contentMode = .ScaleAspectFill
         view.addSubview(backgroundImageView)
         view.sendSubviewToBack(backgroundImageView)
-        
-        // Load the Ecocarnival banner
-//        let bannerImageView = UIImageView(image: UIImage(named: ")
+
     }
     
 }

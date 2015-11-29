@@ -17,23 +17,19 @@ class TN_GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        
-//         let scene = TN_GameScene(fileNamed: "TN_GameScene.sks")
-//        scene!.scaleMode = .AspectFill
-//        
-//        let skView = self.view as! SKView
-////        skView.showsFPS = true
-////        skView.showsNodeCount = true
-//        
-//        skView.presentScene(scene)
-    }
-    
-    override func viewWillLayoutSubviews() {
+        
+        // Replace the main view with our game scene
         let scene = TN_GameScene(fileNamed: "TN_GameScene.sks")
         scene!.scaleMode = .ResizeFill
         
         let skView = self.view as! SKView
         skView.presentScene(scene)
+
+    }
+    
+    override func viewWillLayoutSubviews() {
+        // Called whenever a new view is added
+        super.viewWillLayoutSubviews()
     }
     
     override func prefersStatusBarHidden() -> Bool {

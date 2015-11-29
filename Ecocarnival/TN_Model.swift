@@ -30,11 +30,11 @@ class TN_Model {
         life--
     }
     
-    /**
-     Creates a random TrashNode
-     */
-    func createTrash() {
-        
+    var isGameOver: Bool {
+        if (life <= 0) {
+            return true
+        }
+        return false
     }
     
     // ------------------------------------------------------------

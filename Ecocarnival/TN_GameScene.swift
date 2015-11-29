@@ -27,9 +27,6 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     var touchPoint:CGPoint = CGPoint()
     var touchedTrash:SKNode? // The trashnode currently being interacted with
     
-
-    var trashNode2:TrashNode = TrashNode.recyclable(CGPoint(x: 570, y: 250))
-    
     override func didMoveToView(view: SKView) {
         self.physicsWorld.contactDelegate = self // Needed for collision detection
         
@@ -47,8 +44,6 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         for lifeNode in lifeNodes {
             self.addChild(lifeNode)
         }
-
-        self.addChild(trashNode2)
         
         // Setup trash and recycle bins
         let trashbinNode:BinNode = BinNode.trashbin(CGPoint(x: 50, y: self.frame.size.height/2))
@@ -59,6 +54,9 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         // Setup the 'misc' bin which catches anything that tumbles offscreen
         let miscbinNode:BinNode = BinNode.miscbin(CGPoint(x: self.frame.size.width/2, y: -400.0), width: self.frame.size.width * 3)
         self.addChild(miscbinNode)
+        
+        // Toss up the first trash
+        addNewTrash()
         
     }
     
@@ -115,12 +113,19 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
                 scoreLabel.text = String(game.score)
             } else { // Looks like the trash went into the wrong bin
                 game.decreaseLife()
-                print(game.life)
                 UI_Components.updateLifeNodes(game.life, lifeNodes: lifeNodes)
             }
             if let trashNode = TN_Model.getTrashNodeFromBody(contact.bodyA, secondBody: contact.bodyB) {
                 trashNode.removeFromParent()
-                addNewTrash()
+                
+                if (game.isGameOver) {
+                    self.view!.addSubview(UI_Components.createGameOverDialog(self.frame.size))
+                    self.paused  = true
+                    self.scene!.paused = true
+                } else {
+                    addNewTrash()
+                }
+                
             }
             updatesCalled = 0
         }
