@@ -88,12 +88,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ecocarnival/TN_GameScene.swift"
-            timestampString = "470461707.425738"
+            timestampString = "470464054.253484"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "tossTrash(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ecocarnival/TN_GameScene.swift"
+            timestampString = "470464325.905713"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "didBeginContact(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

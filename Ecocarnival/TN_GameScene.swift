@@ -27,8 +27,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     var touchPoint:CGPoint = CGPoint()
     var touchedTrash:SKNode? // The trashnode currently being interacted with
     
-    
-//    var trashNode:TrashNode = TrashNode.trash(CGPoint(x: 550, y: 220))
+
     var trashNode2:TrashNode = TrashNode.recyclable(CGPoint(x: 570, y: 250))
     
     override func didMoveToView(view: SKView) {
@@ -49,8 +48,6 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             self.addChild(lifeNode)
         }
 
-        
-//        self.addChild(trashNode)
         self.addChild(trashNode2)
         
         // Setup trash and recycle bins
@@ -60,8 +57,9 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(recyclebinNode)
         
         // Setup the 'misc' bin which catches anything that tumbles offscreen
-        let miscbinNode:BinNode = BinNode.miscbin(CGPoint(x: self.frame.size.width/2, y: -100.0), width: self.frame.size.width * 2)
+        let miscbinNode:BinNode = BinNode.miscbin(CGPoint(x: self.frame.size.width/2, y: -400.0), width: self.frame.size.width * 3)
         self.addChild(miscbinNode)
+        
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -90,6 +88,9 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         touchedTrash = nil
     }
     
+    // didBeginContact is called multiple times but we only want to update once per trash + bin collision
+    var updatesCalled = 0
+    
     // http://stackoverflow.com/questions/28245653/how-to-throw-skspritenode
     override func update(currentTime: CFTimeInterval) {
         if isTouchingTrash {
@@ -98,6 +99,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             let velocity = CGVector(dx: distance.dx/dt, dy: distance.dy/dt)
             touchedTrash!.physicsBody!.velocity=velocity
         }
+        updatesCalled++
     }
     
     
@@ -106,7 +108,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         let firstCategory = contact.bodyA.categoryBitMask
         let secondCategory = contact.bodyB.categoryBitMask
         
-        if (firstCategory != Constants.noCollisionCategory && secondCategory != Constants.noCollisionCategory) {
+        if (firstCategory != Constants.noCollisionCategory && secondCategory != Constants.noCollisionCategory && updatesCalled != 0) {
             // Did a trash node hit a trash can? Doing checks for all proper matches
             if (TN_Model.checkMatchingBin(firstCategory, secondCategory: secondCategory)) {
                 game.increaseScore()
@@ -117,14 +119,19 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
                 UI_Components.updateLifeNodes(game.life, lifeNodes: lifeNodes)
             }
             if let trashNode = TN_Model.getTrashNodeFromBody(contact.bodyA, secondBody: contact.bodyB) {
+                print(trashNode.name)
                 trashNode.removeFromParent()
                 addNewTrash()
+            } else {
+                print("OH NO!!!")
             }
+            updatesCalled = 0
         }
     }
     
     func addNewTrash() {
-        let newTrash = TrashNode.generateRandomTrash(CGPoint(x: 500, y: 250))
+//        let newTrash = TrashNode.generateRandomTrash(CGPoint(x: 500, y: 250))
+        let newTrash = TrashNode.generateRandomTrash(CGPoint(x: 400, y: -50))
         self.addChild(newTrash)
         tossTrash(newTrash)
     }
