@@ -13,11 +13,16 @@ class SplashViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Load the BG image
         let backgroundImageView = UIImageView(image: UIImage(named: "Splash_bg"))
         backgroundImageView.frame = view.frame
         backgroundImageView.contentMode = .ScaleAspectFill
         view.addSubview(backgroundImageView)
         view.sendSubviewToBack(backgroundImageView)
+        
+        // Load the Ecocarnival banner
+//        let bannerImageView = UIImageView(image: UIImage(named: ")
     }
     
 }

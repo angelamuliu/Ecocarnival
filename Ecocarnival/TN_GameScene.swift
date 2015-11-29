@@ -119,7 +119,6 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
                 UI_Components.updateLifeNodes(game.life, lifeNodes: lifeNodes)
             }
             if let trashNode = TN_Model.getTrashNodeFromBody(contact.bodyA, secondBody: contact.bodyB) {
-                print(trashNode.name)
                 trashNode.removeFromParent()
                 addNewTrash()
             }

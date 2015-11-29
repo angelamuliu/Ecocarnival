@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Game View Controller-->
@@ -46,11 +47,18 @@
                                     <segue destination="BV1-FR-VrT" kind="presentation" id="RYm-SD-n7o"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Banner" translatesAutoresizingMaskIntoConstraints="NO" id="LHP-yE-fm9">
+                                <rect key="frame" x="20" y="35" width="560" height="128"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="LHP-yE-fm9" firstAttribute="top" secondItem="EgA-tj-dx3" secondAttribute="bottom" constant="15" id="1k6-T5-vsE"/>
                             <constraint firstItem="59s-ZD-44y" firstAttribute="centerY" secondItem="WsE-sd-wvF" secondAttribute="centerY" id="Bnt-7Q-DU7"/>
                             <constraint firstItem="59s-ZD-44y" firstAttribute="centerX" secondItem="WsE-sd-wvF" secondAttribute="centerX" id="Fab-u2-aUX"/>
+                            <constraint firstItem="LHP-yE-fm9" firstAttribute="leading" secondItem="WsE-sd-wvF" secondAttribute="leadingMargin" id="cF9-Iv-W3I"/>
+                            <constraint firstItem="LHP-yE-fm9" firstAttribute="trailing" secondItem="WsE-sd-wvF" secondAttribute="trailingMargin" id="hcX-MX-jOA"/>
+                            <constraint firstItem="LHP-yE-fm9" firstAttribute="centerX" secondItem="WsE-sd-wvF" secondAttribute="centerX" id="jcR-yO-z0b"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -59,4 +67,7 @@
             <point key="canvasLocation" x="393" y="356"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Banner" width="475" height="105"/>
+    </resources>
 </document>
