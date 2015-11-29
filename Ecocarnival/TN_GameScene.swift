@@ -122,16 +122,13 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
                 print(trashNode.name)
                 trashNode.removeFromParent()
                 addNewTrash()
-            } else {
-                print("OH NO!!!")
             }
             updatesCalled = 0
         }
     }
     
     func addNewTrash() {
-//        let newTrash = TrashNode.generateRandomTrash(CGPoint(x: 500, y: 250))
-        let newTrash = TrashNode.generateRandomTrash(CGPoint(x: 400, y: -50))
+        let newTrash = TrashNode.generateRandomTrash(CGPoint(x: self.frame.size.width/2, y: -50))
         self.addChild(newTrash)
         tossTrash(newTrash)
     }
@@ -142,8 +139,8 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         trash.physicsBody!.applyImpulse(upwardVelocity)
         
         // You make me spin right round baby right round
-        let spinVelocity = CGVector(dx: 80.0 + Double(arc4random_uniform(100)), dy: 0.0)
-        trash.physicsBody!.applyImpulse(spinVelocity, atPoint: CGPoint(x: 0, y: 0))
+        let spinForce = 0.15 + (CGFloat(arc4random_uniform(50))/100.0)
+        trash.physicsBody!.applyAngularImpulse(spinForce)
     }
     
     
