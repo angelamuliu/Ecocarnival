@@ -138,11 +138,11 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Applies an impulse to a trash node to 'toss' it up to the air
     func tossTrash(trash: SKNode) {
-        let upwardVelocity = CGVector(dx: 0.0, dy: 500.0 + Double(arc4random_uniform(50)))
+        let upwardVelocity = CGVector(dx: 0.0, dy: 550.0 + Double(arc4random_uniform(120)))
         trash.physicsBody!.applyImpulse(upwardVelocity)
         
         // You make me spin right round baby right round
-        let spinVelocity = CGVector(dx: 32.0 + Double(arc4random_uniform(10)), dy: 0.0)
+        let spinVelocity = CGVector(dx: 80.0 + Double(arc4random_uniform(100)), dy: 0.0)
         trash.physicsBody!.applyImpulse(spinVelocity, atPoint: CGPoint(x: 0, y: 0))
     }
     
