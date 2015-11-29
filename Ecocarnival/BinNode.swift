@@ -59,7 +59,7 @@ class BinNode: SKSpriteNode {
     }
     
     /**
-     Offscreen 'bin' for all trash nodes that should not go in either bin, located at bottom of screen
+     Offscreen 'bin' for all trash nodes that should not go in either bin with a fixed height of 50px
      */
     class func miscbin(location: CGPoint, width: CGFloat) -> BinNode {
         let sprite = BinNode(color: UIColor.blueColor(), size: CGSizeMake(width, 50))

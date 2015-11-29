@@ -31,6 +31,7 @@ class TrashNode: SKSpriteNode {
             physics.dynamic = true
             physics.linearDamping = 0.75
             physics.angularDamping = 0.75
+            physics.mass = 0.5 // Assign a constant mass so all sized trash are affected by forces equally
             
             // What the trash node will respond to when touching or colliding
             physics.collisionBitMask = Constants.trashBinCategory | Constants.recycleBinCategory | Constants.miscBinCategory

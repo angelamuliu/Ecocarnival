@@ -35,11 +35,11 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self // Needed for collision detection
         
         // Load BG
-//        let bgImage = SKSpriteNode(imageNamed: "TN_bg.png")
-//        bgImage.zPosition = 1
-//        bgImage.setScale(2)
-//        bgImage.position = CGPointMake(self.size.width/2, self.size.height/2)
-//        self.addChild(bgImage)
+        let bgImage = SKSpriteNode(imageNamed: "TN_bg.png")
+        bgImage.zPosition = 1
+        bgImage.setScale(2)
+        bgImage.position = CGPointMake(self.size.width/2, self.size.height/2)
+        self.addChild(bgImage)
         
         // Load UI
         scoreLabel = UI_Components.createScoreLabel(String(game.score), position: CGPoint(x: self.size.width, y: self.size.height))
@@ -59,9 +59,9 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         let recyclebinNode:BinNode = BinNode.recyclebin(CGPoint(x: self.frame.size.width-50, y: self.frame.size.height/2))
         self.addChild(recyclebinNode)
         
-        // Setup the offscreen 'misc' bin
-//        let miscbinNode:BinNode = BinNode.miscbin(CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2), width: self.frame.size.width)
-//        self.addChild(miscbinNode)
+        // Setup the 'misc' bin which catches anything that tumbles offscreen
+        let miscbinNode:BinNode = BinNode.miscbin(CGPoint(x: self.frame.size.width/2, y: -100.0), width: self.frame.size.width * 2)
+        self.addChild(miscbinNode)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -118,9 +118,25 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             }
             if let trashNode = TN_Model.getTrashNodeFromBody(contact.bodyA, secondBody: contact.bodyB) {
                 trashNode.removeFromParent()
-                self.addChild(TrashNode.generateRandomTrash(CGPoint(x: 500, y: 250)))
+                addNewTrash()
             }
         }
+    }
+    
+    func addNewTrash() {
+        let newTrash = TrashNode.generateRandomTrash(CGPoint(x: 500, y: 250))
+        self.addChild(newTrash)
+        tossTrash(newTrash)
+    }
+    
+    // Applies an impulse to a trash node to 'toss' it up to the air
+    func tossTrash(trash: SKNode) {
+        let upwardVelocity = CGVector(dx: 0.0, dy: 500.0 + Double(arc4random_uniform(50)))
+        trash.physicsBody!.applyImpulse(upwardVelocity)
+        
+        // You make me spin right round baby right round
+        let spinVelocity = CGVector(dx: 32.0 + Double(arc4random_uniform(10)), dy: 0.0)
+        trash.physicsBody!.applyImpulse(spinVelocity, atPoint: CGPoint(x: 0, y: 0))
     }
     
     
