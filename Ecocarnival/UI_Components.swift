@@ -56,8 +56,9 @@ class UI_Components:NSObject {
     }
     
     class func createDialog(gameScene: TN_GameScene) -> UIView {
-        // A clear UIView covers up the screen
-        let dialog = UIView(frame: CGRect(x: 0, y: 0, width: gameScene.size.width, height: gameScene.size.height))
+        // A clear UIView covers up the screen but starts offscreen
+        let dialog = UIView(frame: CGRect(x: 0, y: gameScene.size.height, width: gameScene.size.width, height: gameScene.size.height))
+        dialog.layer.opacity = 0.0
         
         // Contains the dialog
         let wordContainer = UIView(frame: CGRect(x: gameScene.size.width/6, y: 30, width: (gameScene.size.width/6)*4, height: gameScene.size.height / 1.5))

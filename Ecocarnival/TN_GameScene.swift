@@ -156,12 +156,14 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         createButtons(modalView)
         
         self.view!.addSubview(modalView) // TODO: Fix the start location of the modalView frame and fix the animation as well
-        UIView.animateWithDuration(1.0,
+        UIView.animateWithDuration(0.3,
             animations: { void in
-                modalView.frame = CGRect(x: 0, y: 100, width: self.size.width, height: self.size.height)
+                modalView.frame = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
+                modalView.layer.opacity = 1.0
+                
             },
             completion: { finished in
-                modalView.frame = CGRect(x: 0, y: 200, width: self.size.width, height: self.size.height)
+                modalView.frame = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
         })
     }
     
