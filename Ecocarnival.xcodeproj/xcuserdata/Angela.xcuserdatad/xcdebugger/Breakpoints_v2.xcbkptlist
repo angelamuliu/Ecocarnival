@@ -88,11 +88,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ecocarnival/TN_GameScene.swift"
-            timestampString = "470524496.175971"
+            timestampString = "470544157.65396"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "tossTrash(_:)"
             landmarkType = "5">
          </BreakpointContent>

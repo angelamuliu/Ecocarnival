@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class UI_Components {
+class UI_Components:NSObject {
     
     /**
      Initializes a top right aligned score label given a string to start with and a position as an 'anchor'
@@ -55,15 +55,52 @@ class UI_Components {
         }
     }
     
-    class func createGameOverDialog(screenSize: CGSize) -> UIView {
-        let dialog = UIView(frame: CGRect(x: 0, y: 0, width: screenSize.width/2, height: screenSize.height/2))
-        dialog.backgroundColor = UIColor.whiteColor()
+    class func createDialog(gameScene: TN_GameScene) -> UIView {
+        // A clear UIView covers up the screen
+        let dialog = UIView(frame: CGRect(x: 0, y: 0, width: gameScene.size.width, height: gameScene.size.height))
         
-        let restartButton = UIButton()
-        restartButton.setTitle("TEST", forState: UIControlState.Normal)
-        dialog.addSubview(restartButton)
+        // Contains the dialog
+        let wordContainer = UIView(frame: CGRect(x: gameScene.size.width/6, y: 30, width: (gameScene.size.width/6)*4, height: gameScene.size.height / 1.5))
+        wordContainer.backgroundColor = UIColor.whiteColor()
+        wordContainer.layer.borderWidth = 8;
+        
+        // Adding light blue gradient color to the word container
+        let lightBlue = UIColor(red: 239.0/255.0, green: 251.0/255.0, blue: 255.0 / 255.0, alpha: 1.0).CGColor
+        
+        // http://stackoverflow.com/questions/23074539/programmatically-create-a-uiview-with-color-gradient
+        let topGradient: CAGradientLayer = CAGradientLayer()
+        topGradient.frame = CGRect(x: 0, y:0, width: wordContainer.bounds.width, height: wordContainer.bounds.height / 4)
+        topGradient.colors = [lightBlue, UIColor.whiteColor().CGColor]
+        wordContainer.layer.insertSublayer(topGradient, atIndex: 0)
+        
+        let botGradient: CAGradientLayer = CAGradientLayer()
+        botGradient.frame = CGRect(x: 0, y: (wordContainer.bounds.height/4)*3, width: wordContainer.bounds.width, height: wordContainer.bounds.height / 4)
+        botGradient.colors = [UIColor.whiteColor().CGColor, lightBlue]
+        wordContainer.layer.insertSublayer(botGradient, atIndex: 0)
+        
+        let borderColor = UIColor(red: 88.0/255.0, green: 129.0/255.0, blue: 146.0/255.0, alpha: 1.0).CGColor
+        wordContainer.layer.borderColor = borderColor
+        
+        // Drop shadow
+        wordContainer.layer.shadowOffset = CGSize(width: 0, height: 7)
+        wordContainer.layer.shadowOpacity = 0.5
+        wordContainer.layer.shadowRadius = 5.0
+        
+        dialog.addSubview(wordContainer)
+        
+        // The cat image goes on top
+        let catImage = UIImageView(image: UIImage(named: "Talkcat"))
+        catImage.frame = CGRect(x: gameScene.size.width/4, y: (gameScene.size.height/3)*2, width: gameScene.size.width/2, height: gameScene.size.height/3)
+        catImage.contentMode = .ScaleAspectFill
+        catImage.layer.shadowOpacity = 0.5
+        catImage.layer.shadowRadius = 5.0
+        
+        dialog.addSubview(wordContainer)
+        dialog.addSubview(catImage)
+        
         return dialog
     }
+
     
     
 }

@@ -56,7 +56,12 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(miscbinNode)
         
         // Toss up the first trash
-        addNewTrash()
+//        addNewTrash()
+        
+        // DEBUGGING PURPOSES
+        let modalView = UI_Components.createDialog(self)
+        createButtons(modalView)
+        self.view!.addSubview(modalView)
         
     }
     
@@ -119,7 +124,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
                 trashNode.removeFromParent()
                 
                 if (game.isGameOver) {
-                    self.view!.addSubview(UI_Components.createGameOverDialog(self.frame.size))
+//                    self.view!.addSubview(UI_Components.createGameOverDialog(self.frame.size))
                     self.paused  = true
                     self.scene!.paused = true
                 } else {
@@ -147,6 +152,19 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         trash.physicsBody!.applyAngularImpulse(spinForce)
     }
     
+    func resetGame(sender:UIButton!) {
+        print("HI!")
+    }
+    
+    // Janky, but we add buttons to a UIView dialog that connect to game logic
+    func createButtons(modalView: UIView) {
+        let restartButton = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
+        restartButton.setTitle("Replay", forState: UIControlState.Normal)
+        restartButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        restartButton.backgroundColor = UIColor.blackColor()
+        restartButton.addTarget(self, action: "resetGame:", forControlEvents: .TouchUpInside)
+        modalView.addSubview(restartButton)
+    }
     
     
 }
