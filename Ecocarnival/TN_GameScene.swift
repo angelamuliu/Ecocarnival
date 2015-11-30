@@ -56,12 +56,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(miscbinNode)
         
         // Toss up the first trash
-//        addNewTrash()
-        
-        // DEBUGGING PURPOSES
-        let modalView = UI_Components.createDialog(self)
-        createButtons(modalView)
-        self.view!.addSubview(modalView)
+        addNewTrash()
         
     }
     
@@ -124,9 +119,8 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
                 trashNode.removeFromParent()
                 
                 if (game.isGameOver) {
-//                    self.view!.addSubview(UI_Components.createGameOverDialog(self.frame.size))
-                    self.paused  = true
                     self.scene!.paused = true
+                    gameOverDialog()
                 } else {
                     addNewTrash()
                 }
@@ -154,6 +148,21 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     
     func resetGame(sender:UIButton!) {
         print("HI!")
+    }
+    
+    // Shows the game over UI component and also animates it sliding up
+    func gameOverDialog() {
+        let modalView = UI_Components.createDialog(self)
+        createButtons(modalView)
+        
+        self.view!.addSubview(modalView) // TODO: Fix the start location of the modalView frame and fix the animation as well
+        UIView.animateWithDuration(1.0,
+            animations: { void in
+                modalView.frame = CGRect(x: 0, y: 100, width: self.size.width, height: self.size.height)
+            },
+            completion: { finished in
+                modalView.frame = CGRect(x: 0, y: 200, width: self.size.width, height: self.size.height)
+        })
     }
     
     // Janky, but we add buttons to a UIView dialog that connect to game logic
