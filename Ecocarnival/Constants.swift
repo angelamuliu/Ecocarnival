@@ -31,4 +31,12 @@ struct Constants {
     static let recycleBinCategory = UInt32(5)
     static let miscBinCategory = UInt32(6)
     
+    // Consistent colors we use throughout the application
+    static let orangeColor = UIColor(red: 255.0/255.0, green: 122.0/255.0, blue: 64.0/255.0, alpha: 1.0)
+    static let bloodOrangeColor = UIColor(red: 240.0/255.0, green: 64.0/255.0, blue: 20.0/255.0, alpha: 1.0)
+    static let lightBlueColor = UIColor(red: 239.0/255.0, green: 251.0/255.0, blue: 255.0 / 255.0, alpha: 1.0)
+    static let navyColor = UIColor(red: 88.0/255.0, green: 129.0/255.0, blue: 146.0/255.0, alpha: 1.0)
+    static let lightGreyColor = UIColor(red: 175.0/255.0, green: 175.0/255.0, blue: 175.0/255.0, alpha: 1.0)
+    static let greyColor = UIColor(red: 150.0/255.0, green: 150.0/255.0, blue: 150.0/255.0, alpha: 1.0)
+    
 }

@@ -445,6 +445,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = cmu.Ecocarnival;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -457,6 +458,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = cmu.Ecocarnival;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

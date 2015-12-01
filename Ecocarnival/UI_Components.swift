@@ -55,7 +55,7 @@ class UI_Components:NSObject {
         }
     }
     
-    class func createDialog(gameScene: TN_GameScene) -> UIView {
+    class func createDialog(gameScene: TN_GameScene, text: String?) -> UIView {
         // A clear UIView covers up the screen but starts offscreen
         let dialog = UIView(frame: CGRect(x: 0, y: gameScene.size.height, width: gameScene.size.width, height: gameScene.size.height))
         dialog.layer.opacity = 0.0
@@ -66,34 +66,42 @@ class UI_Components:NSObject {
         wordContainer.layer.borderWidth = 8;
         
         // Adding light blue gradient color to the word container
-        let lightBlue = UIColor(red: 239.0/255.0, green: 251.0/255.0, blue: 255.0 / 255.0, alpha: 1.0).CGColor
         
         // http://stackoverflow.com/questions/23074539/programmatically-create-a-uiview-with-color-gradient
         let topGradient: CAGradientLayer = CAGradientLayer()
         topGradient.frame = CGRect(x: 0, y:0, width: wordContainer.bounds.width, height: wordContainer.bounds.height / 4)
-        topGradient.colors = [lightBlue, UIColor.whiteColor().CGColor]
+        topGradient.colors = [Constants.lightBlueColor.CGColor, UIColor.whiteColor().CGColor]
         wordContainer.layer.insertSublayer(topGradient, atIndex: 0)
         
         let botGradient: CAGradientLayer = CAGradientLayer()
         botGradient.frame = CGRect(x: 0, y: (wordContainer.bounds.height/4)*3, width: wordContainer.bounds.width, height: wordContainer.bounds.height / 4)
-        botGradient.colors = [UIColor.whiteColor().CGColor, lightBlue]
+        botGradient.colors = [UIColor.whiteColor().CGColor, Constants.lightBlueColor.CGColor]
         wordContainer.layer.insertSublayer(botGradient, atIndex: 0)
-        
-        let borderColor = UIColor(red: 88.0/255.0, green: 129.0/255.0, blue: 146.0/255.0, alpha: 1.0).CGColor
-        wordContainer.layer.borderColor = borderColor
+        wordContainer.layer.borderColor = Constants.navyColor.CGColor
         
         // Drop shadow
         wordContainer.layer.shadowOffset = CGSize(width: 0, height: 7)
         wordContainer.layer.shadowOpacity = 0.5
         wordContainer.layer.shadowRadius = 5.0
         
+        // Adding the text of variable length into the word container
+        let textContainer = UITextView(frame: CGRect(x: wordContainer.frame.width/6, y: 20, width: (wordContainer.frame.width/6)*4, height: 300))
+        textContainer.scrollEnabled = false // Making it labelike by disabling user interaction and scrolling
+        textContainer.userInteractionEnabled = false
+        textContainer.backgroundColor = UIColor.clearColor()
+        textContainer.textAlignment = .Center
+        textContainer.font = UIFont(name: "Helvetica-Bold", size: 18)
+        textContainer.text = text
+        
+        
+        wordContainer.addSubview(textContainer)
         dialog.addSubview(wordContainer)
         
         // The cat image goes on top
         let catImage = UIImageView(image: UIImage(named: "Talkcat"))
         catImage.frame = CGRect(x: gameScene.size.width/4, y: (gameScene.size.height/3)*2, width: gameScene.size.width/2, height: gameScene.size.height/3)
         catImage.contentMode = .ScaleAspectFill
-        catImage.layer.shadowOpacity = 0.5
+        catImage.layer.shadowOpacity = 0.3
         catImage.layer.shadowRadius = 5.0
         
         dialog.addSubview(wordContainer)

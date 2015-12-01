@@ -37,6 +37,11 @@ class TN_Model {
         return false
     }
     
+    func resetGame() {
+        score = 0;
+        life = 5;
+    }
+    
     // ------------------------------------------------------------
     // Helper functions
     

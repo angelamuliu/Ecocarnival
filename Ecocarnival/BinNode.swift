@@ -40,6 +40,7 @@ class BinNode: SKSpriteNode {
     class func trashbin(location: CGPoint) -> BinNode {
         let sprite = BinNode(imageNamed: "TN_trashbin.png")
         sprite.name = Constants.trash
+        sprite.anchorPoint = CGPointMake(0, 0.5) // Attaches to left of screen
         sprite.setupBin(location, physicsSize: CGSize(width:10, height: sprite.size.height))
         
         sprite.physicsBody!.categoryBitMask = Constants.trashBinCategory
@@ -52,6 +53,7 @@ class BinNode: SKSpriteNode {
     class func recyclebin(location: CGPoint) -> BinNode {
         let sprite = BinNode(imageNamed: "TN_recyclebin.png")
         sprite.name = Constants.recycle
+        sprite.anchorPoint = CGPointMake(1, 0.5) // Attaches to right of screen
         sprite.setupBin(location, physicsSize: CGSize(width:10, height: sprite.size.height))
         
         sprite.physicsBody!.categoryBitMask = Constants.recycleBinCategory

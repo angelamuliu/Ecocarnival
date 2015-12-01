@@ -21,11 +21,15 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     // UI
     var scoreLabel = SKLabelNode()
     var lifeNodes = [SKSpriteNode]()
+    var modalView:UIView? // The modal that appears on game over
     
     // Game Interaction
     var isTouchingTrash = false
     var touchPoint:CGPoint = CGPoint()
     var touchedTrash:SKNode? // The trashnode currently being interacted with
+    
+    // TN_GameViewController
+    var viewController:UIViewController?
     
     override func didMoveToView(view: SKView) {
         self.physicsWorld.contactDelegate = self // Needed for collision detection
@@ -46,9 +50,9 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         // Setup trash and recycle bins
-        let trashbinNode:BinNode = BinNode.trashbin(CGPoint(x: 50, y: self.frame.size.height/2))
+        let trashbinNode:BinNode = BinNode.trashbin(CGPoint(x: 0, y: self.frame.size.height/2))
         self.addChild(trashbinNode)
-        let recyclebinNode:BinNode = BinNode.recyclebin(CGPoint(x: self.frame.size.width-50, y: self.frame.size.height/2))
+        let recyclebinNode:BinNode = BinNode.recyclebin(CGPoint(x: self.frame.size.width, y: self.frame.size.height/2))
         self.addChild(recyclebinNode)
         
         // Setup the 'misc' bin which catches anything that tumbles offscreen
@@ -56,7 +60,10 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(miscbinNode)
         
         // Toss up the first trash
-        addNewTrash()
+//        addNewTrash()
+        
+        // TEMP
+        gameOverDialog()
         
     }
     
@@ -146,35 +153,68 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         trash.physicsBody!.applyAngularImpulse(spinForce)
     }
     
+    // Slides the modal view back out and resets the game
     func resetGame(sender:UIButton!) {
-        print("HI!")
+        UIView.animateWithDuration(0.3,
+            animations: { void in
+                self.modalView!.frame = CGRect(x: 0, y: self.size.height, width: self.size.width, height: self.size.height)
+                self.modalView!.layer.opacity = 0.0
+            },
+            completion: { finished in
+                self.modalView!.removeFromSuperview()
+                self.game.resetGame()
+                // TODO : Update score label
+                UI_Components.updateLifeNodes(self.game.life, lifeNodes: self.lifeNodes)
+                
+                self.scene!.paused = false
+                self.addNewTrash()
+        })
+    }
+    
+    func backToHome(sender:UIButton!) {
+        self.viewController!.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // Shows the game over UI component and also animates it sliding up
     func gameOverDialog() {
-        let modalView = UI_Components.createDialog(self)
-        createButtons(modalView)
-        
-        self.view!.addSubview(modalView) // TODO: Fix the start location of the modalView frame and fix the animation as well
+        if modalView == nil { // Initalize if not yet already
+            modalView = UI_Components.createDialog(self, text: "Game over!\nYour score")
+            createButtons(modalView!)
+        }
+        self.view!.addSubview(modalView!)
         UIView.animateWithDuration(0.3,
             animations: { void in
-                modalView.frame = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
-                modalView.layer.opacity = 1.0
-                
+                self.modalView!.frame = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
+                self.modalView!.layer.opacity = 1.0
             },
             completion: { finished in
-                modalView.frame = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
+                self.modalView!.frame = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
         })
     }
     
     // Janky, but we add buttons to a UIView dialog that connect to game logic
     func createButtons(modalView: UIView) {
-        let restartButton = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
+        let restartButton = UIButton(frame: CGRect(x: modalView.frame.width/4, y: 180, width: modalView.frame.width/5, height: 40))
+        restartButton.layer.cornerRadius = 4.0
         restartButton.setTitle("Replay", forState: UIControlState.Normal)
         restartButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        restartButton.backgroundColor = UIColor.blackColor()
+        restartButton.backgroundColor = Constants.orangeColor
+        restartButton.layer.borderWidth = 3
+        restartButton.layer.borderColor = Constants.bloodOrangeColor.CGColor
         restartButton.addTarget(self, action: "resetGame:", forControlEvents: .TouchUpInside)
+        
+        let homeButton = UIButton(frame: CGRect(x: (modalView.frame.width/4)*3 - modalView.frame.width/5, y: 180, width: modalView.frame.width/5, height: 40))
+        homeButton.layer.cornerRadius = 4.0
+        homeButton.setTitle("Quit", forState: UIControlState.Normal)
+        homeButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        homeButton.backgroundColor = Constants.lightGreyColor
+        homeButton.layer.borderWidth = 3
+        homeButton.layer.borderColor = Constants.greyColor.CGColor
+        homeButton.addTarget(self, action: "backToHome:", forControlEvents: .TouchUpInside)
+        
+        
         modalView.addSubview(restartButton)
+        modalView.addSubview(homeButton)
     }
     
     

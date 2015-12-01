@@ -21,6 +21,7 @@ class TN_GameViewController: UIViewController {
         // Replace the main view with our game scene
         let scene = TN_GameScene(fileNamed: "TN_GameScene.sks")
         scene!.scaleMode = .ResizeFill
+        scene?.viewController = self
         
         let skView = self.view as! SKView
         skView.presentScene(scene)
