@@ -128,14 +128,12 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             }
             if let trashNode = TN_Model.getTrashNodeFromBody(contact.bodyA, secondBody: contact.bodyB) {
                 trashNode.removeFromParent()
-                
                 if (game.isGameOver) {
                     self.scene!.paused = true
                     gameOverDialog()
                 } else {
                     addNewTrash()
                 }
-                
             }
             updatesCalled = 0
         }
@@ -185,7 +183,16 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             completion: { finished in
                 self.modalView!.removeFromSuperview()
                 self.game.resetGame()
-                // TODO : Update score label
+                
+                // Reset the score UI
+                for scoreNode in self.scoreNodes {
+                    scoreNode.removeFromParent()
+                }
+                self.scoreNodes = UI_Components.createScoreNodes(self.game.score, topLeftCorner: CGPoint(x:self.size.width, y: self.size.height))
+                for scoreNode in self.scoreNodes {
+                    self.addChild(scoreNode)
+                }
+
                 UI_Components.updateLifeNodes(self.game.life, lifeNodes: self.lifeNodes)
                 
                 self.scene!.paused = false
