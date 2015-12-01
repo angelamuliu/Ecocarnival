@@ -12,17 +12,14 @@ import SpriteKit
 class UI_Components:NSObject {
     
     /**
-     Initializes a top right aligned score label given a string to start with and a position as an 'anchor'
+     Creates the score label given a position that servces as its top right corner
     */
-    class func createScoreLabel(startingScore:String, position:CGPoint) -> SKLabelNode {
-        let scoreLabel = SKLabelNode()
-        scoreLabel.text = String(startingScore)
-        scoreLabel.zPosition = Constants.zUI
-        scoreLabel.setScale(2)
-        scoreLabel.position = position
-        scoreLabel.verticalAlignmentMode = .Top // Our position should be the top right point of the text
-        scoreLabel.horizontalAlignmentMode = .Right
-        return scoreLabel
+    class func createScoreLabel(position:CGPoint) -> SKSpriteNode {
+        let scoreLabelSprite = SKSpriteNode(imageNamed: "TN_Score")
+        scoreLabelSprite.zPosition = Constants.zUI
+        scoreLabelSprite.position = position
+        scoreLabelSprite.anchorPoint = CGPoint(x: 1, y: 1)
+        return scoreLabelSprite
     }
     
     /**
@@ -50,11 +47,82 @@ class UI_Components:NSObject {
             for (var i = 0; i < missingLife; i++) {
                 lifeNodes[lifeNodes.count - 1 - i].texture = SKTexture(imageNamed:"TN_nolife")
             }
-        } else {
-            // It's game over lmao
         }
     }
     
+    /**
+     Initializes a score with the handwritten font given some location that acts as the leftmost corner (with vertical centering)
+    */
+    class func createScoreNodes(score:Int, topLeftCorner: CGPoint) -> [SKSpriteNode] {
+        var scoreNodes = [SKSpriteNode]()
+        let scoreArr = Array(String(score).characters) // We split it e.g. ["1", "0", "2"]
+
+        // Attach the ones place number whose position acts as a reference for all later numbers
+        let scoreNode = SKSpriteNode(imageNamed: getScoreNodeNumber(scoreArr[scoreArr.count - 1]))
+        scoreNode.zPosition = Constants.zUI
+        scoreNode.position = CGPoint(x: topLeftCorner.x - scoreNode.size.width, y: topLeftCorner.y - 5)
+        scoreNode.anchorPoint = CGPoint(x: 0, y: 1)
+        scoreNodes.append(scoreNode)
+        
+        updateScoreNodes(score, scoreNodes: &scoreNodes)
+        return scoreNodes
+    }
+
+    /**
+     Given some score, update and add more score nodes and updates the ones that exist to the new number
+    */
+    class func updateScoreNodes(score:Int, inout scoreNodes:[SKSpriteNode]) {
+        let scoreArr = Array(String(score).characters)
+        
+        while (scoreArr.count > scoreNodes.count) { // If we go up a tens place
+            let prevTopRightCorner = scoreNodes[0].position
+            let scoreNode = SKSpriteNode(imageNamed: getScoreNodeNumber(scoreArr[scoreArr.count - scoreNodes.count - 1]))
+            scoreNode.zPosition = Constants.zUI
+            scoreNode.position = CGPoint(x: prevTopRightCorner.x - scoreNode.size.width, y: prevTopRightCorner.y)
+            scoreNode.anchorPoint = CGPoint(x: 0, y: 1)
+            scoreNodes.insert(scoreNode, atIndex: 0)
+        }
+        
+        for (var i = 0; i < scoreNodes.count; i++) { // Updating textures to match new number
+            scoreNodes[i].texture = SKTexture(imageNamed:getScoreNodeNumber(scoreArr[i]))
+        }
+    }
+    
+    /**
+     Given a number, returns the corresponding string for the image
+    */
+    class func getScoreNodeNumber(number:Character) -> String {
+        switch number {
+            case "0":
+                return "TN_0"
+            case "1":
+                return "TN_1"
+            case "2":
+                return "TN_2"
+            case "3":
+                return "TN_3"
+            case "4":
+                return "TN_4"
+            case "5":
+                return "TN_5"
+            case "6":
+                return "TN_6"
+            case "7":
+                return "TN_7"
+            case "8":
+                return "TN_8"
+            case "9":
+                return "TN_9"
+            default:
+                return "TN_0"
+        }
+    }
+    
+    
+    /**
+     Returns a base UIView that can act as a modal over other views, containing the word container and cat as well as some
+     text to put in the word container
+    */
     class func createDialog(gameScene: TN_GameScene, text: String?) -> UIView {
         // A clear UIView covers up the screen but starts offscreen
         let dialog = UIView(frame: CGRect(x: 0, y: gameScene.size.height, width: gameScene.size.width, height: gameScene.size.height))

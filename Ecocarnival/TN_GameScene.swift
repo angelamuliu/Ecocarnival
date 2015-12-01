@@ -19,7 +19,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     var game = TN_Model()
     
     // UI
-    var scoreLabel = SKLabelNode()
+    var scoreNodes = [SKSpriteNode]()
     var lifeNodes = [SKSpriteNode]()
     var modalView:UIView? // The modal that appears on game over
     
@@ -41,9 +41,14 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         bgImage.position = CGPointMake(self.size.width/2, self.size.height/2)
         self.addChild(bgImage)
         
-        // Load UI
-        scoreLabel = UI_Components.createScoreLabel(String(game.score), position: CGPoint(x: self.size.width, y: self.size.height))
-        self.addChild(scoreLabel)
+        // Load score UI
+        scoreNodes = UI_Components.createScoreNodes(game.score, topLeftCorner: CGPoint(x:self.size.width, y: self.size.height))
+        for scoreNode in scoreNodes {
+            self.addChild(scoreNode)
+        }
+        self.addChild(UI_Components.createScoreLabel(CGPoint(x: self.size.width, y: self.size.height - 6 - scoreNodes[0].size.height)))
+        
+        // Load Life UI
         lifeNodes = UI_Components.createLifeNodes(5, startPosition: CGPoint(x:0, y:self.size.height))
         for lifeNode in lifeNodes {
             self.addChild(lifeNode)
@@ -60,10 +65,10 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(miscbinNode)
         
         // Toss up the first trash
-//        addNewTrash()
+        addNewTrash()
         
         // TEMP
-        gameOverDialog()
+//        gameOverDialog()
         
     }
     
@@ -116,8 +121,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         if (firstCategory != Constants.noCollisionCategory && secondCategory != Constants.noCollisionCategory && updatesCalled != 0) {
             // Did a trash node hit a trash can? Doing checks for all proper matches
             if (TN_Model.checkMatchingBin(firstCategory, secondCategory: secondCategory)) {
-                game.increaseScore()
-                scoreLabel.text = String(game.score)
+                increaseScore()
             } else { // Looks like the trash went into the wrong bin
                 game.decreaseLife()
                 UI_Components.updateLifeNodes(game.life, lifeNodes: lifeNodes)
@@ -152,6 +156,24 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         let spinForce = 0.15 + (CGFloat(arc4random_uniform(50))/100.0)
         trash.physicsBody!.applyAngularImpulse(spinForce)
     }
+    
+    // Increases score in our model and updates any necessay sprites on the UI
+    func increaseScore() {
+        game.increaseScore()
+        let prevScoreNodes = scoreNodes.count
+        UI_Components.updateScoreNodes(game.score, scoreNodes: &scoreNodes)
+        if (prevScoreNodes < scoreNodes.count) { // Went up a tens place, need to attach new scoreNodes sprites
+            let diff = scoreNodes.count - prevScoreNodes
+            for (var i = 0; i < diff; i++) {
+                self.addChild(scoreNodes[i])
+            }
+        }
+    }
+
+    
+    
+    // -------------------------------------------------------
+    // Found in the modal dialog
     
     // Slides the modal view back out and resets the game
     func resetGame(sender:UIButton!) {

@@ -16,7 +16,7 @@ class TN_Model {
     
     var score = 0
 
-    var life = 1
+    var life = 5
     var maxlife = 5
     
     func increaseScore() {
