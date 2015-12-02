@@ -8,6 +8,7 @@
 
 import Foundation
 import SpriteKit
+import UIKit
 
 class UI_Components:NSObject {
     
@@ -56,21 +57,43 @@ class UI_Components:NSObject {
     }
     
     /**
-     Initializes a score with the handwritten font given some location that acts as the leftmost corner (with vertical centering)
+     Initializes a score with the handwritten font for SKScenes given some location that acts as the rightmost corner (with vertical centering)
     */
-    class func createScoreNodes(score:Int, topLeftCorner: CGPoint) -> [SKSpriteNode] {
+    class func createScoreNodes(score:Int, topRightCorner: CGPoint) -> [SKSpriteNode] {
         var scoreNodes = [SKSpriteNode]()
         let scoreArr = Array(String(score).characters) // We split it e.g. ["1", "0", "2"]
 
         // Attach the ones place number whose position acts as a reference for all later numbers
         let scoreNode = SKSpriteNode(imageNamed: getScoreNodeNumber(scoreArr[scoreArr.count - 1]))
         scoreNode.zPosition = Constants.zUI
-        scoreNode.position = CGPoint(x: topLeftCorner.x - scoreNode.size.width, y: topLeftCorner.y - 5)
+        scoreNode.position = CGPoint(x: topRightCorner.x - scoreNode.size.width, y: topRightCorner.y - 5)
         scoreNode.anchorPoint = CGPoint(x: 0, y: 1)
         scoreNodes.append(scoreNode)
         
         updateScoreNodes(score, scoreNodes: &scoreNodes)
         return scoreNodes
+    }
+    
+    /**
+     Initializes a score with the handwritten font for UIViews given some location that acts as the leftmost corner
+     */
+    class func createScoreNodesForUIView(score:Int, topRightCorner: CGPoint) -> [UIImageView] {
+        var scoreViews = [UIImageView]()
+        let scoreArr = Array(String(score).characters) // We split it e.g. ["1", "0", "2"]
+        
+        let numWidth = CGFloat(50.0)
+        let numHeight = CGFloat(30.0)
+
+        while (scoreArr.count > scoreViews.count) {
+            let image = UIImage(named: getScoreNodeNumber(scoreArr[scoreArr.count - scoreViews.count - 1]))!
+            let scoreView = UIImageView(image: image)
+//            scoreView.frame = CGRect(x: topRightCorner.x - (CGFloat((scoreViews.count + 1)) * image.size.width), y: topRightCorner.y - 5, width: image.size.width, height: image.size.height)
+            scoreView.frame = CGRect(x: topRightCorner.x - (CGFloat((scoreViews.count + 1)) * numWidth), y: topRightCorner.y - 5, width: numWidth, height: numHeight)
+            scoreView.contentMode = .ScaleAspectFit
+            scoreView.backgroundColor = UIColor.redColor()
+            scoreViews.insert(scoreView, atIndex: 0)
+        }
+        return scoreViews
     }
 
     /**

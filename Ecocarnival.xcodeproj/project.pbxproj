@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B1B1EB51C0F6B7A0086320D /* Green_Glow.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0B1B1EB31C0F6B7A0086320D /* Green_Glow.sks */; };
+		0B1B1EB61C0F6B7A0086320D /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1B1EB41C0F6B7A0086320D /* spark.png */; };
 		0B1BEFD21BFB73B8001EABE3 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1BEFD11BFB73B8001EABE3 /* SplashViewController.swift */; };
 		0B1E632A1BF103C200C4F460 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E63291BF103C200C4F460 /* AppDelegate.swift */; };
 		0B1E632E1BF103C200C4F460 /* TN_GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E632D1BF103C200C4F460 /* TN_GameViewController.swift */; };
@@ -42,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B1B1EB31C0F6B7A0086320D /* Green_Glow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Green_Glow.sks; sourceTree = "<group>"; };
+		0B1B1EB41C0F6B7A0086320D /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		0B1BEFD11BFB73B8001EABE3 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		0B1E63261BF103C200C4F460 /* Ecocarnival.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ecocarnival.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B1E63291BF103C200C4F460 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +102,8 @@
 				0B1E632D1BF103C200C4F460 /* TN_GameViewController.swift */,
 				0BC3F0071BF3C5BB0040C009 /* TN_Model.swift */,
 				0B49D5BE1BF65EB2000C5CA5 /* TrashNode.swift */,
+				0B1B1EB31C0F6B7A0086320D /* Green_Glow.sks */,
+				0B1B1EB41C0F6B7A0086320D /* spark.png */,
 				0B49D5BC1BF65D54000C5CA5 /* TN_GameScene.sks */,
 			);
 			name = TrashNinja;
@@ -265,9 +271,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B1E63361BF103C200C4F460 /* LaunchScreen.storyboard in Resources */,
+				0B1B1EB61C0F6B7A0086320D /* spark.png in Resources */,
 				0B49D5BD1BF65D54000C5CA5 /* TN_GameScene.sks in Resources */,
 				0B1E63331BF103C200C4F460 /* Assets.xcassets in Resources */,
 				0B1E63311BF103C200C4F460 /* Main.storyboard in Resources */,
+				0B1B1EB51C0F6B7A0086320D /* Green_Glow.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

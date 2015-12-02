@@ -27,8 +27,8 @@ class BinNode: SKSpriteNode {
             physics.dynamic = false;
             
             // Bins can contact and collide with any sort of "trash node"
-            physics.contactTestBitMask = Constants.trashNodeCategory | Constants.recycleNodeCategory | Constants.miscNodeCategory
-            physics.collisionBitMask = Constants.trashNodeCategory | Constants.recycleNodeCategory | Constants.miscNodeCategory;
+            physics.contactTestBitMask = Constants.trashNodeCategory | Constants.recycleNodeCategory | Constants.miscNodeCategory | Constants.powerupNodeCategory
+            physics.collisionBitMask = Constants.trashNodeCategory | Constants.recycleNodeCategory | Constants.miscNodeCategory | Constants.powerupNodeCategory
         }
     }
     

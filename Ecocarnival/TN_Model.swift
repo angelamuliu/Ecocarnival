@@ -14,7 +14,7 @@ import SpriteKit
 
 class TN_Model {
     
-    var score = 0
+    var score = 12101
 
     var life = 5
     var maxlife = 5
@@ -58,6 +58,9 @@ class TN_Model {
         if (firstCategory == Constants.miscNodeCategory || secondCategory == Constants.miscNodeCategory) {
             return firstCategory == Constants.miscBinCategory || secondCategory == Constants.miscBinCategory
         }
+        if (firstCategory == Constants.powerupNodeCategory || secondCategory == Constants.powerupNodeCategory) {
+            return true // Powerups don't have penalties for missing them
+        }
         return false
     }
     
@@ -72,6 +75,7 @@ class TN_Model {
         if secondBody.categoryBitMask > 0 && secondBody.categoryBitMask < Constants.trashBinCategory {
             return secondBody.node
         }
+        
         return nil
     }
     

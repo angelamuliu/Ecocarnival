@@ -34,9 +34,10 @@ class TrashNode: SKSpriteNode {
             physics.mass = 0.5 // Assign a constant mass so all sized trash are affected by forces equally
             
             // What the trash node will respond to when touching or colliding
-            physics.collisionBitMask = Constants.trashBinCategory | Constants.recycleBinCategory | Constants.miscBinCategory
+            physics.collisionBitMask = 0
+//            physics.collisionBitMask = Constants.trashBinCategory | Constants.recycleBinCategory | Constants.miscBinCategory
             // Trash nodes can overlap with other trash nodes
-            physics.collisionBitMask = ~Constants.trashNodeCategory | ~Constants.recycleNodeCategory | ~Constants.miscNodeCategory;
+            //physics.collisionBitMask = ~Constants.trashNodeCategory | ~Constants.recycleNodeCategory | ~Constants.miscNodeCategory | ~Constants.powerupNodeCategory;
         }
     }
     
@@ -69,7 +70,7 @@ class TrashNode: SKSpriteNode {
     }
     
     /**
-     Recyclable trash belongs in the recycle bin
+     Misc trash belongs to the offscreen misc bin (e.g. don't sort it)
      */
     class func misc(location: CGPoint) -> TrashNode {
         let imageString = chooseImage(miscImageAssets)
@@ -80,6 +81,29 @@ class TrashNode: SKSpriteNode {
         sprite.physicsBody!.categoryBitMask = Constants.miscNodeCategory
         return sprite
     }
+    
+    /**
+     A "powerup" type that does not reduce life if it is not sorted, but on touch gives a powerup
+    */
+    class func powerup(location: CGPoint) -> TrashNode {
+        let imageString = "TN_recycle1.png"
+        let sprite = TrashNode(imageNamed: imageString)
+        sprite.name = Constants.powerup
+        sprite.setupTrash(location, imageString: imageString)
+        
+        // Powerups glow!
+        let path = NSBundle.mainBundle().pathForResource("Green_Glow", ofType: "sks")
+        let glowParticle = NSKeyedUnarchiver.unarchiveObjectWithFile(path!) as! SKEmitterNode
+        glowParticle.position = CGPointMake(0, 0)
+        glowParticle.name = Constants.powerup
+        sprite.insertChild(glowParticle, atIndex: 0)
+        
+        sprite.physicsBody!.categoryBitMask = Constants.powerupNodeCategory
+        return sprite
+    }
+    
+    
+    
     
     
     // ------------------------------------------------------------
@@ -93,9 +117,10 @@ class TrashNode: SKSpriteNode {
      Creates a random trash node (trash, recyclable, or misc) given a location to create it in.
     */
     class func generateRandomTrash(location: CGPoint) -> TrashNode {
-        let category = arc4random_uniform(UInt32(4))
+        let category = arc4random_uniform(UInt32(5))
         if category == Constants.trashNodeCategory { return TrashNode.trash(location) }
         if category == Constants.recycleNodeCategory { return TrashNode.recyclable(location) }
+        if category == Constants.powerupNodeCategory { return TrashNode.powerup(location) }
         return TrashNode.misc(location)
     }
 

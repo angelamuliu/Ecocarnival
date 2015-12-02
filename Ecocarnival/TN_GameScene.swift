@@ -21,7 +21,9 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     // UI
     var scoreNodes = [SKSpriteNode]()
     var lifeNodes = [SKSpriteNode]()
+    
     var modalView:UIView? // The modal that appears on game over
+    var modalScoreViews = [UIImageView]() // The scoreviews on the modal
     
     // Game Interaction
     var isTouchingTrash = false
@@ -42,10 +44,8 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(bgImage)
         
         // Load score UI
-        scoreNodes = UI_Components.createScoreNodes(game.score, topLeftCorner: CGPoint(x:self.size.width, y: self.size.height))
-        for scoreNode in scoreNodes {
-            self.addChild(scoreNode)
-        }
+        self.scoreNodes = UI_Components.createScoreNodes(game.score, topRightCorner: CGPoint(x:self.size.width, y: self.size.height))
+        self.attachScoreToSKScene()
         self.addChild(UI_Components.createScoreLabel(CGPoint(x: self.size.width, y: self.size.height - 6 - scoreNodes[0].size.height)))
         
         // Load Life UI
@@ -82,6 +82,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
                 touchPoint = touchLocation
                 touchedTrash = nodeAtPoint
             }
+            dealWithPowerups(nodeAtPoint)
         }
     }
     
@@ -142,15 +143,26 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     func addNewTrash() {
         let newTrash = TrashNode.generateRandomTrash(CGPoint(x: self.frame.size.width/2, y: -50))
         self.addChild(newTrash)
-        tossTrash(newTrash)
+        if (newTrash.name! == Constants.powerup) {
+            tossTrash(newTrash) // Powerups have particle effects which have visual bugs when spun
+        } else {
+            spinTossTrash(newTrash)
+        }
+    }
+    
+    func spinTossTrash(trash: SKNode) {
+        tossTrash(trash)
+        spinTrash(trash)
     }
     
     // Applies an impulse to a trash node to 'toss' it up to the air
     func tossTrash(trash: SKNode) {
         let upwardVelocity = CGVector(dx: 0.0, dy: 550.0 + Double(arc4random_uniform(120)))
         trash.physicsBody!.applyImpulse(upwardVelocity)
-        
-        // You make me spin right round baby right round
+    }
+    
+    // You make me spin right round baby right round
+    func spinTrash(trash: SKNode) {
         let spinForce = 0.15 + (CGFloat(arc4random_uniform(50))/100.0)
         trash.physicsBody!.applyAngularImpulse(spinForce)
     }
@@ -168,6 +180,19 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
 
+    func dealWithPowerups(nodeAtPoint: SKNode) {
+        if let nodeName = nodeAtPoint.name {
+            if nodeName == Constants.powerup {
+                game.increaseLife()
+                UI_Components.updateLifeNodes(game.life, lifeNodes: lifeNodes)
+                let powerupNode = nodeAtPoint is SKEmitterNode ? nodeAtPoint.parent! : nodeAtPoint
+                powerupNode.runAction(SKAction .fadeAlphaTo(0.0, duration: 0.2), completion: {
+                    powerupNode.removeFromParent()
+                })
+                addNewTrash()
+            }
+        }
+    }
     
     
     // -------------------------------------------------------
@@ -188,10 +213,8 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
                 for scoreNode in self.scoreNodes {
                     scoreNode.removeFromParent()
                 }
-                self.scoreNodes = UI_Components.createScoreNodes(self.game.score, topLeftCorner: CGPoint(x:self.size.width, y: self.size.height))
-                for scoreNode in self.scoreNodes {
-                    self.addChild(scoreNode)
-                }
+                self.scoreNodes = UI_Components.createScoreNodes(self.game.score, topRightCorner: CGPoint(x:self.size.width, y: self.size.height))
+                self.attachScoreToSKScene()
 
                 UI_Components.updateLifeNodes(self.game.life, lifeNodes: self.lifeNodes)
                 
@@ -210,6 +233,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             modalView = UI_Components.createDialog(self, text: "Game over!\nYour score")
             createButtons(modalView!)
         }
+        attachScoreToUIView()
         self.view!.addSubview(modalView!)
         UIView.animateWithDuration(0.3,
             animations: { void in
@@ -241,11 +265,35 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         homeButton.layer.borderColor = Constants.greyColor.CGColor
         homeButton.addTarget(self, action: "backToHome:", forControlEvents: .TouchUpInside)
         
-        
         modalView.addSubview(restartButton)
         modalView.addSubview(homeButton)
     }
     
+    // Given sprite nodes representing score, attaches them to a SK scene
+    func attachScoreToSKScene() {
+        for scoreNode in self.scoreNodes {
+            self.addChild(scoreNode)
+        }
+    }
+
+    // Given UIViews representing score, attaches them to a UI view
+    func attachScoreToUIView() {
+        // Reset the scoreviews from the previous run
+        for scoreView in self.modalScoreViews {
+            scoreView.removeFromSuperview()
+        }
+        self.modalScoreViews = UI_Components.createScoreNodesForUIView(self.game.score, topRightCorner: CGPoint(x: self.size.width / 2, y: self.size.height / 2))
+        // Attach the new scoreviews
+        for scoreView in self.modalScoreViews {
+            self.modalView!.addSubview(scoreView)
+        }
+    }
+    
     
 }
+
+
+
+
+
 

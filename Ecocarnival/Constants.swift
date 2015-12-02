@@ -19,6 +19,7 @@ struct Constants {
     static let trash = "Trash"
     static let recycle = "Recycle"
     static let misc = "Misc"
+    static let powerup = "Powerup"
     
     // Collision categories for bins, trash, and non-collision items
     static let noCollisionCategory = UInt32(0)
@@ -26,10 +27,12 @@ struct Constants {
     static let trashNodeCategory = UInt32(1)
     static let recycleNodeCategory = UInt32(2)
     static let miscNodeCategory = UInt32(3)
+    static let powerupNodeCategory = UInt32(4)
     
-    static let trashBinCategory = UInt32(4)
-    static let recycleBinCategory = UInt32(5)
-    static let miscBinCategory = UInt32(6)
+    static let trashBinCategory = UInt32(5)
+    static let recycleBinCategory = UInt32(6)
+    static let miscBinCategory = UInt32(7)
+    
     
     // Consistent colors we use throughout the application
     static let orangeColor = UIColor(red: 255.0/255.0, green: 122.0/255.0, blue: 64.0/255.0, alpha: 1.0)
