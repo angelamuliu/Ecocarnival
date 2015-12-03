@@ -75,22 +75,21 @@ class UI_Components:NSObject {
     }
     
     /**
-     Initializes a score with the handwritten font for UIViews given some location that acts as the leftmost corner
+     Initializes a score with the handwritten font for UIViews given some point that acts as the center
      */
-    class func createScoreNodesForUIView(score:Int, topRightCorner: CGPoint) -> [UIImageView] {
+    class func createScoreNodesForUIView(score:Int, center: CGPoint) -> [UIImageView] {
         var scoreViews = [UIImageView]()
         let scoreArr = Array(String(score).characters) // We split it e.g. ["1", "0", "2"]
+        let centerIndex = scoreArr.count / 2
         
-        let numWidth = CGFloat(50.0)
-        let numHeight = CGFloat(30.0)
+        let numWidth = CGFloat(25.0)
+        let numHeight = CGFloat(40.0)
 
         while (scoreArr.count > scoreViews.count) {
             let image = UIImage(named: getScoreNodeNumber(scoreArr[scoreArr.count - scoreViews.count - 1]))!
             let scoreView = UIImageView(image: image)
-//            scoreView.frame = CGRect(x: topRightCorner.x - (CGFloat((scoreViews.count + 1)) * image.size.width), y: topRightCorner.y - 5, width: image.size.width, height: image.size.height)
-            scoreView.frame = CGRect(x: topRightCorner.x - (CGFloat((scoreViews.count + 1)) * numWidth), y: topRightCorner.y - 5, width: numWidth, height: numHeight)
+            scoreView.frame = CGRect(x: center.x - (CGFloat(scoreViews.count - centerIndex) * numWidth) - numWidth/2, y: center.y - numHeight/2, width: numWidth, height: numHeight)
             scoreView.contentMode = .ScaleAspectFit
-            scoreView.backgroundColor = UIColor.redColor()
             scoreViews.insert(scoreView, atIndex: 0)
         }
         return scoreViews

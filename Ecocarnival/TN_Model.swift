@@ -24,7 +24,9 @@ class TN_Model {
     }
     
     func increaseLife() {
-        life++
+        if life < maxlife {
+            life++
+        }
     }
     func decreaseLife() {
         life--

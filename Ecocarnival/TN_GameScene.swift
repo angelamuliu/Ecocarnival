@@ -54,6 +54,10 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             self.addChild(lifeNode)
         }
         
+        // Load the reusable modal
+        modalView = UI_Components.createDialog(self, text: "Game over!\nFinal score")
+        createButtons(modalView!)
+        
         // Setup trash and recycle bins
         let trashbinNode:BinNode = BinNode.trashbin(CGPoint(x: 0, y: self.frame.size.height/2))
         self.addChild(trashbinNode)
@@ -66,9 +70,6 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Toss up the first trash
         addNewTrash()
-        
-        // TEMP
-//        gameOverDialog()
         
     }
     
@@ -229,10 +230,6 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Shows the game over UI component and also animates it sliding up
     func gameOverDialog() {
-        if modalView == nil { // Initalize if not yet already
-            modalView = UI_Components.createDialog(self, text: "Game over!\nYour score")
-            createButtons(modalView!)
-        }
         attachScoreToUIView()
         self.view!.addSubview(modalView!)
         UIView.animateWithDuration(0.3,
@@ -282,7 +279,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         for scoreView in self.modalScoreViews {
             scoreView.removeFromSuperview()
         }
-        self.modalScoreViews = UI_Components.createScoreNodesForUIView(self.game.score, topRightCorner: CGPoint(x: self.size.width / 2, y: self.size.height / 2))
+        self.modalScoreViews = UI_Components.createScoreNodesForUIView(self.game.score, center: CGPoint(x: self.size.width / 2, y: 135))
         // Attach the new scoreviews
         for scoreView in self.modalScoreViews {
             self.modalView!.addSubview(scoreView)
