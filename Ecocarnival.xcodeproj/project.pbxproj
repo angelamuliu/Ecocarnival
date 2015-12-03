@@ -22,6 +22,7 @@
 		0B49D5BF1BF65EB2000C5CA5 /* TrashNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B49D5BE1BF65EB2000C5CA5 /* TrashNode.swift */; };
 		0B6B15681BF6EB9500370ABF /* BinNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6B15671BF6EB9500370ABF /* BinNode.swift */; };
 		0B6B156A1BF7092C00370ABF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6B15691BF7092C00370ABF /* Constants.swift */; };
+		0BA0A7951C1091A900491F49 /* Dialog_UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0A7941C1091A900491F49 /* Dialog_UIView.swift */; };
 		0BC3F0081BF3C5BB0040C009 /* TN_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC3F0071BF3C5BB0040C009 /* TN_Model.swift */; };
 		0BF25E7B1BFA6AB30044F247 /* UI_Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF25E7A1BFA6AB30044F247 /* UI_Components.swift */; };
 /* End PBXBuildFile section */
@@ -65,6 +66,7 @@
 		0B49D5BE1BF65EB2000C5CA5 /* TrashNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrashNode.swift; sourceTree = "<group>"; };
 		0B6B15671BF6EB9500370ABF /* BinNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinNode.swift; sourceTree = "<group>"; };
 		0B6B15691BF7092C00370ABF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0BA0A7941C1091A900491F49 /* Dialog_UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dialog_UIView.swift; sourceTree = "<group>"; };
 		0BC3F0071BF3C5BB0040C009 /* TN_Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TN_Model.swift; sourceTree = "<group>"; };
 		0BF25E7A1BFA6AB30044F247 /* UI_Components.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UI_Components.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,6 +143,7 @@
 				0B1BEFD11BFB73B8001EABE3 /* SplashViewController.swift */,
 				0B1BEFD31BFB7B27001EABE3 /* TrashNinja */,
 				0BF25E7A1BFA6AB30044F247 /* UI_Components.swift */,
+				0BA0A7941C1091A900491F49 /* Dialog_UIView.swift */,
 			);
 			path = Ecocarnival;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BA0A7951C1091A900491F49 /* Dialog_UIView.swift in Sources */,
 				0B1E635A1BF104F900C4F460 /* TN_GameScene.swift in Sources */,
 				0BF25E7B1BFA6AB30044F247 /* UI_Components.swift in Sources */,
 				0B1E632E1BF103C200C4F460 /* TN_GameViewController.swift in Sources */,
@@ -448,6 +452,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				INFOPLIST_FILE = Ecocarnival/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cmu.Ecocarnival;
@@ -461,6 +466,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				INFOPLIST_FILE = Ecocarnival/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cmu.Ecocarnival;

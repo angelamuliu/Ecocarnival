@@ -22,7 +22,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     var scoreNodes = [SKSpriteNode]()
     var lifeNodes = [SKSpriteNode]()
     
-    var modalView:UIView? // The modal that appears on game over
+    var modalView:Dialog_UIView? // The modal that appears on game over
     var modalScoreViews = [UIImageView]() // The scoreviews on the modal
     
     // Game Interaction
@@ -55,7 +55,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         // Load the reusable modal
-        modalView = UI_Components.createDialog(self, text: "Game over!\nFinal score")
+        modalView = Dialog_UIView(gameScene: self, text: "Game over!\nFinal score")
         createButtons(modalView!)
         
         // Setup trash and recycle bins
@@ -69,7 +69,9 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(miscbinNode)
         
         // Toss up the first trash
-        addNewTrash()
+//        addNewTrash()
+        
+        gameOverDialog()
         
     }
     
@@ -245,28 +247,15 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         })
     }
     
-    // Janky, but we add buttons to a UIView dialog that connect to game logic
+    // Connecting up the restart and home buttons in the dialog UIView to game logic
     func createButtons(modalView: UIView) {
-        let restartButton = UIButton(frame: CGRect(x: modalView.frame.width/4, y: 180, width: modalView.frame.width/5, height: 40))
-        restartButton.layer.cornerRadius = 4.0
-        restartButton.setTitle("Replay", forState: UIControlState.Normal)
-        restartButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        restartButton.backgroundColor = Constants.orangeColor
-        restartButton.layer.borderWidth = 3
-        restartButton.layer.borderColor = Constants.bloodOrangeColor.CGColor
-        restartButton.addTarget(self, action: "resetGame:", forControlEvents: .TouchUpInside)
-        
-        let homeButton = UIButton(frame: CGRect(x: (modalView.frame.width/4)*3 - modalView.frame.width/5, y: 180, width: modalView.frame.width/5, height: 40))
-        homeButton.layer.cornerRadius = 4.0
-        homeButton.setTitle("Quit", forState: UIControlState.Normal)
-        homeButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        homeButton.backgroundColor = Constants.lightGreyColor
-        homeButton.layer.borderWidth = 3
-        homeButton.layer.borderColor = Constants.greyColor.CGColor
-        homeButton.addTarget(self, action: "backToHome:", forControlEvents: .TouchUpInside)
-        
-        modalView.addSubview(restartButton)
-        modalView.addSubview(homeButton)
+        if let dialog = self.modalView {
+            dialog.addRestartButton()
+            dialog.restartButton!.addTarget(self, action: "resetGame:", forControlEvents: .TouchUpInside)
+            
+            dialog.addBackToHomeButton()
+            dialog.homeButton!.addTarget(self, action: "backToHome:", forControlEvents: .TouchUpInside)
+        }
     }
     
     // Given sprite nodes representing score, attaches them to a SK scene
