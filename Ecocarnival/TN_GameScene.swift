@@ -186,11 +186,14 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             if nodeName == Constants.powerup {
                 game.increaseLife()
                 UI_Components.updateLifeNodes(game.life, lifeNodes: lifeNodes)
+                
                 let powerupNode = nodeAtPoint is SKEmitterNode ? nodeAtPoint.parent! : nodeAtPoint
-                powerupNode.runAction(SKAction .fadeAlphaTo(0.0, duration: 0.2), completion: {
+                powerupNode.physicsBody!.affectedByGravity = false
+                let actionSequence = SKAction.sequence([SKAction.scaleBy(1.5, duration: 0.3), SKAction.fadeAlphaTo(0.0, duration: 0.2)])
+                powerupNode.runAction(actionSequence, completion: {
                     powerupNode.removeFromParent()
+                    self.addNewTrash()
                 })
-                addNewTrash()
             }
         }
     }

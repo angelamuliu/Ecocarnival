@@ -86,7 +86,7 @@ class TrashNode: SKSpriteNode {
      A "powerup" type that does not reduce life if it is not sorted, but on touch gives a powerup
     */
     class func powerup(location: CGPoint) -> TrashNode {
-        let imageString = "TN_recycle1.png"
+        let imageString = "TN_lifeorb.png"
         let sprite = TrashNode(imageNamed: imageString)
         sprite.name = Constants.powerup
         sprite.setupTrash(location, imageString: imageString)
