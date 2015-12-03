@@ -202,7 +202,21 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     // -------------------------------------------------------
-    // Found in the modal dialog
+    // Dialog UI View
+    
+    // Shows the game over UI component and also animates it sliding up
+    func gameOverDialog() {
+        self.modalView!.addScore(self.game.score)
+        self.view!.addSubview(modalView!)
+        UIView.animateWithDuration(0.3,
+            animations: { void in
+                self.modalView!.frame = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
+                self.modalView!.layer.opacity = 1.0
+            },
+            completion: { finished in
+                self.modalView!.frame = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
+        })
+    }
     
     // Slides the modal view back out and resets the game
     func resetGame(sender:UIButton!) {
@@ -233,20 +247,6 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         self.viewController!.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // Shows the game over UI component and also animates it sliding up
-    func gameOverDialog() {
-        attachScoreToUIView()
-        self.view!.addSubview(modalView!)
-        UIView.animateWithDuration(0.3,
-            animations: { void in
-                self.modalView!.frame = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
-                self.modalView!.layer.opacity = 1.0
-            },
-            completion: { finished in
-                self.modalView!.frame = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
-        })
-    }
-    
     // Connecting up the restart and home buttons in the dialog UIView to game logic
     func createButtons(modalView: UIView) {
         if let dialog = self.modalView {
@@ -262,19 +262,6 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     func attachScoreToSKScene() {
         for scoreNode in self.scoreNodes {
             self.addChild(scoreNode)
-        }
-    }
-
-    // Given UIViews representing score, attaches them to a UI view
-    func attachScoreToUIView() {
-        // Reset the scoreviews from the previous run
-        for scoreView in self.modalScoreViews {
-            scoreView.removeFromSuperview()
-        }
-        self.modalScoreViews = UI_Components.createScoreNodesForUIView(self.game.score, center: CGPoint(x: self.size.width / 2, y: 135))
-        // Attach the new scoreviews
-        for scoreView in self.modalScoreViews {
-            self.modalView!.addSubview(scoreView)
         }
     }
     

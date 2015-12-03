@@ -19,6 +19,8 @@ class Dialog_UIView:UIView {
     var textContainer:UITextView?
     var catView:UIImageView?
     
+    var modalScoreViews = [UIImageView]() // Collection of images representing a score
+    
     var restartButton:UIButton?
     var homeButton:UIButton?
     
@@ -149,6 +151,19 @@ class Dialog_UIView:UIView {
         self.homeButton!.backgroundColor = Constants.lightGreyColor
         self.homeButton!.layer.borderWidth = 3
         self.homeButton!.layer.borderColor = Constants.greyColor.CGColor
+    }
+    
+    /**
+     Resets and adds the score images given some score to render
+    */
+    func addScore(score:Int) {
+        for scoreView in self.modalScoreViews { // Clear the scoreviews from the previous run
+            scoreView.removeFromSuperview()
+        }
+        self.modalScoreViews = UI_Components.createScoreNodesForUIView(score, center: CGPoint(x: self.frame.width / 2, y: 135))
+        for scoreView in self.modalScoreViews { // Attach the new scoreviews
+            self.addSubview(scoreView)
+        }
     }
     
 
