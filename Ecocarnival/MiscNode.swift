@@ -1,23 +1,22 @@
 //
-//  TrashNode.swift
+//  MiscNode.swift
 //  Ecocarnival
 //
-//  Created by Angela Liu on 11/13/15.
+//  Created by Angela Liu on 12/3/15.
 //  Copyright © 2015 amliu. All rights reserved.
 //
-
 
 import Foundation
 import SpriteKit
 
-class TrashNode: Throwable {
+class MiscNode:Throwable {
     
     init(location: CGPoint) {
-        let asset = Throwable.chooseNode(TextAssets.trashAssets)
+        let asset = Throwable.chooseNode(TextAssets.miscAssets)
         super.init(asset: asset, location: location)
         
-        self.name = Constants.trash
-        self.physicsBody!.categoryBitMask = Constants.trashNodeCategory
+        self.name = Constants.misc
+        self.physicsBody!.categoryBitMask = Constants.miscNodeCategory
     }
     
     required init?(coder aDecoder: NSCoder) {

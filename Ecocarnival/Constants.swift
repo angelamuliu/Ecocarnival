@@ -33,6 +33,19 @@ struct Constants {
     static let recycleBinCategory = UInt32(6)
     static let miscBinCategory = UInt32(7)
     
+    // Rarity levels that determine how common certain types of trash appear and how much each is worth
+    static let common = "Common"
+    static let uncommon = "Uncommon"
+    static let rare = "Rare"
+    
+    static let common_percent = 0.6
+    static let uncommon_percent = 0.3
+    static let rare_percent = 0.1
+    
+    static let common_worth = 1
+    static let uncommon_worth = 2
+    static let rare_worth = 5
+    
     
     // Consistent colors we use throughout the application
     static let orangeColor = UIColor(red: 255.0/255.0, green: 122.0/255.0, blue: 64.0/255.0, alpha: 1.0)

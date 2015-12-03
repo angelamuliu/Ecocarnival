@@ -10,10 +10,13 @@ import Foundation
 import SceneKit
 import SpriteKit
 
-
+// These tutorials really helped me get started : )
 // http://spin.atomicobject.com/2014/12/29/spritekit-physics-tutorial-swift/
 // http://www.raywenderlich.com/84341/create-breakout-game-sprite-kit-swift
 
+/**
+ Trash ninja game scene
+*/
 class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     
     var game = TN_Model()
@@ -22,13 +25,12 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     var scoreNodes = [SKSpriteNode]()
     var lifeNodes = [SKSpriteNode]()
     
-    var modalView:Dialog_UIView? // The modal that appears on game over
-    var modalScoreViews = [UIImageView]() // The scoreviews on the modal
+    var modalView:Dialog_UIView?
     
     // Game Interaction
-    var isTouchingTrash = false
+    var isTouching = false
     var touchPoint:CGPoint = CGPoint()
-    var touchedTrash:SKNode? // The trashnode currently being interacted with
+    var touchedThrowable:SKNode? // The node currently being touched
     
     // TN_GameViewController
     var viewController:UIViewController?
@@ -54,7 +56,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             self.addChild(lifeNode)
         }
         
-        // Load the reusable modal
+        // Load the reusable modal frame
         modalView = Dialog_UIView(gameScene: self, text: "Game over!\nFinal score")
         createButtons(modalView!)
         
@@ -69,7 +71,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(miscbinNode)
         
         // Toss up the first trash
-//        addNewTrash()
+//        addNewThrowable()
         
         gameOverDialog()
         
@@ -80,17 +82,17 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             let touchLocation = touch.locationInNode(self)
             let nodeAtPoint = self.nodeAtPoint(touchLocation)
             print(touchLocation)
-            if nodeAtPoint is TrashNode {
-                isTouchingTrash = true
+            if nodeAtPoint is Throwable {
+                isTouching = true
                 touchPoint = touchLocation
-                touchedTrash = nodeAtPoint
+                touchedThrowable = nodeAtPoint
             }
             dealWithPowerups(nodeAtPoint)
         }
     }
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if isTouchingTrash {
+        if isTouching {
             let touch = touches.first! as UITouch
             let touchLocation = touch.locationInNode(self)
             touchPoint = touchLocation
@@ -98,8 +100,8 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        isTouchingTrash = false
-        touchedTrash = nil
+        isTouching = false
+        touchedThrowable = nil
     }
     
     // didBeginContact is called multiple times but we only want to update once per trash + bin collision
@@ -107,11 +109,11 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     
     // http://stackoverflow.com/questions/28245653/how-to-throw-skspritenode
     override func update(currentTime: CFTimeInterval) {
-        if isTouchingTrash {
+        if isTouching {
             let dt:CGFloat = 1.0/12.0
-            let distance = CGVector(dx: touchPoint.x-touchedTrash!.position.x, dy: touchPoint.y-touchedTrash!.position.y)
+            let distance = CGVector(dx: touchPoint.x-touchedThrowable!.position.x, dy: touchPoint.y-touchedThrowable!.position.y)
             let velocity = CGVector(dx: distance.dx/dt, dy: distance.dy/dt)
-            touchedTrash!.physicsBody!.velocity=velocity
+            touchedThrowable!.physicsBody!.velocity=velocity
         }
         updatesCalled++
     }
@@ -130,21 +132,21 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
                 game.decreaseLife()
                 UI_Components.updateLifeNodes(game.life, lifeNodes: lifeNodes)
             }
-            if let trashNode = TN_Model.getTrashNodeFromBody(contact.bodyA, secondBody: contact.bodyB) {
-                trashNode.removeFromParent()
+            if let throwable = TN_Model.getThrowableFromBody(contact.bodyA, secondBody: contact.bodyB) {
+                throwable.removeFromParent()
                 if (game.isGameOver) {
                     self.scene!.paused = true
                     gameOverDialog()
                 } else {
-                    addNewTrash()
+                    addNewThrowable()
                 }
             }
             updatesCalled = 0
         }
     }
     
-    func addNewTrash() {
-        let newTrash = TrashNode.generateRandomTrash(CGPoint(x: self.frame.size.width/2, y: -50))
+    func addNewThrowable() {
+        let newTrash = Throwable.generateRandomTrash(CGPoint(x: self.frame.size.width/2, y: -50))
         self.addChild(newTrash)
         if (newTrash.name! == Constants.powerup) {
             tossTrash(newTrash) // Powerups have particle effects which have visual bugs when spun
@@ -194,9 +196,16 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
                 let actionSequence = SKAction.sequence([SKAction.scaleBy(1.5, duration: 0.3), SKAction.fadeAlphaTo(0.0, duration: 0.2)])
                 powerupNode.runAction(actionSequence, completion: {
                     powerupNode.removeFromParent()
-                    self.addNewTrash()
+                    self.addNewThrowable()
                 })
             }
+        }
+    }
+    
+    // Given sprite nodes representing score, attaches them to a SK scene
+    func attachScoreToSKScene() {
+        for scoreNode in self.scoreNodes {
+            self.addChild(scoreNode)
         }
     }
     
@@ -239,7 +248,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
                 UI_Components.updateLifeNodes(self.game.life, lifeNodes: self.lifeNodes)
                 
                 self.scene!.paused = false
-                self.addNewTrash()
+                self.addNewThrowable()
         })
     }
     
@@ -252,18 +261,15 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         if let dialog = self.modalView {
             dialog.addRestartButton()
             dialog.restartButton!.addTarget(self, action: "resetGame:", forControlEvents: .TouchUpInside)
-            
             dialog.addBackToHomeButton()
             dialog.homeButton!.addTarget(self, action: "backToHome:", forControlEvents: .TouchUpInside)
         }
     }
     
-    // Given sprite nodes representing score, attaches them to a SK scene
-    func attachScoreToSKScene() {
-        for scoreNode in self.scoreNodes {
-            self.addChild(scoreNode)
-        }
+    func nextLevelDialog() {
+        self.modalView!.resetText("")
     }
+    
     
     
 }

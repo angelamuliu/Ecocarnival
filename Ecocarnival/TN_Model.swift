@@ -12,6 +12,9 @@
 import Foundation
 import SpriteKit
 
+/**
+ Trash ninja game model - Keeps track of score, life, and game state
+*/
 class TN_Model {
     
     var score = 12101
@@ -67,10 +70,10 @@ class TN_Model {
     }
     
     /**
-     Given two bodies (e.g. from the didBeginContact()) returns the SKNode that is the trashnode
+     Given two bodies (e.g. from the didBeginContact()) returns the SKNode that is the throwable node
      If none of them are, then the optional is not set.
     */
-    class func getTrashNodeFromBody(firstBody:SKPhysicsBody, secondBody: SKPhysicsBody) -> SKNode? {
+    class func getThrowableFromBody(firstBody:SKPhysicsBody, secondBody: SKPhysicsBody) -> SKNode? {
         if firstBody.categoryBitMask > 0 && firstBody.categoryBitMask < Constants.trashBinCategory {
             return firstBody.node
         }
