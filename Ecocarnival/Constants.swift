@@ -45,8 +45,7 @@ struct Constants {
     static let common_worth = 1
     static let uncommon_worth = 2
     static let rare_worth = 5
-    
-    
+
     // Consistent colors we use throughout the application
     static let orangeColor = UIColor(red: 255.0/255.0, green: 122.0/255.0, blue: 64.0/255.0, alpha: 1.0)
     static let bloodOrangeColor = UIColor(red: 240.0/255.0, green: 64.0/255.0, blue: 20.0/255.0, alpha: 1.0)

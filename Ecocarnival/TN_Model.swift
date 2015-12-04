@@ -18,14 +18,22 @@ import SpriteKit
 */
 class TN_Model {
     
-    var score = 12101
+    var level = 1
+    var maxLevels = 7
+    
+    var currLevelPointer = 0
+    var levelStages = [4, 9, 15, 22, 30, 40, 55] // The points for each level to advance
+    
+    var spawnRate = 3.0 // Number of seconds between spawning of throwables
+    
+    var score = 0
     var life = 5
     var maxlife = 5
     
     // Pool of throwables currently in game. We always start the game with the chocolate trash and can recyclable
     // Format: ["Common" : [ [...], [...] ], "Uncommon" ... ]
-    var trashPool = [Constants.common : [TextAssets.trashAssets[0]], Constants.uncommon : [TextAssets.trashAssets[1]] ]
-    var recyclePool = [Constants.common : [TextAssets.recycleAssets[0]], Constants.uncommon : [TextAssets.trashAssets[1]] ]
+    var trashPool = [Constants.common : [TextAssets.trashAssets[0]] ]
+    var recyclePool = [Constants.common : [TextAssets.recycleAssets[0]] ]
     
     // Indexes of trash and recycle that has yet to be added to the available pool
     // For now, hardcoded to the indexes available. Probably in future, the initializer would be more refined lol
@@ -37,6 +45,17 @@ class TN_Model {
             return true
         }
         return false
+    }
+    
+    var isMaxLevel: Bool {
+        if level >= maxLevels {
+            return true
+        }
+        return false
+    }
+    
+    var toNextLevel: Int {
+        return levelStages[currLevelPointer]
     }
     
     func increaseScore() {
@@ -53,9 +72,20 @@ class TN_Model {
         life--
     }
     
+    func increaseLevel() {
+        if level != maxLevels {
+            level++
+            spawnRate = spawnRate - 0.32
+            currLevelPointer++
+        }
+    }
+    
     func resetGame() {
-        score = 0;
-        life = 5;
+        score = 0
+        life = 5
+        level = 1
+        currLevelPointer = 0
+        spawnRate = 4
         resetPools()
     }
     
@@ -73,7 +103,7 @@ class TN_Model {
     */
     func addNewThrowable() -> [String:String] {
         let randomNum = arc4random_uniform(UInt32(2))
-        if randomNum == 0 { // Adding trash
+        if randomNum == 0 || lockedRecycle.count < 1 { // Adding trash
             let i = Int(arc4random_uniform(UInt32(lockedTrash.count)))
             let assetIndex = lockedTrash.removeAtIndex(i)
             addToPool(&trashPool, asset: TextAssets.trashAssets[assetIndex])
@@ -102,10 +132,8 @@ class TN_Model {
     func generateRandomTrash(location: CGPoint) -> Throwable {
         let randomNum = arc4random_uniform(UInt32(100)) // Number between 0 - 99
         if randomNum < 40 {
-            print("TRASH")
             return TrashNode(location: location, asset: chooseTrashFromPool())
         } else if randomNum >= 40 && randomNum < 80 {
-            print("RECYCLE")
             return RecycleNode(location: location, asset: chooseRecycleFromPool())
         } else if randomNum >= 80 && randomNum < 90 {
             return PowerupNode(location: location)

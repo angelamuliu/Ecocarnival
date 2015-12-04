@@ -24,6 +24,7 @@ class Dialog_UIView:UIView {
     
     var restartButton:UIButton?
     var homeButton:UIButton?
+    var continueButtom:UIButton?
     
     var newTrashImage:UIImageView?
     var newTrashDescContainter:UITextView?
@@ -262,7 +263,7 @@ class Dialog_UIView:UIView {
         newTrashImage!.frame = CGRect(x: 40, y: 83, width: 80, height: 80)
         newTrashImage!.contentMode = .ScaleAspectFit
         
-        newTrashDescContainter = UITextView(frame: CGRect(x: 130, y: 83, width: self.wordContainer!.frame.width - 170, height: 100))
+        newTrashDescContainter = UITextView(frame: CGRect(x: 130, y: 80, width: self.wordContainer!.frame.width - 170, height: 100))
         newTrashDescContainter!.scrollEnabled = false // Making it labelike by disabling user interaction and scrolling
         newTrashDescContainter!.userInteractionEnabled = false
         newTrashDescContainter!.backgroundColor = UIColor.clearColor()
@@ -270,8 +271,37 @@ class Dialog_UIView:UIView {
         newTrashDescContainter!.contentMode = .TopLeft
         newTrashDescContainter!.text = desc
     }
-
     
+    /** 
+     Adds the continue button element to this UIView
+    */
+    func addContinueButton() {
+        if self.continueButtom == nil {
+            setupContinueButton()
+        }
+        if self.continueButtom?.superview == nil{
+            self.addSubview(self.continueButtom!)
+        }
+    }
+
+    /**
+     Removes the continue button element from this UIView
+     */
+    func removeContinueButton() {
+        if self.continueButtom?.superview != nil {
+            self.continueButtom?.removeFromSuperview()
+        }
+    }
+    
+    func setupContinueButton() {
+        continueButtom = UIButton(frame: CGRect(x: self.frame.width/2 - (self.frame.width/5)/2, y: 200, width: self.frame.width/5, height: 40))
+        continueButtom!.layer.cornerRadius = 4.0
+        continueButtom!.setTitle("Continue", forState: UIControlState.Normal)
+        continueButtom!.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        continueButtom!.backgroundColor = Constants.orangeColor
+        continueButtom!.layer.borderWidth = 3
+        continueButtom!.layer.borderColor = Constants.bloodOrangeColor.CGColor
+    }
 
 
 }

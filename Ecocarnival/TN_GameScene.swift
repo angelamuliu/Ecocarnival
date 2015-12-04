@@ -32,8 +32,9 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     var touchPoint:CGPoint = CGPoint()
     var touchedThrowable:SKNode? // The node currently being touched
     
-    // TN_GameViewController
-    var viewController:UIViewController?
+    var lastSpawnTime = CFTimeInterval()
+    
+    var viewController:UIViewController? // TN_GameViewController
     
     override func didMoveToView(view: SKView) {
         self.physicsWorld.contactDelegate = self // Needed for collision detection
@@ -67,14 +68,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Setup the 'misc' bin which catches anything that tumbles offscreen
         let miscbinNode:BinNode = BinNode.miscbin(CGPoint(x: self.frame.size.width/2, y: -400.0), width: self.frame.size.width * 3)
-        self.addChild(miscbinNode)
-        
-        // Toss up the first trash
-//        addNewThrowable()
-        
-//        gameOverDialog()
-        nextLevelDialog()
-        
+        self.addChild(miscbinNode)        
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -109,6 +103,12 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     
     // http://stackoverflow.com/questions/28245653/how-to-throw-skspritenode
     override func update(currentTime: CFTimeInterval) {
+        let timeSinceLastSpawn = currentTime - lastSpawnTime
+        if timeSinceLastSpawn > game.spawnRate {
+            lastSpawnTime = currentTime
+            addNewThrowable()
+        }
+    
         if isTouching {
             let dt:CGFloat = 1.0/12.0
             let distance = CGVector(dx: touchPoint.x-touchedThrowable!.position.x, dy: touchPoint.y-touchedThrowable!.position.y)
@@ -128,6 +128,10 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             // Did a trash node hit a trash can? Doing checks for all proper matches
             if (TN_Model.checkMatchingBin(firstCategory, secondCategory: secondCategory)) {
                 increaseScore()
+                if !game.isMaxLevel && game.score >= game.toNextLevel {
+                    game.increaseLevel()
+                    nextLevelDialog()
+                }
             } else { // Looks like the trash went into the wrong bin
                 game.decreaseLife()
                 UI_Components.updateLifeNodes(game.life, lifeNodes: lifeNodes)
@@ -135,10 +139,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             if let throwable = TN_Model.getThrowableFromBody(contact.bodyA, secondBody: contact.bodyB) {
                 throwable.removeFromParent()
                 if (game.isGameOver) {
-                    self.scene!.paused = true
                     gameOverDialog()
-                } else {
-                    addNewThrowable()
                 }
             }
             updatesCalled = 0
@@ -147,7 +148,6 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addNewThrowable() {
         let newTrash = game.generateRandomTrash(CGPoint(x: self.frame.size.width/2, y: -50))
-//        let newTrash = Throwable.generateRandomTrash(CGPoint(x: self.frame.size.width/2, y: -50))
         self.addChild(newTrash)
         if (newTrash.name! == Constants.powerup) {
             tossTrash(newTrash) // Powerups have particle effects which have visual bugs when spun
@@ -197,7 +197,6 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
                 let actionSequence = SKAction.sequence([SKAction.scaleBy(1.5, duration: 0.3), SKAction.fadeAlphaTo(0.0, duration: 0.2)])
                 powerupNode.runAction(actionSequence, completion: {
                     powerupNode.removeFromParent()
-                    self.addNewThrowable()
                 })
             }
         }
@@ -216,8 +215,16 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Shows the game over UI component and also animates it sliding up
     func gameOverDialog() {
+        self.scene!.paused = true
+        
+        // Clear any possible unnecessary elements from the modal
+        self.modalView!.removeNewTrashDisplay()
+        self.modalView!.removeContinueButton()
+        
+        self.modalView!.resetText("Game over!\nFinal score")
         createButtons(modalView!)
         self.modalView!.addScore(self.game.score)
+        
         self.view!.addSubview(modalView!)
         self.modalView!.slideUpDialog()
     }
@@ -237,7 +244,6 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             UI_Components.updateLifeNodes(self.game.life, lifeNodes: self.lifeNodes)
                             
             self.scene!.paused = false
-            self.addNewThrowable()
         })
     }
     
@@ -257,14 +263,38 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Shows the next level dialog
     func nextLevelDialog() {
-        self.modalView!.resetText("Let's step it up!\nNext level we're adding...")
+        self.scene!.paused = true
         
+        // Clear any possible unnecessary elements from the modal
+        self.modalView!.removeBackToHomeButton()
+        self.modalView!.removeRestartButton()
+        self.modalView!.removeScore()
+        
+        self.modalView!.resetText("Let's step it up!\nNext level we're adding...")
         let newAsset = self.game.addNewThrowable()
         self.modalView!.newTrashDisplay(newAsset["imageNamed"]!, desc: newAsset["desc"]!)
+        connectContinueButton()
         
         self.view!.addSubview(modalView!)
         self.modalView!.slideUpDialog()
     }
+    
+    // Simply unpauses the game and dismisses the modal view
+    func unpauseGame(sender:UIButton) {
+        self.modalView!.slideDownDialog({ finished in
+            self.modalView!.removeFromSuperview()
+            self.scene!.paused = false
+        })
+    }
+    
+    func connectContinueButton() {
+        if let dialog = self.modalView {
+            self.modalView!.addContinueButton()
+            dialog.continueButtom!.addTarget(self, action: "unpauseGame:", forControlEvents: .TouchUpInside)
+        }
+    }
+    
+    
     
     
     
