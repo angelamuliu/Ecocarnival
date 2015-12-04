@@ -25,7 +25,7 @@ struct TextAssets {
             "desc" : "Pizza on a paper plate.\nI think the cheese is molding. Throw it in the trash",
             "rarity" : Constants.uncommon ],
         ["imageNamed" : "TN_trash4.png",
-            "desc" : "A fruit pouch!\nOh, it's empty. Belongs in the trash.",
+            "desc" : "A juice pouch!\nOh, it's empty. Belongs in the trash.",
             "rarity" : Constants.rare ]
     ]
     

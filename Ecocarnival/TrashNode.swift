@@ -11,9 +11,22 @@ import Foundation
 import SpriteKit
 
 class TrashNode: Throwable {
-    
+
+    /**
+     Chooses a random trash node out of all possibilities
+    */
     init(location: CGPoint) {
         let asset = Throwable.chooseNode(TextAssets.trashAssets)
+        super.init(asset: asset, location: location)
+        
+        self.name = Constants.trash
+        self.physicsBody!.categoryBitMask = Constants.trashNodeCategory
+    }
+    
+    /**
+     Spawns a specific trash node given its asset dictionary
+    */
+    init(location: CGPoint, asset:[String:String]) {
         super.init(asset: asset, location: location)
         
         self.name = Constants.trash

@@ -62,23 +62,11 @@ class Throwable:SKSpriteNode {
     // ------------------------------------------------------------------
     // Class Functions
 
-    
     /**
      Given an array of dictionaries representing sets of image names and descriptions, chooses a random dictionary
      */
     class func chooseNode(imageSet:[[String:String]]) -> [String:String] {
         return imageSet[Int(arc4random_uniform(UInt32(imageSet.count)))]
-    }
-    
-    /**
-     Creates a random trash node (trash, recyclable, misc, or powerup) given a location to create it in.
-     */
-    class func generateRandomTrash(location: CGPoint) -> Throwable {
-        let category = arc4random_uniform(UInt32(5))
-        if category == Constants.trashNodeCategory { return TrashNode(location: location) }
-        if category == Constants.recycleNodeCategory { return RecycleNode(location: location) }
-        if category == Constants.powerupNodeCategory { return PowerupNode(location: location) }
-        return MiscNode(location: location)
     }
     
     required init?(coder aDecoder: NSCoder) {

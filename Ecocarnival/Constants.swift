@@ -38,9 +38,9 @@ struct Constants {
     static let uncommon = "Uncommon"
     static let rare = "Rare"
     
-    static let common_percent = 0.6
-    static let uncommon_percent = 0.3
-    static let rare_percent = 0.1
+    static let common_percent = 60
+    static let uncommon_percent = 30
+    static let rare_percent = 10
     
     static let common_worth = 1
     static let uncommon_worth = 2

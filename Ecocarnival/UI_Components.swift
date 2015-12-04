@@ -73,27 +73,6 @@ class UI_Components:NSObject {
         updateScoreNodes(score, scoreNodes: &scoreNodes)
         return scoreNodes
     }
-    
-    /**
-     Initializes a score with the handwritten font for UIViews given some point that acts as the center
-     */
-    class func createScoreNodesForUIView(score:Int, center: CGPoint) -> [UIImageView] {
-        var scoreViews = [UIImageView]()
-        let scoreArr = Array(String(score).characters) // We split it e.g. ["1", "0", "2"]
-        let centerIndex = scoreArr.count / 2
-        
-        let numWidth = CGFloat(25.0)
-        let numHeight = CGFloat(40.0)
-
-        while (scoreArr.count > scoreViews.count) {
-            let image = UIImage(named: getScoreNodeNumber(scoreArr[scoreArr.count - scoreViews.count - 1]))!
-            let scoreView = UIImageView(image: image)
-            scoreView.frame = CGRect(x: center.x - (CGFloat(scoreViews.count - centerIndex) * numWidth) - numWidth/2, y: center.y - numHeight/2, width: numWidth, height: numHeight)
-            scoreView.contentMode = .ScaleAspectFit
-            scoreViews.insert(scoreView, atIndex: 0)
-        }
-        return scoreViews
-    }
 
     /**
      Given some score, update and add more score nodes and updates the ones that exist to the new number

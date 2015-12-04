@@ -15,14 +15,19 @@ import UIKit
 */
 class Dialog_UIView:UIView {
     
+    var catView:UIImageView?
+    
     var wordContainer:UIView? // Contains the dialog
     var textContainer:UITextView?
-    var catView:UIImageView?
     
     var modalScoreViews = [UIImageView]() // Collection of images representing a score
     
     var restartButton:UIButton?
     var homeButton:UIButton?
+    
+    var newTrashImage:UIImageView?
+    var newTrashDescContainter:UITextView?
+    var nextLevelButton:UIButton?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -33,13 +38,17 @@ class Dialog_UIView:UIView {
     */
     init(gameScene: TN_GameScene, text: String?) {
         super.init(frame: CGRect(x: 0, y: gameScene.size.height, width: gameScene.size.width, height: gameScene.size.height))
-        
-//        self.frame = CGRect(x: 0, y: gameScene.size.height, width: gameScene.size.width, height: gameScene.size.height)
         self.layer.opacity = 0.0
         
         self.wordContainer = UIView(frame: CGRect(x: gameScene.size.width/6, y: 30, width: (gameScene.size.width/6)*4, height: gameScene.size.height / 1.5))
         self.wordContainer!.backgroundColor = UIColor.whiteColor()
         self.wordContainer!.layer.borderWidth = 8;
+        self.wordContainer!.layer.borderColor = Constants.navyColor.CGColor
+    
+        // Dumb fix to a dumb visual glitch where the border leaves 1 px of white space at the top
+        let topfill = UIView(frame: CGRect(x: 0, y: 0, width: self.wordContainer!.frame.width, height:5))
+        topfill.backgroundColor = Constants.navyColor
+        self.wordContainer?.addSubview(topfill)
         
         // Adding light blue gradient color to the word container
         // http://stackoverflow.com/questions/23074539/programmatically-create-a-uiview-with-color-gradient
@@ -52,7 +61,6 @@ class Dialog_UIView:UIView {
         botGradient.frame = CGRect(x: 0, y: (wordContainer!.bounds.height/4)*3, width: wordContainer!.bounds.width, height: wordContainer!.bounds.height / 4)
         botGradient.colors = [UIColor.whiteColor().CGColor, Constants.lightBlueColor.CGColor]
         self.wordContainer!.layer.insertSublayer(botGradient, atIndex: 0)
-        self.wordContainer!.layer.borderColor = Constants.navyColor.CGColor
         
         // Drop shadow
         self.wordContainer!.layer.shadowOffset = CGSize(width: 0, height: 7)
@@ -68,7 +76,6 @@ class Dialog_UIView:UIView {
         self.textContainer!.font = UIFont(name: "Helvetica-Bold", size: 18)
         self.textContainer!.text = text
         
-        
         self.wordContainer!.addSubview(self.textContainer!)
         self.addSubview(wordContainer!)
         
@@ -80,6 +87,34 @@ class Dialog_UIView:UIView {
         self.catView!.layer.shadowRadius = 5.0
         
         self.addSubview(catView!)
+    }
+    
+    
+    /**
+     Plays the fade slide up animation for this modal to go over its scene
+     */
+    func slideUpDialog() {
+        UIView.animateWithDuration(0.3,
+            animations: { void in
+                self.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+                self.layer.opacity = 1.0
+            },
+            completion: { finished in
+                self.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+        })
+    }
+    
+    /**
+     Plays the fade slide down animation for this modal. It can be passed a completion block to do after
+     */
+    func slideDownDialog(completion: ((Bool) -> Void)?) {
+        UIView.animateWithDuration(0.3,
+            animations: { void in
+                self.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: self.frame.height)
+                self.layer.opacity = 0.0
+            },
+            completion: completion)
+        
     }
     
     /**
@@ -157,14 +192,85 @@ class Dialog_UIView:UIView {
      Resets and adds the score images given some score to render
     */
     func addScore(score:Int) {
-        for scoreView in self.modalScoreViews { // Clear the scoreviews from the previous run
-            scoreView.removeFromSuperview()
-        }
-        self.modalScoreViews = UI_Components.createScoreNodesForUIView(score, center: CGPoint(x: self.frame.width / 2, y: 135))
+        removeScore() // Clear previous score elements
+        setupScore(score, center: CGPoint(x: self.frame.width / 2, y: 135))
         for scoreView in self.modalScoreViews { // Attach the new scoreviews
             self.addSubview(scoreView)
         }
     }
+    
+    /**
+     Removes the score elements from this UIView
+    */
+    func removeScore() {
+        if self.modalScoreViews.count > 0 && self.modalScoreViews[0].superview != nil {
+            for scoreView in self.modalScoreViews {
+                scoreView.removeFromSuperview()
+            }
+        }
+    }
+    
+    /**
+     Initializes a score with the handwritten font for UIViews given some point that acts as the center
+     */
+    func setupScore(score:Int, center: CGPoint) {
+        self.modalScoreViews = [UIImageView]()
+        let scoreArr = Array(String(score).characters) // We split it e.g. ["1", "0", "2"]
+        let centerIndex = scoreArr.count / 2
+        
+        let numWidth = CGFloat(25.0)
+        let numHeight = CGFloat(40.0)
+        
+        while (scoreArr.count > self.modalScoreViews.count) {
+            let image = UIImage(named: UI_Components.getScoreNodeNumber(scoreArr[scoreArr.count - self.modalScoreViews.count - 1]))!
+            let scoreView = UIImageView(image: image)
+            scoreView.frame = CGRect(x: center.x - (CGFloat(self.modalScoreViews.count - centerIndex) * numWidth) - numWidth/2, y: center.y - numHeight/2, width: numWidth, height: numHeight)
+            scoreView.contentMode = .ScaleAspectFit
+            self.modalScoreViews.insert(scoreView, atIndex: 0)
+        }
+    }
+    
+    /**
+     An image that shows a throwable image and description that has been added to the next level
+    */
+    func newTrashDisplay(imageNamed:String, desc:String) {
+        removeNewTrashDisplay()
+        
+        if newTrashImage == nil { // Perform initialization if elements not made yet
+            setupNewTrashDisplay(imageNamed, desc: desc)
+        }
+        newTrashImage!.image = UIImage(named:imageNamed)
+        newTrashDescContainter!.text = desc
+        
+        self.wordContainer!.addSubview(newTrashImage!)
+        self.wordContainer!.addSubview(newTrashDescContainter!)
+    }
+    
+    /**
+     Remove the new trash displayer
+    */
+    func removeNewTrashDisplay() {
+        if newTrashImage != nil && newTrashImage?.superview != nil {
+            newTrashImage?.removeFromSuperview()
+            newTrashDescContainter?.removeFromSuperview()
+        }
+    }
+    
+    func setupNewTrashDisplay(imageNamed:String, desc:String) {
+        let image = UIImage(named: imageNamed)
+        newTrashImage = UIImageView(image: image)
+        newTrashImage!.frame = CGRect(x: 40, y: 83, width: 80, height: 80)
+        newTrashImage!.contentMode = .ScaleAspectFit
+        
+        newTrashDescContainter = UITextView(frame: CGRect(x: 130, y: 83, width: self.wordContainer!.frame.width - 170, height: 100))
+        newTrashDescContainter!.scrollEnabled = false // Making it labelike by disabling user interaction and scrolling
+        newTrashDescContainter!.userInteractionEnabled = false
+        newTrashDescContainter!.backgroundColor = UIColor.clearColor()
+        newTrashDescContainter!.font = UIFont(name: "Helvetica", size: 16)
+        newTrashDescContainter!.contentMode = .TopLeft
+        newTrashDescContainter!.text = desc
+    }
+
     
 
 

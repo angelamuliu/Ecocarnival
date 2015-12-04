@@ -58,7 +58,6 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Load the reusable modal frame
         modalView = Dialog_UIView(gameScene: self, text: "Game over!\nFinal score")
-        createButtons(modalView!)
         
         // Setup trash and recycle bins
         let trashbinNode:BinNode = BinNode.trashbin(CGPoint(x: 0, y: self.frame.size.height/2))
@@ -73,7 +72,8 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         // Toss up the first trash
 //        addNewThrowable()
         
-        gameOverDialog()
+//        gameOverDialog()
+        nextLevelDialog()
         
     }
     
@@ -146,7 +146,8 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addNewThrowable() {
-        let newTrash = Throwable.generateRandomTrash(CGPoint(x: self.frame.size.width/2, y: -50))
+        let newTrash = game.generateRandomTrash(CGPoint(x: self.frame.size.width/2, y: -50))
+//        let newTrash = Throwable.generateRandomTrash(CGPoint(x: self.frame.size.width/2, y: -50))
         self.addChild(newTrash)
         if (newTrash.name! == Constants.powerup) {
             tossTrash(newTrash) // Powerups have particle effects which have visual bugs when spun
@@ -215,40 +216,28 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Shows the game over UI component and also animates it sliding up
     func gameOverDialog() {
+        createButtons(modalView!)
         self.modalView!.addScore(self.game.score)
         self.view!.addSubview(modalView!)
-        UIView.animateWithDuration(0.3,
-            animations: { void in
-                self.modalView!.frame = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
-                self.modalView!.layer.opacity = 1.0
-            },
-            completion: { finished in
-                self.modalView!.frame = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
-        })
+        self.modalView!.slideUpDialog()
     }
     
     // Slides the modal view back out and resets the game
     func resetGame(sender:UIButton!) {
-        UIView.animateWithDuration(0.3,
-            animations: { void in
-                self.modalView!.frame = CGRect(x: 0, y: self.size.height, width: self.size.width, height: self.size.height)
-                self.modalView!.layer.opacity = 0.0
-            },
-            completion: { finished in
-                self.modalView!.removeFromSuperview()
-                self.game.resetGame()
-                
-                // Reset the score UI
-                for scoreNode in self.scoreNodes {
-                    scoreNode.removeFromParent()
-                }
-                self.scoreNodes = UI_Components.createScoreNodes(self.game.score, topRightCorner: CGPoint(x:self.size.width, y: self.size.height))
-                self.attachScoreToSKScene()
-
-                UI_Components.updateLifeNodes(self.game.life, lifeNodes: self.lifeNodes)
-                
-                self.scene!.paused = false
-                self.addNewThrowable()
+        self.modalView!.slideDownDialog({ finished in
+            self.modalView!.removeFromSuperview()
+            self.game.resetGame()
+            
+            for scoreNode in self.scoreNodes { // Reset the score UI
+                scoreNode.removeFromParent()
+            }
+            self.scoreNodes = UI_Components.createScoreNodes(self.game.score, topRightCorner: CGPoint(x:self.size.width, y: self.size.height))
+            self.attachScoreToSKScene()
+            
+            UI_Components.updateLifeNodes(self.game.life, lifeNodes: self.lifeNodes)
+                            
+            self.scene!.paused = false
+            self.addNewThrowable()
         })
     }
     
@@ -266,8 +255,15 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    // Shows the next level dialog
     func nextLevelDialog() {
-        self.modalView!.resetText("")
+        self.modalView!.resetText("Let's step it up!\nNext level we're adding...")
+        
+        let newAsset = self.game.addNewThrowable()
+        self.modalView!.newTrashDisplay(newAsset["imageNamed"]!, desc: newAsset["desc"]!)
+        
+        self.view!.addSubview(modalView!)
+        self.modalView!.slideUpDialog()
     }
     
     

@@ -13,14 +13,31 @@ import Foundation
 import SpriteKit
 
 /**
- Trash ninja game model - Keeps track of score, life, and game state
+ Trash ninja game model - Keeps track of score, life, and game state. Also has functions to add throwables to the pool, calculate which 
+ should appear next depending on percentages and what's available in the pools currently, and some other helpful methods related to the game.
 */
 class TN_Model {
     
     var score = 12101
-
     var life = 5
     var maxlife = 5
+    
+    // Pool of throwables currently in game. We always start the game with the chocolate trash and can recyclable
+    // Format: ["Common" : [ [...], [...] ], "Uncommon" ... ]
+    var trashPool = [Constants.common : [TextAssets.trashAssets[0]], Constants.uncommon : [TextAssets.trashAssets[1]] ]
+    var recyclePool = [Constants.common : [TextAssets.recycleAssets[0]], Constants.uncommon : [TextAssets.trashAssets[1]] ]
+    
+    // Indexes of trash and recycle that has yet to be added to the available pool
+    // For now, hardcoded to the indexes available. Probably in future, the initializer would be more refined lol
+    var lockedTrash = [1,2,3]
+    var lockedRecycle = [1,2,3]
+    
+    var isGameOver: Bool {
+        if (life <= 0) {
+            return true
+        }
+        return false
+    }
     
     func increaseScore() {
         score++
@@ -31,24 +48,112 @@ class TN_Model {
             life++
         }
     }
+    
     func decreaseLife() {
         life--
-    }
-    
-    var isGameOver: Bool {
-        if (life <= 0) {
-            return true
-        }
-        return false
     }
     
     func resetGame() {
         score = 0;
         life = 5;
+        resetPools()
+    }
+    
+    private func resetPools() {
+        trashPool = [Constants.common : [TextAssets.trashAssets[0]] ]
+        recyclePool = [Constants.common : [TextAssets.recycleAssets[0]] ]
+        lockedTrash = [1,2,3]
+        lockedRecycle = [1,2,3]
     }
     
     // ------------------------------------------------------------
-    // Helper functions
+    
+    /**
+     Adds either new trash or recyclable to the game's available pool
+    */
+    func addNewThrowable() -> [String:String] {
+        let randomNum = arc4random_uniform(UInt32(2))
+        if randomNum == 0 { // Adding trash
+            let i = Int(arc4random_uniform(UInt32(lockedTrash.count)))
+            let assetIndex = lockedTrash.removeAtIndex(i)
+            addToPool(&trashPool, asset: TextAssets.trashAssets[assetIndex])
+            return TextAssets.trashAssets[assetIndex]
+        } else { // Adding recyclable
+            let i = Int(arc4random_uniform(UInt32(lockedRecycle.count)))
+            let assetIndex = lockedRecycle.removeAtIndex(i)
+            addToPool(&recyclePool, asset: TextAssets.recycleAssets[assetIndex])
+            return TextAssets.recycleAssets[assetIndex]
+        }
+    }
+    
+    private func addToPool(inout pool: [String: [[String: String]]], asset: [String: String]) {
+        let rarity = asset["rarity"]!
+        if pool[rarity] == nil {
+            pool[rarity] = [[String:String]]()
+        }
+        pool[rarity]!.append(asset)
+    }
+    
+    /**
+    Creates a random trash node (trash, recyclable, misc, or powerup) thats available given this game's current
+    pool of available things given a location to create it in.
+    40% change of trash or recyclable, 10% misc, and 10% powerup. Then uses the pool to determine which to spawn
+    */
+    func generateRandomTrash(location: CGPoint) -> Throwable {
+        let randomNum = arc4random_uniform(UInt32(100)) // Number between 0 - 99
+        if randomNum < 40 {
+            print("TRASH")
+            return TrashNode(location: location, asset: chooseTrashFromPool())
+        } else if randomNum >= 40 && randomNum < 80 {
+            print("RECYCLE")
+            return RecycleNode(location: location, asset: chooseRecycleFromPool())
+        } else if randomNum >= 80 && randomNum < 90 {
+            return PowerupNode(location: location)
+        } else {
+            return MiscNode(location: location)
+        }
+    }
+    
+    /**
+     Given a pool to work with, returns a string rarity based on rarity percentage of occuring
+     and what rarities are even available
+    */
+    private func chooseRarity(pool: [String: [[String: String]]]) -> String {
+        var poolPossibilities = 100
+        if pool[Constants.uncommon] == nil {
+            poolPossibilities = poolPossibilities - Constants.uncommon_percent
+        }
+        if pool[Constants.rare] == nil {
+            poolPossibilities = poolPossibilities - Constants.rare_percent
+        }
+        let randomNum = Int(arc4random_uniform(UInt32(poolPossibilities)))
+        if randomNum < Constants.common_percent {
+            return Constants.common
+        } else {
+            if pool[Constants.uncommon] != nil && pool[Constants.rare] != nil {
+                if randomNum >= Constants.common_percent + Constants.uncommon_percent + Constants.rare_percent {
+                    return Constants.rare
+                } else {
+                    return Constants.uncommon
+                }
+            }
+            if pool[Constants.uncommon] != nil {
+                return Constants.uncommon
+            } else {
+                return Constants.rare
+            }
+        }
+    }
+    
+    private func chooseTrashFromPool() -> [String:String] {
+        let rarity = chooseRarity(trashPool)
+        return trashPool[rarity]![Int(arc4random_uniform(UInt32(trashPool[rarity]!.count)))]
+    }
+    
+    private func chooseRecycleFromPool() -> [String:String] {
+        let rarity = chooseRarity(recyclePool)
+        return recyclePool[rarity]![Int(arc4random_uniform(UInt32(recyclePool[rarity]!.count)))]
+    }
     
     /**
      Given two categories, returns true if the node and bin are matching. False otherwise
