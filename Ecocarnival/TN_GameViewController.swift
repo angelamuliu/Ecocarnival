@@ -25,6 +25,9 @@ class TN_GameViewController: UIViewController {
         
         let skView = self.view as! SKView
         skView.presentScene(scene)
+        
+        // Startup the background music
+        
 
     }
     

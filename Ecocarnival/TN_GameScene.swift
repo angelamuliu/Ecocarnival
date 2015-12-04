@@ -9,6 +9,7 @@
 import Foundation
 import SceneKit
 import SpriteKit
+import AVFoundation
 
 // These tutorials really helped me get started : )
 // http://spin.atomicobject.com/2014/12/29/spritekit-physics-tutorial-swift/
@@ -26,7 +27,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     var lifeNodes = [SKSpriteNode]()
     
     var modalView:Dialog_UIView?
-    
+
     // Game Interaction
     var isTouching = false
     var touchPoint:CGPoint = CGPoint()
@@ -36,7 +37,25 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     
     var viewController:UIViewController? // TN_GameViewController
     
+    // Preloading SFX
+    let sfx_hitTrash1 = SKAction.playSoundFileNamed("hitTrash1.aiff", waitForCompletion: false)
+    
+    // Music
+    var backgroundMusic : AVAudioPlayer?
+    
     override func didMoveToView(view: SKView) {
+        
+        
+        if let backgroundMusic = UI_Components.setupAudioPlayerWithFile("Jaunty Gumption", type: "mp3") {
+            self.backgroundMusic = backgroundMusic
+            self.backgroundMusic?.volume = 0.3
+            self.backgroundMusic?.play()
+        }
+        
+        
+        
+        
+        
         self.physicsWorld.contactDelegate = self // Needed for collision detection
         
         // Load BG
@@ -68,7 +87,9 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Setup the 'misc' bin which catches anything that tumbles offscreen
         let miscbinNode:BinNode = BinNode.miscbin(CGPoint(x: self.frame.size.width/2, y: -400.0), width: self.frame.size.width * 3)
-        self.addChild(miscbinNode)        
+        self.addChild(miscbinNode)
+        
+        // Load BG music
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -136,6 +157,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
                 game.decreaseLife()
                 UI_Components.updateLifeNodes(game.life, lifeNodes: lifeNodes)
             }
+            self.runAction(sfx_hitTrash1) // Playing a SFX
             if let throwable = TN_Model.getThrowableFromBody(contact.bodyA, secondBody: contact.bodyB) {
                 throwable.removeFromParent()
                 if (game.isGameOver) {

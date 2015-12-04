@@ -9,6 +9,7 @@
 import Foundation
 import SpriteKit
 import UIKit
+import AVFoundation
 
 class UI_Components:NSObject {
     
@@ -123,8 +124,27 @@ class UI_Components:NSObject {
                 return "TN_0"
         }
     }
-
-
     
+    // http://www.raywenderlich.com/114298/learn-to-code-ios-apps-with-swift-tutorial-5-making-it-beautiful
+    /**
+        Given a name and type of the audio file, returns the audio player that can be used to play the sound
+    */
+    class func setupAudioPlayerWithFile(file:NSString, type:NSString) -> AVAudioPlayer?  {
+        //1
+        let path = NSBundle.mainBundle().pathForResource(file as String, ofType: type as String)
+        let url = NSURL.fileURLWithPath(path!)
+        
+        //2
+        var audioPlayer:AVAudioPlayer?
+        
+        // 3
+        do {
+            try audioPlayer = AVAudioPlayer(contentsOfURL: url)
+        } catch {
+            print("Player not available")
+        }
+        
+        return audioPlayer
+    }
     
 }

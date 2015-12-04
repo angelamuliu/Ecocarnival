@@ -135,7 +135,7 @@ class TN_Model {
             return TrashNode(location: location, asset: chooseTrashFromPool())
         } else if randomNum >= 40 && randomNum < 80 {
             return RecycleNode(location: location, asset: chooseRecycleFromPool())
-        } else if randomNum >= 80 && randomNum < 90 {
+        } else if randomNum >= 80 && randomNum < 85 {
             return PowerupNode(location: location)
         } else {
             return MiscNode(location: location)
