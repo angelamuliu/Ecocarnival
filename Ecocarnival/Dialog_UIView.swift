@@ -271,7 +271,7 @@ class Dialog_UIView:UIView {
     func setupNewTrashDisplay(imageNamed:String, desc:String) {
         let image = UIImage(named: imageNamed)
         newTrashImage = UIImageView(image: image)
-        newTrashImage!.frame = CGRect(x: 40, y: 83, width: 50, height: 50)
+        newTrashImage!.frame = CGRect(x: 60, y: 83, width: 50, height: 50)
         newTrashImage!.contentMode = .ScaleAspectFit
         
         newTrashDescContainter = UITextView(frame: CGRect(x: 130, y: 80, width: self.wordContainer!.frame.width - 160, height: 60))
