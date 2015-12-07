@@ -163,7 +163,10 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
                 // Did a trash node hit a trash can? Doing checks for all proper matches
                 if (TN_Model.checkMatchingBin(firstCategory, secondCategory: secondCategory)) {
                     increaseScore(throwable.value)
-                    self.runAction(sfx_correct)
+                    
+                    if throwable.name == Constants.trash || throwable.name == Constants.recycle {
+                        self.runAction(sfx_correct)
+                    }
                     
                     if !game.isMaxLevel && game.score >= game.toNextLevel {
                         self.runAction(sfx_correct, completion: { // Don't want to play the sound after the dialog
