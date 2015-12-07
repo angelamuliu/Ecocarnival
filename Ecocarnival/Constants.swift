@@ -54,4 +54,7 @@ struct Constants {
     static let lightGreyColor = UIColor(red: 175.0/255.0, green: 175.0/255.0, blue: 175.0/255.0, alpha: 1.0)
     static let greyColor = UIColor(red: 150.0/255.0, green: 150.0/255.0, blue: 150.0/255.0, alpha: 1.0)
     
+    // Consistent names for other types of interactable sprites
+    static let pause = "Pause"
+    
 }

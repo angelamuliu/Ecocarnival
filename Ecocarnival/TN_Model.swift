@@ -107,8 +107,14 @@ class TN_Model {
         currLevelPointer = 0
         spawnRatePointer = 0
         resetPools()
-        
+    }
+    
+    func resetMusic() {
         appDelegate.play_quirkydog_1()
+    }
+    
+    func stopMusic() {
+        appDelegate.stop_music()
     }
     
     func quitGame() {

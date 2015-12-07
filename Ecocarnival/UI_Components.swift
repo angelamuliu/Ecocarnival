@@ -11,6 +11,9 @@ import SpriteKit
 import UIKit
 import AVFoundation
 
+/**
+ Utility class that handles creation of many SKSprite nodes, and a few UIViews, used for UI purposes
+*/
 class UI_Components:NSObject {
     
     /**
@@ -125,27 +128,30 @@ class UI_Components:NSObject {
         }
     }
     
-    // http://www.raywenderlich.com/114298/learn-to-code-ios-apps-with-swift-tutorial-5-making-it-beautiful
     /**
-        Given a name and type of the audio file, returns the audio player that can be used to play the sound
-    */
-    class func setupAudioPlayerWithFile(file:NSString, type:NSString) -> AVAudioPlayer?  {
-        //1
-        let path = NSBundle.mainBundle().pathForResource(file as String, ofType: type as String)
-        let url = NSURL.fileURLWithPath(path!)
-        
-        //2
-        var audioPlayer:AVAudioPlayer?
-        
-        // 3
-        do {
-            try audioPlayer = AVAudioPlayer(contentsOfURL: url)
-        } catch {
-            print("Player not available")
-        }
-        
-        return audioPlayer
+     Attaches a black triangle to the top right corner if desired...
+     */
+    class func create_TopRightTriangle(topRightCorner: CGPoint) -> SKSpriteNode {
+        let triangleNode = SKSpriteNode(imageNamed: "Topright_triangle")
+        triangleNode.zPosition = Constants.zBin
+        triangleNode.position = CGPoint(x: topRightCorner.x - triangleNode.size.width, y: topRightCorner.y)
+        triangleNode.anchorPoint = CGPoint(x: 0, y: 1)
+        return triangleNode
     }
+
+    /**
+     Setups and positions a node that has a name Constants.pause, which can be used to handle click events in update
+    */
+    class func create_BotLeftPause(botLeftCorner: CGPoint) -> SKSpriteNode {
+        let pauseNode = SKSpriteNode(imageNamed: "Pause_triangle")
+        pauseNode.zPosition = Constants.zUI
+        pauseNode.position = CGPoint(x: botLeftCorner.x, y: botLeftCorner.y)
+        pauseNode.anchorPoint = CGPoint(x: 0, y: 0)
+        pauseNode.name = Constants.pause
+        return pauseNode
+    }
+    
+    
     
     class func initCountdown(gameScene: TN_GameScene) -> UIImageView {
         let image = UIImage(named: "TN_3")!
@@ -172,5 +178,8 @@ class UI_Components:NSObject {
         imageView.frame = CGRect(x: gameScene.size.width/2-image.size.width/2, y: gameScene.size.height/2-image.size.height/2, width: image.size.width, height: image.size.height)
         imageView.image = image
     }
+    
+    
+    
     
 }

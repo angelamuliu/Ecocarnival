@@ -126,6 +126,17 @@ class Dialog_UIView:UIView {
     }
     
     /**
+     Completely clears the dialog UIview of any possible UI elements on it
+    */
+    func clear() {
+        removeRestartButton()
+        removeBackToHomeButton()
+        removeScore()
+        removeNewTrashDisplay()
+        removeContinueButton()
+    }
+    
+    /**
      Sets up the restart button element if necessary and places in the UIView. To connect the restart button to a method, use:
      >> restartButton.addTarget(self, action: "resetGame:", forControlEvents: .TouchUpInside)
     */

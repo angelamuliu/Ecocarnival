@@ -25,6 +25,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     // Class Variables
     
     var game = TN_Model()
+    var gameOngoing = false // Used to keep track of when pause dialog up
     
     // UI
     var scoreNodes = [SKSpriteNode]()
@@ -66,6 +67,10 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         bgImage.position = CGPointMake(self.size.width/2, self.size.height/2)
         self.addChild(bgImage)
         
+        // Adding pause and decorative triangles
+        self.addChild(UI_Components.create_TopRightTriangle(CGPoint(x:self.size.width, y: self.size.height)))
+        self.addChild(UI_Components.create_BotLeftPause(CGPoint(x:0, y: 0)))
+        
         // Load score UI
         self.scoreNodes = UI_Components.createScoreNodes(game.score, topRightCorner: CGPoint(x:self.size.width, y: self.size.height))
         self.attachScoreToSKScene()
@@ -106,6 +111,10 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
                 touchedThrowable = nodeAtPoint
             }
             dealWithPowerups(nodeAtPoint)
+            
+            if nodeAtPoint.name == Constants.pause && gameOngoing { // Don't want to let people pause during the countdown
+                pauseGameDialog()
+            }
         }
     }
     
@@ -247,6 +256,9 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func countdownToUnpause() {
+        if (!gameOngoing) { // On a new game, the music should stop...
+            self.game.stopMusic()
+        }
         self.countdownTimer_length = 3
         countdownTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("countdown:"), userInfo: nil, repeats: true)
     }
@@ -268,8 +280,12 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     func stopCountdown() {
         countdownTimer?.invalidate()
         countdownTimer_image?.removeFromSuperview()
-        self.game.resetGame()
         self.scene!.paused = false
+        if (!gameOngoing) { // The countdown is used both to start a new game and unpause
+            self.game.resetGame() // Only want to reset values if used to start a new game
+            self.game.resetMusic()
+            gameOngoing = true
+        }
     }
     
     // -------------------------------------------------------
@@ -278,10 +294,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     // Shows the game over UI component and also animates it sliding up
     func gameOverDialog() {
         self.scene!.paused = true
-        
-        // Clear any possible unnecessary elements from the modal
-        self.modalView!.removeNewTrashDisplay()
-        self.modalView!.removeContinueButton()
+        self.modalView?.clear()
         
         self.modalView!.resetText("Game over!\nFinal score")
         createButtons(modalView!)
@@ -289,6 +302,8 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.view!.addSubview(modalView!)
         self.modalView!.slideUpDialog()
+        
+        gameOngoing = false
     }
     
     // Slides the modal view back out and resets the game
@@ -304,8 +319,8 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             self.attachScoreToSKScene()
             
             UI_Components.updateLifeNodes(self.game.life, lifeNodes: self.lifeNodes)
-                            
-            self.scene!.paused = false
+            
+            self.countdownToUnpause()
         })
     }
     
@@ -327,11 +342,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     // Shows the next level dialog
     func nextLevelDialog() {
         self.scene!.paused = true
-        
-        // Clear any possible unnecessary elements from the modal
-        self.modalView!.removeBackToHomeButton()
-        self.modalView!.removeRestartButton()
-        self.modalView!.removeScore()
+        self.modalView?.clear()
         
         self.modalView!.resetText("Let's step it up!\nNext level we're adding...")
         let newAsset = self.game.addNewThrowable()
@@ -342,14 +353,20 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         self.modalView!.slideUpDialog()
     }
     
-    // Simply unpauses the game and dismisses the modal view
-    func unpauseGame(sender:UIButton) {
-        self.modalView!.slideDownDialog({ finished in
-            self.modalView!.removeFromSuperview()
-            self.scene!.paused = false
-        })
+    // Pauses the game when the pause button is hit or the app goes in the BG
+    func pauseGameDialog() {
+        self.scene!.paused = true
+        self.modalView?.clear()
+        
+        self.modalView?.resetText("Game has been paused!\nEnjoy the music in the meantime.")
+        connectContinueButton()
+        
+        self.view!.addSubview(modalView!)
+        self.modalView!.slideUpDialog()
     }
     
+    
+    // Hooks up the continue button to either the unpause method or the countdown to unpause
     func connectContinueButton() {
         if let dialog = self.modalView {
             self.modalView!.addContinueButton()
@@ -357,14 +374,15 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-
-    func pauseGameDialog() {
-        
+    // Simply immediately unpauses the game and dismisses the modal view
+    func unpauseGame(sender:UIButton) {
+        self.modalView!.slideDownDialog({ finished in
+            self.modalView!.removeFromSuperview()
+            self.scene!.paused = false
+        })
     }
-    
-    
-    
-    
+
+
     
 }
 

@@ -52,8 +52,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // ------------------------------------------------------------
     // Music playing functions that can be accessed anywhere since music is shared throughout the app
     
+    // http://www.raywenderlich.com/114298/learn-to-code-ios-apps-with-swift-tutorial-5-making-it-beautiful
+    /**
+    Given a name and type of the audio file, returns the audio player that can be used to play the sound
+    */
+    func setupAudioPlayerWithFile(file:NSString, type:NSString) -> AVAudioPlayer?  {
+        //1
+        let path = NSBundle.mainBundle().pathForResource(file as String, ofType: type as String)
+        let url = NSURL.fileURLWithPath(path!)
+        
+        //2
+        var audioPlayer:AVAudioPlayer?
+        
+        // 3
+        do {
+            try audioPlayer = AVAudioPlayer(contentsOfURL: url)
+        } catch {
+            print("Player not available")
+        }
+        
+        return audioPlayer
+    }
+    
     func play_quirkydog_1() {
-        if let music = UI_Components.setupAudioPlayerWithFile("Quirky Dog", type: "mp3") {
+        if let music = setupAudioPlayerWithFile("Quirky Dog", type: "mp3") {
             backgroundMusic?.stop()
             
             backgroundMusic = music
@@ -65,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func play_quirkydog_2() {
-        if let music = UI_Components.setupAudioPlayerWithFile("Quirky Dog_speed2", type: "mp3") {
+        if let music = setupAudioPlayerWithFile("Quirky Dog_speed2", type: "mp3") {
             backgroundMusic?.stop()
             
             backgroundMusic = music
@@ -76,7 +98,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func play_quirkydog_3() {
-        if let music = UI_Components.setupAudioPlayerWithFile("Quirky Dog_speed3", type: "mp3") {
+        if let music = setupAudioPlayerWithFile("Quirky Dog_speed3", type: "mp3") {
             backgroundMusic?.stop()
             
             backgroundMusic = music
