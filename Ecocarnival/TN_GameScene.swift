@@ -27,6 +27,10 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     var lifeNodes = [SKSpriteNode]()
     
     var modalView:Dialog_UIView?
+    
+    var countdownTimer_length = 3 // 3, 2, 1, start
+    var countdownTimer:NSTimer?
+    var countdownTimer_image:UIImageView?
 
     // Game Interaction
     var isTouching = false
@@ -43,18 +47,14 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     // Music
     var backgroundMusic : AVAudioPlayer?
     
+    
     override func didMoveToView(view: SKView) {
-        
         
         if let backgroundMusic = UI_Components.setupAudioPlayerWithFile("Jaunty Gumption", type: "mp3") {
             self.backgroundMusic = backgroundMusic
-            self.backgroundMusic?.volume = 0.3
-            self.backgroundMusic?.play()
+            self.backgroundMusic?.volume = 0.1
+//            self.backgroundMusic?.play()
         }
-        
-        
-        
-        
         
         self.physicsWorld.contactDelegate = self // Needed for collision detection
         
@@ -76,9 +76,6 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             self.addChild(lifeNode)
         }
         
-        // Load the reusable modal frame
-        modalView = Dialog_UIView(gameScene: self, text: "Game over!\nFinal score")
-        
         // Setup trash and recycle bins
         let trashbinNode:BinNode = BinNode.trashbin(CGPoint(x: 0, y: self.frame.size.height/2))
         self.addChild(trashbinNode)
@@ -89,7 +86,12 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         let miscbinNode:BinNode = BinNode.miscbin(CGPoint(x: self.frame.size.width/2, y: -400.0), width: self.frame.size.width * 3)
         self.addChild(miscbinNode)
         
-        // Load BG music
+        // Load the UIViews (reusable modal frame + countdown image)
+        self.modalView = Dialog_UIView(gameScene: self, text: "")
+        self.countdownTimer_image = UI_Components.initCountdown(self)
+        
+        self.scene!.paused = true
+        countdownToUnpause()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -138,7 +140,6 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         }
         updatesCalled++
     }
-    
     
     // http://stackoverflow.com/questions/26438108/ios-swift-didbegincontact-not-being-called
     func didBeginContact(contact: SKPhysicsContact) {        
@@ -231,6 +232,30 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    func countdownToUnpause() {
+        self.countdownTimer_length = 3
+        countdownTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("countdown:"), userInfo: nil, repeats: true)
+    }
+    func countdown(timer:NSTimer) {
+        switch self.countdownTimer_length {
+            case 3:
+                UI_Components.countdown_3(self, imageView: &countdownTimer_image!)
+                self.view?.addSubview(countdownTimer_image!)
+            case 2:
+                UI_Components.countdown_2(self, imageView: &countdownTimer_image!)
+            case 1:
+                UI_Components.countdown_1(self, imageView: &countdownTimer_image!)
+                break
+            default:
+                stopCountdown()
+        }
+        self.countdownTimer_length--
+    }
+    func stopCountdown() {
+        countdownTimer?.invalidate()
+        countdownTimer_image?.removeFromSuperview()
+        self.scene!.paused = false
+    }
     
     // -------------------------------------------------------
     // Dialog UI View
@@ -314,6 +339,11 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             self.modalView!.addContinueButton()
             dialog.continueButtom!.addTarget(self, action: "unpauseGame:", forControlEvents: .TouchUpInside)
         }
+    }
+    
+
+    func pauseGameDialog() {
+        
     }
     
     

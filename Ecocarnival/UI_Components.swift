@@ -147,4 +147,30 @@ class UI_Components:NSObject {
         return audioPlayer
     }
     
+    class func initCountdown(gameScene: TN_GameScene) -> UIImageView {
+        let image = UIImage(named: "TN_3")!
+        let countdown = UIImageView(image: image)
+        countdown.frame = CGRect(x: gameScene.size.width/2-image.size.width/2, y: gameScene.size.height/2-image.size.height/2, width: image.size.width, height: image.size.height)
+        countdown.contentMode = .ScaleAspectFill
+        return countdown
+    }
+    
+    class func countdown_3(gameScene: TN_GameScene, inout imageView:UIImageView) {
+        let image = UIImage(named: "TN_3")!
+        imageView.frame = CGRect(x: gameScene.size.width/2-image.size.width/2, y: gameScene.size.height/2-image.size.height/2, width: image.size.width, height: image.size.height)
+        imageView.image = image
+    }
+    
+    class func countdown_2(gameScene: TN_GameScene, inout imageView:UIImageView) {
+        let image = UIImage(named: "TN_2")!
+        imageView.frame = CGRect(x: gameScene.size.width/2-image.size.width/2, y: gameScene.size.height/2-image.size.height/2, width: image.size.width, height: image.size.height)
+        imageView.image = image
+    }
+    
+    class func countdown_1(gameScene: TN_GameScene, inout imageView: UIImageView) {
+        let image = UIImage(named: "TN_1")!
+        imageView.frame = CGRect(x: gameScene.size.width/2-image.size.width/2, y: gameScene.size.height/2-image.size.height/2, width: image.size.width, height: image.size.height)
+        imageView.image = image
+    }
+    
 }

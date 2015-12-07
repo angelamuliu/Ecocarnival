@@ -23,6 +23,7 @@
 		0B6B156A1BF7092C00370ABF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6B15691BF7092C00370ABF /* Constants.swift */; };
 		0B7F183C1C121ED900BF29D4 /* hitTrash1.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 0B7F183B1C121ED900BF29D4 /* hitTrash1.aiff */; };
 		0B7F18401C12215700BF29D4 /* Jaunty Gumption.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B7F183F1C12215700BF29D4 /* Jaunty Gumption.mp3 */; };
+		0B94441E1C15049D00A46F2A /* sadBoing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B94441D1C15049D00A46F2A /* sadBoing.mp3 */; };
 		0BA0A7951C1091A900491F49 /* Dialog_UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0A7941C1091A900491F49 /* Dialog_UIView.swift */; };
 		0BA0A7971C10AEA400491F49 /* Throwable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0A7961C10AEA400491F49 /* Throwable.swift */; };
 		0BA0A7991C10B29400491F49 /* RecycleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0A7981C10B29400491F49 /* RecycleNode.swift */; };
@@ -74,6 +75,7 @@
 		0B6B15691BF7092C00370ABF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0B7F183B1C121ED900BF29D4 /* hitTrash1.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = hitTrash1.aiff; sourceTree = "<group>"; };
 		0B7F183F1C12215700BF29D4 /* Jaunty Gumption.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jaunty Gumption.mp3"; sourceTree = "<group>"; };
+		0B94441D1C15049D00A46F2A /* sadBoing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sadBoing.mp3; sourceTree = "<group>"; };
 		0BA0A7941C1091A900491F49 /* Dialog_UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dialog_UIView.swift; sourceTree = "<group>"; };
 		0BA0A7961C10AEA400491F49 /* Throwable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Throwable.swift; sourceTree = "<group>"; };
 		0BA0A7981C10B29400491F49 /* RecycleNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecycleNode.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 		0B7F183D1C1220BB00BF29D4 /* SFX */ = {
 			isa = PBXGroup;
 			children = (
+				0B94441D1C15049D00A46F2A /* sadBoing.mp3 */,
 				0B7F183B1C121ED900BF29D4 /* hitTrash1.aiff */,
 			);
 			name = SFX;
@@ -322,6 +325,7 @@
 				0B1B1EB61C0F6B7A0086320D /* spark.png in Resources */,
 				0B49D5BD1BF65D54000C5CA5 /* TN_GameScene.sks in Resources */,
 				0B1E63331BF103C200C4F460 /* Assets.xcassets in Resources */,
+				0B94441E1C15049D00A46F2A /* sadBoing.mp3 in Resources */,
 				0B1E63311BF103C200C4F460 /* Main.storyboard in Resources */,
 				0B7F183C1C121ED900BF29D4 /* hitTrash1.aiff in Resources */,
 				0B1B1EB51C0F6B7A0086320D /* Green_Glow.sks in Resources */,

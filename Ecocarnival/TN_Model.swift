@@ -103,7 +103,7 @@ class TN_Model {
     */
     func addNewThrowable() -> [String:String] {
         let randomNum = arc4random_uniform(UInt32(2))
-        if randomNum == 0 || lockedRecycle.count < 1 { // Adding trash
+        if lockedTrash.count > 1 && randomNum == 0 || lockedRecycle.count < 1 { // Adding trash
             let i = Int(arc4random_uniform(UInt32(lockedTrash.count)))
             let assetIndex = lockedTrash.removeAtIndex(i)
             addToPool(&trashPool, asset: TextAssets.trashAssets[assetIndex])
