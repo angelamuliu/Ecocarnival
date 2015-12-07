@@ -300,7 +300,8 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         self.modalView?.clear()
         
         self.modalView!.resetText("Game over!\nFinal score")
-        createButtons(modalView!)
+        connectResetButton()
+        connectHomeButton()
         self.modalView!.addScore(self.game.score)
         
         self.view!.addSubview(modalView!)
@@ -333,14 +334,14 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     // Connecting up the restart and home buttons in the dialog UIView to game logic
-    func createButtons(modalView: UIView) {
-        if let dialog = self.modalView {
-            dialog.addRestartButton()
-            dialog.restartButton!.addTarget(self, action: "resetGame:", forControlEvents: .TouchUpInside)
-            dialog.addBackToHomeButton()
-            dialog.homeButton!.addTarget(self, action: "backToHome:", forControlEvents: .TouchUpInside)
-        }
-    }
+//    func createButtons(modalView: UIView) {
+//        if let dialog = self.modalView {
+//            dialog.addRestartButton()
+//            dialog.restartButton!.addTarget(self, action: "resetGame:", forControlEvents: .TouchUpInside)
+//            dialog.addBackToHomeButton()
+//            dialog.homeButton!.addTarget(self, action: "backToHome:", forControlEvents: .TouchUpInside)
+//        }
+//    }
     
     // Shows the next level dialog
     func nextLevelDialog() {
@@ -350,7 +351,9 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         self.modalView!.resetText("Let's step it up!\nNext level we're adding...")
         let newAsset = self.game.addNewThrowable()
         self.modalView!.newTrashDisplay(newAsset["imageNamed"]!, desc: newAsset["desc"]!)
+        
         connectContinueButton()
+        connectHomeButton()
         
         self.view!.addSubview(modalView!)
         self.modalView!.slideUpDialog()
@@ -363,17 +366,33 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.modalView?.resetText("Game has been paused!\nEnjoy the music in the meantime.")
         connectContinueButton()
+        connectHomeButton()
         
         self.view!.addSubview(modalView!)
         self.modalView!.slideUpDialog()
     }
     
+    // Hooks up the reset button and adds it to the dialog
+    func connectResetButton() {
+        if let dialog = self.modalView {
+            dialog.addRestartButton()
+            dialog.restartButton!.addTarget(self, action: "resetGame:", forControlEvents: .TouchUpInside)
+        }
+    }
     
-    // Hooks up the continue button to either the unpause method or the countdown to unpause
+    // Hooks up the home button and adds it to the dialog
+    func connectHomeButton() {
+        if let dialog = self.modalView {
+            dialog.addBackToHomeButton()
+            dialog.homeButton!.addTarget(self, action: "backToHome:", forControlEvents: .TouchUpInside)
+        }
+    }
+    
+    // Hooks up the continue button to unpause the game
     func connectContinueButton() {
         if let dialog = self.modalView {
             self.modalView!.addContinueButton()
-            dialog.continueButtom!.addTarget(self, action: "unpauseGame:", forControlEvents: .TouchUpInside)
+            dialog.continueButton!.addTarget(self, action: "unpauseGame:", forControlEvents: .TouchUpInside)
         }
     }
     

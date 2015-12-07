@@ -24,7 +24,7 @@ class Dialog_UIView:UIView {
     
     var restartButton:UIButton?
     var homeButton:UIButton?
-    var continueButtom:UIButton?
+    var continueButton:UIButton?
     
     var newTrashImage:UIImageView?
     var newTrashDescContainter:UITextView?
@@ -69,8 +69,8 @@ class Dialog_UIView:UIView {
         self.wordContainer!.layer.shadowRadius = 5.0
         
         // Adding the text of variable length into the word container
-        self.textContainer = UITextView(frame: CGRect(x: wordContainer!.frame.width/6, y: 20, width: (wordContainer!.frame.width/6)*4, height: 300))
-        self.textContainer!.scrollEnabled = false // Making it labelike by disabling user interaction and scrolling
+        self.textContainer = UITextView(frame: CGRect(x: 0, y: 20, width: wordContainer!.frame.width, height: 150))
+        self.textContainer!.scrollEnabled = faglse // Making it labelike by disabling user interaction and scrolling
         self.textContainer!.userInteractionEnabled = false
         self.textContainer!.backgroundColor = UIColor.clearColor()
         self.textContainer!.textAlignment = .Center
@@ -271,14 +271,14 @@ class Dialog_UIView:UIView {
     func setupNewTrashDisplay(imageNamed:String, desc:String) {
         let image = UIImage(named: imageNamed)
         newTrashImage = UIImageView(image: image)
-        newTrashImage!.frame = CGRect(x: 40, y: 83, width: 80, height: 80)
+        newTrashImage!.frame = CGRect(x: 40, y: 83, width: 50, height: 50)
         newTrashImage!.contentMode = .ScaleAspectFit
         
-        newTrashDescContainter = UITextView(frame: CGRect(x: 130, y: 80, width: self.wordContainer!.frame.width - 170, height: 100))
+        newTrashDescContainter = UITextView(frame: CGRect(x: 130, y: 80, width: self.wordContainer!.frame.width - 160, height: 60))
         newTrashDescContainter!.scrollEnabled = false // Making it labelike by disabling user interaction and scrolling
         newTrashDescContainter!.userInteractionEnabled = false
         newTrashDescContainter!.backgroundColor = UIColor.clearColor()
-        newTrashDescContainter!.font = UIFont(name: "Helvetica", size: 16)
+        newTrashDescContainter!.font = UIFont(name: "Helvetica", size: 14)
         newTrashDescContainter!.contentMode = .TopLeft
         newTrashDescContainter!.text = desc
     }
@@ -287,11 +287,11 @@ class Dialog_UIView:UIView {
      Adds the continue button element to this UIView
     */
     func addContinueButton() {
-        if self.continueButtom == nil {
+        if self.continueButton == nil {
             setupContinueButton()
         }
-        if self.continueButtom?.superview == nil{
-            self.addSubview(self.continueButtom!)
+        if self.continueButton?.superview == nil{
+            self.addSubview(self.continueButton!)
         }
     }
 
@@ -299,19 +299,20 @@ class Dialog_UIView:UIView {
      Removes the continue button element from this UIView
      */
     func removeContinueButton() {
-        if self.continueButtom?.superview != nil {
-            self.continueButtom?.removeFromSuperview()
+        if self.continueButton?.superview != nil {
+            self.continueButton?.removeFromSuperview()
         }
     }
     
     func setupContinueButton() {
-        continueButtom = UIButton(frame: CGRect(x: self.frame.width/2 - (self.frame.width/5)/2, y: 200, width: self.frame.width/5, height: 40))
-        continueButtom!.layer.cornerRadius = 4.0
-        continueButtom!.setTitle("Continue", forState: UIControlState.Normal)
-        continueButtom!.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        continueButtom!.backgroundColor = Constants.orangeColor
-        continueButtom!.layer.borderWidth = 3
-        continueButtom!.layer.borderColor = Constants.bloodOrangeColor.CGColor
+//        continueButton = UIButton(frame: CGRect(x: self.frame.width/2 - (self.frame.width/5)/2, y: 200, width: self.frame.width/5, height: 40))
+        continueButton = UIButton(frame: CGRect(x: self.frame.width/4, y: 180, width: self.frame.width/5, height: 40))
+        continueButton!.layer.cornerRadius = 4.0
+        continueButton!.setTitle("Continue", forState: UIControlState.Normal)
+        continueButton!.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        continueButton!.backgroundColor = Constants.orangeColor
+        continueButton!.layer.borderWidth = 3
+        continueButton!.layer.borderColor = Constants.bloodOrangeColor.CGColor
     }
 
 

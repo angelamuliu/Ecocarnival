@@ -175,8 +175,8 @@
 				0B1E632F1BF103C200C4F460 /* Main.storyboard */,
 				0B1BEFD11BFB73B8001EABE3 /* SplashViewController.swift */,
 				0B1BEFD31BFB7B27001EABE3 /* TrashNinja */,
-				0BF25E7A1BFA6AB30044F247 /* UI_Components.swift */,
 				0BB0102A1C15EB5C00F1087F /* LightsOut */,
+				0BF25E7A1BFA6AB30044F247 /* UI_Components.swift */,
 				0BA0A7941C1091A900491F49 /* Dialog_UIView.swift */,
 				0B7F183A1C121E9200BF29D4 /* Sounds */,
 			);

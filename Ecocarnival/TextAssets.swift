@@ -37,7 +37,7 @@ struct TextAssets {
             "desc" : "A cardboard box.\nMake sure to flatten it before recycling!",
             "rarity" : Constants.common ],
         ["imageNamed" : "TN_recycle3.png",
-            "desc" : "Mon dieu, we're out of wine!\nThe bottle can be reused. It gets crushed and reheated into beautiful new glass!",
+            "desc" : "Mon dieu, we're out of wine!\nThe bottle gets crushed and reheated into new glass!",
             "rarity" : Constants.rare ],
         ["imageNamed" : "TN_recycle4.png",
             "desc" : "A week old newspaper.\nAt the recycling plant, it gets turned into a slurry and rerolled.",
