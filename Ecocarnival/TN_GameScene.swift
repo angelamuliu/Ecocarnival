@@ -45,17 +45,13 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     let sfx_correct = SKAction.playSoundFileNamed("hitTrash1.aiff", waitForCompletion: false)
     let sfx_incorrect = SKAction.playSoundFileNamed("sadBoing.mp3", waitForCompletion: false)
     
-    // Music
-    var backgroundMusic : AVAudioPlayer?
+    // Getting access to appDelegate for music controls
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
+    
     
     
     override func didMoveToView(view: SKView) {
-        
-        if let backgroundMusic = UI_Components.setupAudioPlayerWithFile("Jaunty Gumption", type: "mp3") {
-            self.backgroundMusic = backgroundMusic
-            self.backgroundMusic?.volume = 0.1
-//            self.backgroundMusic?.play()
-        }
         
         self.physicsWorld.contactDelegate = self // Needed for collision detection
         
@@ -90,6 +86,9 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         // Load the UIViews (reusable modal frame + countdown image)
         self.modalView = Dialog_UIView(gameScene: self, text: "")
         self.countdownTimer_image = UI_Components.initCountdown(self)
+        
+        // Playing the starting BG Music
+        appDelegate.play_TN1()
         
         self.scene!.paused = true
         countdownToUnpause()

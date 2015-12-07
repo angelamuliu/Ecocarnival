@@ -14,7 +14,6 @@ import SpriteKit
 
 class TN_GameViewController: UIViewController {
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,10 +24,6 @@ class TN_GameViewController: UIViewController {
         
         let skView = self.view as! SKView
         skView.presentScene(scene)
-        
-        // Startup the background music
-        
-
     }
     
     override func viewWillLayoutSubviews() {
