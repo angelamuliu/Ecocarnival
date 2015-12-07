@@ -23,12 +23,16 @@ class TN_Model {
     
     var currLevelPointer = 0
     var levelStages = [4, 9, 15, 22, 30, 40, 55] // The points for each level to advance
-    
-    var spawnRate = 3.0 // Number of seconds between spawning of throwables
+
+    var spawnRatePointer = 0
+    var spawnStages = [3.0, 2.5, 2.0, 1.7, 1.4, 1.2, 0.9]
     
     var score = 0
     var life = 5
     var maxlife = 5
+    
+    // Getting access to appDelegate for music controls
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     // Pool of throwables currently in game. We always start the game with the chocolate trash and can recyclable
     // Format: ["Common" : [ [...], [...] ], "Uncommon" ... ]
@@ -58,6 +62,10 @@ class TN_Model {
         return levelStages[currLevelPointer]
     }
     
+    var spawnRate: Double { // Number of seconds between spawning of throwables
+        return spawnStages[spawnRatePointer]
+    }
+    
     func increaseScore() {
         score++
     }
@@ -76,11 +84,19 @@ class TN_Model {
         life--
     }
     
+    // Need appDelegate to change music
     func increaseLevel() {
         if level != maxLevels {
             level++
-            spawnRate = spawnRate - 0.32
+            spawnRatePointer++
             currLevelPointer++
+            
+            if level == 4 {
+                appDelegate.play_quirkydog_2()
+            }
+            if level == 7 {
+                appDelegate.play_quirkydog_3()
+            }
         }
     }
     
@@ -89,8 +105,14 @@ class TN_Model {
         life = 5
         level = 1
         currLevelPointer = 0
-        spawnRate = 4
+        spawnRatePointer = 0
         resetPools()
+        
+        appDelegate.play_quirkydog_1()
+    }
+    
+    func quitGame() {
+        appDelegate.stop_music()
     }
     
     private func resetPools() {

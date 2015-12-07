@@ -20,6 +20,10 @@ import AVFoundation
 */
 class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     
+    
+    // -------------------------------------------------------
+    // Class Variables
+    
     var game = TN_Model()
     
     // UI
@@ -45,10 +49,10 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     let sfx_correct = SKAction.playSoundFileNamed("hitTrash1.aiff", waitForCompletion: false)
     let sfx_incorrect = SKAction.playSoundFileNamed("sadBoing.mp3", waitForCompletion: false)
     
-    // Getting access to appDelegate for music controls
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     
+    // -------------------------------------------------------
+    // Updating the Scene and game management
     
     
     override func didMoveToView(view: SKView) {
@@ -86,9 +90,6 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         // Load the UIViews (reusable modal frame + countdown image)
         self.modalView = Dialog_UIView(gameScene: self, text: "")
         self.countdownTimer_image = UI_Components.initCountdown(self)
-        
-        // Playing the starting BG Music
-        appDelegate.play_TN1()
         
         self.scene!.paused = true
         countdownToUnpause()
@@ -267,6 +268,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     func stopCountdown() {
         countdownTimer?.invalidate()
         countdownTimer_image?.removeFromSuperview()
+        self.game.resetGame()
         self.scene!.paused = false
     }
     
@@ -308,6 +310,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func backToHome(sender:UIButton!) {
+        self.game.quitGame()
         self.viewController!.dismissViewControllerAnimated(true, completion: nil)
     }
     

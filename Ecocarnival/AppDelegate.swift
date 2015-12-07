@@ -52,14 +52,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // ------------------------------------------------------------
     // Music playing functions that can be accessed anywhere since music is shared throughout the app
     
-    func play_TN1() {
-        if let music = UI_Components.setupAudioPlayerWithFile("Jaunty Gumption", type: "mp3") {
+    func play_quirkydog_1() {
+        if let music = UI_Components.setupAudioPlayerWithFile("Quirky Dog", type: "mp3") {
+            backgroundMusic?.stop()
+            
             backgroundMusic = music
             backgroundMusic?.numberOfLoops = -1 // loops forever
             backgroundMusic?.volume = 0.1
             backgroundMusic?.play()
         }
-        
+    }
+    
+    
+    func play_quirkydog_2() {
+        if let music = UI_Components.setupAudioPlayerWithFile("Quirky Dog_speed2", type: "mp3") {
+            backgroundMusic?.stop()
+            
+            backgroundMusic = music
+            backgroundMusic?.numberOfLoops = -1 // loops forever
+            backgroundMusic?.volume = 0.1
+            backgroundMusic?.play()
+        }
+    }
+    
+    func play_quirkydog_3() {
+        if let music = UI_Components.setupAudioPlayerWithFile("Quirky Dog_speed3", type: "mp3") {
+            backgroundMusic?.stop()
+            
+            backgroundMusic = music
+            backgroundMusic?.numberOfLoops = -1 // loops forever
+            backgroundMusic?.volume = 0.1
+            backgroundMusic?.play()
+        }
+    }
+    
+    func stop_music() {
+        backgroundMusic?.stop()
     }
 
 
