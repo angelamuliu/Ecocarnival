@@ -70,7 +70,7 @@ class Dialog_UIView:UIView {
         
         // Adding the text of variable length into the word container
         self.textContainer = UITextView(frame: CGRect(x: 0, y: 20, width: wordContainer!.frame.width, height: 150))
-        self.textContainer!.scrollEnabled = faglse // Making it labelike by disabling user interaction and scrolling
+        self.textContainer!.scrollEnabled = false // Making it labelike by disabling user interaction and scrolling
         self.textContainer!.userInteractionEnabled = false
         self.textContainer!.backgroundColor = UIColor.clearColor()
         self.textContainer!.textAlignment = .Center
@@ -278,7 +278,7 @@ class Dialog_UIView:UIView {
         newTrashDescContainter!.scrollEnabled = false // Making it labelike by disabling user interaction and scrolling
         newTrashDescContainter!.userInteractionEnabled = false
         newTrashDescContainter!.backgroundColor = UIColor.clearColor()
-        newTrashDescContainter!.font = UIFont(name: "Helvetica", size: 14)
+        newTrashDescContainter!.font = UIFont(name: "Helvetica", size: 12)
         newTrashDescContainter!.contentMode = .TopLeft
         newTrashDescContainter!.text = desc
     }

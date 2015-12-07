@@ -49,6 +49,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     // Preloading SFX
     let sfx_correct = SKAction.playSoundFileNamed("hitTrash1.aiff", waitForCompletion: false)
     let sfx_incorrect = SKAction.playSoundFileNamed("sadBoing.mp3", waitForCompletion: false)
+    let sfx_magic = SKAction.playSoundFileNamed("magicSFX.wav", waitForCompletion: false)
     
     
     
@@ -165,16 +166,20 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
                     increaseScore(throwable.value)
                     
                     if throwable.name == Constants.trash || throwable.name == Constants.recycle {
-                        self.runAction(sfx_correct)
-                    }
-                    
-                    if !game.isMaxLevel && game.score >= game.toNextLevel {
-                        self.runAction(sfx_correct, completion: { // Don't want to play the sound after the dialog
+                        if !game.isMaxLevel && game.score >= game.toNextLevel {
+                            self.runAction(sfx_correct, completion: { // Don't want to play the sound after the dialog
+                                self.game.increaseLevel()
+                                self.nextLevelDialog()
+                            })
+                        } else {
+                            self.runAction(sfx_correct) // Play the correct SFX
+                        }
+                        
+                    } else { // Misc trash, don't play SFX
+                        if !game.isMaxLevel && game.score >= game.toNextLevel {
                             self.game.increaseLevel()
                             self.nextLevelDialog()
-                        })
-                    } else {
-                        self.runAction(sfx_correct) // Play the correct SFX
+                        }
                     }
                     
                 } else { // Looks like the trash went into the wrong bin
@@ -235,11 +240,13 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
 
+    // Checks if something is a powerup and handles accordingly
     func dealWithPowerups(nodeAtPoint: SKNode) {
         if let nodeName = nodeAtPoint.name {
             if nodeName == Constants.powerup {
                 game.increaseLife()
                 UI_Components.updateLifeNodes(game.life, lifeNodes: lifeNodes)
+                runAction(sfx_magic)
                 
                 let powerupNode = nodeAtPoint is SKEmitterNode ? nodeAtPoint.parent! : nodeAtPoint
                 powerupNode.physicsBody!.affectedByGravity = false
@@ -332,16 +339,6 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         self.game.quitGame()
         self.viewController!.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    // Connecting up the restart and home buttons in the dialog UIView to game logic
-//    func createButtons(modalView: UIView) {
-//        if let dialog = self.modalView {
-//            dialog.addRestartButton()
-//            dialog.restartButton!.addTarget(self, action: "resetGame:", forControlEvents: .TouchUpInside)
-//            dialog.addBackToHomeButton()
-//            dialog.homeButton!.addTarget(self, action: "backToHome:", forControlEvents: .TouchUpInside)
-//        }
-//    }
     
     // Shows the next level dialog
     func nextLevelDialog() {
