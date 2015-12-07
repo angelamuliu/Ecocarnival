@@ -42,7 +42,8 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     var viewController:UIViewController? // TN_GameViewController
     
     // Preloading SFX
-    let sfx_hitTrash1 = SKAction.playSoundFileNamed("hitTrash1.aiff", waitForCompletion: false)
+    let sfx_correct = SKAction.playSoundFileNamed("hitTrash1.aiff", waitForCompletion: false)
+    let sfx_incorrect = SKAction.playSoundFileNamed("sadBoing.mp3", waitForCompletion: false)
     
     // Music
     var backgroundMusic : AVAudioPlayer?
@@ -147,25 +148,38 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         let secondCategory = contact.bodyB.categoryBitMask
         
         if (firstCategory != Constants.noCollisionCategory && secondCategory != Constants.noCollisionCategory && updatesCalled != 0) {
-            // Did a trash node hit a trash can? Doing checks for all proper matches
-            if (TN_Model.checkMatchingBin(firstCategory, secondCategory: secondCategory)) {
-                increaseScore()
-                if !game.isMaxLevel && game.score >= game.toNextLevel {
-                    game.increaseLevel()
-                    nextLevelDialog()
-                }
-            } else { // Looks like the trash went into the wrong bin
-                game.decreaseLife()
-                UI_Components.updateLifeNodes(game.life, lifeNodes: lifeNodes)
-            }
-            self.runAction(sfx_hitTrash1) // Playing a SFX
+            // Was a throwable even involved?
             if let throwable = TN_Model.getThrowableFromBody(contact.bodyA, secondBody: contact.bodyB) {
-                throwable.removeFromParent()
-                if (game.isGameOver) {
-                    gameOverDialog()
+
+                // Did a trash node hit a trash can? Doing checks for all proper matches
+                if (TN_Model.checkMatchingBin(firstCategory, secondCategory: secondCategory)) {
+                    increaseScore(throwable.value)
+                    self.runAction(sfx_correct)
+                    
+                    if !game.isMaxLevel && game.score >= game.toNextLevel {
+                        self.runAction(sfx_correct, completion: { // Don't want to play the sound after the dialog
+                            self.game.increaseLevel()
+                            self.nextLevelDialog()
+                        })
+                    } else {
+                        self.runAction(sfx_correct) // Play the correct SFX
+                    }
+                    
+                } else { // Looks like the trash went into the wrong bin
+                    game.decreaseLife()
+                    UI_Components.updateLifeNodes(game.life, lifeNodes: lifeNodes)
+                    if (game.isGameOver) {
+                        self.runAction(sfx_incorrect, completion: {
+                            self.gameOverDialog()
+                        })
+                    } else {
+                        self.runAction(sfx_incorrect)
+                    }
                 }
+                
+                updatesCalled = 0
+                throwable.removeFromParent()
             }
-            updatesCalled = 0
         }
     }
     
@@ -197,8 +211,8 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     // Increases score in our model and updates any necessay sprites on the UI
-    func increaseScore() {
-        game.increaseScore()
+    func increaseScore(by:Int) {
+        game.increaseScore(by)
         let prevScoreNodes = scoreNodes.count
         UI_Components.updateScoreNodes(game.score, scoreNodes: &scoreNodes)
         if (prevScoreNodes < scoreNodes.count) { // Went up a tens place, need to attach new scoreNodes sprites

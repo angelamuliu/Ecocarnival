@@ -62,6 +62,10 @@ class TN_Model {
         score++
     }
     
+    func increaseScore(by:Int) {
+        score = score + by
+    }
+    
     func increaseLife() {
         if life < maxlife {
             life++
@@ -206,12 +210,12 @@ class TN_Model {
      Given two bodies (e.g. from the didBeginContact()) returns the SKNode that is the throwable node
      If none of them are, then the optional is not set.
     */
-    class func getThrowableFromBody(firstBody:SKPhysicsBody, secondBody: SKPhysicsBody) -> SKNode? {
+    class func getThrowableFromBody(firstBody:SKPhysicsBody, secondBody: SKPhysicsBody) -> Throwable? {
         if firstBody.categoryBitMask > 0 && firstBody.categoryBitMask < Constants.trashBinCategory {
-            return firstBody.node
+            return firstBody.node as? Throwable
         }
         if secondBody.categoryBitMask > 0 && secondBody.categoryBitMask < Constants.trashBinCategory {
-            return secondBody.node
+            return secondBody.node as? Throwable
         }
         
         return nil
