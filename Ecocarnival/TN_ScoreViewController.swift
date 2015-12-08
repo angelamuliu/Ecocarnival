@@ -40,6 +40,25 @@ class TN_ScoreViewController: UIViewController, UITableViewDelegate, UITableView
         return true
     }
     
+    /**
+     Show an alert with the reset scores options on it so that people don't just delete their stuff immediately
+    */
+    @IBAction func showScoreAlert() {
+        let alert = UIAlertController(title: "Are you sure?", message: "This will permanently delete all your scores and cannot be undone.", preferredStyle: .Alert)
+        
+        let resetAction = UIAlertAction(title: "Reset scores", style: .Default,
+            handler: { finished in
+                self.appDelegate.dataManager.resetHighScores()
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+        )
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil )
+        
+        alert.addAction(resetAction)
+        alert.addAction(cancelAction)
+        presentViewController(alert, animated: true, completion: nil)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

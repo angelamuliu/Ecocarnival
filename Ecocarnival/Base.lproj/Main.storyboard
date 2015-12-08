@@ -162,6 +162,21 @@
                                     <segue destination="5oe-cb-6TT" kind="show" id="zza-jv-juD"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RTL-od-99D">
+                                <rect key="frame" x="487" y="0.0" width="113" height="30"/>
+                                <color key="backgroundColor" red="0.95041279669762646" green="0.32854827786377711" blue="0.24341107536764706" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="113" id="gEK-f2-cJS"/>
+                                    <constraint firstAttribute="height" constant="30" id="xzE-iu-YjV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <state key="normal" title="Reset scores">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showScoreAlert" destination="G5m-Pt-Krc" eventType="touchUpInside" id="W7W-qs-IVg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -172,7 +187,9 @@
                             <constraint firstItem="isu-of-FJk" firstAttribute="top" secondItem="FYv-Tw-nH6" secondAttribute="bottom" constant="13" id="HU0-gv-jhw"/>
                             <constraint firstItem="7wb-on-Jss" firstAttribute="centerX" secondItem="gvx-US-pt1" secondAttribute="centerX" id="IEl-TP-2je"/>
                             <constraint firstItem="FYv-Tw-nH6" firstAttribute="trailing" secondItem="gvx-US-pt1" secondAttribute="trailingMargin" id="N6f-x8-DN0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RTL-od-99D" secondAttribute="trailing" constant="-20" id="az7-Vv-jY0"/>
                             <constraint firstItem="FYv-Tw-nH6" firstAttribute="top" secondItem="7wb-on-Jss" secondAttribute="bottom" constant="14" id="fQq-PM-I5C"/>
+                            <constraint firstItem="RTL-od-99D" firstAttribute="top" secondItem="gvx-US-pt1" secondAttribute="topMargin" id="u6k-Gb-d9F"/>
                         </constraints>
                     </view>
                     <connections>

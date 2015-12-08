@@ -310,6 +310,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             self.modalView!.resetText("New high score\nGreat job!")
             self.modalView?.showerConfetti()
         } else { // Not a new high score
+            
             self.modalView!.resetText("(Highest score: " + String(self.game.getHighestScore()) + ")\nThis run's score")
         }
         connectResetButton()

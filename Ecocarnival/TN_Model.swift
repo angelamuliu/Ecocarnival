@@ -108,7 +108,10 @@ class TN_Model {
     }
     
     func getHighestScore() -> Int {
-        return appDelegate.dataManager.highScores[0]
+        if appDelegate.dataManager.highScores.count > 0 {
+            return appDelegate.dataManager.highScores[0]
+        }
+        return 0
     }
     
     func resetGame() {

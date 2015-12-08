@@ -138,7 +138,7 @@
 				0B1E632D1BF103C200C4F460 /* TN_GameViewController.swift */,
 				0B1E63591BF104F900C4F460 /* TN_GameScene.swift */,
 				0BC3F0071BF3C5BB0040C009 /* TN_Model.swift */,
-				0B44A4211C1684DA007BD112 /* Score */,
+				0B44A41F1C167FC3007BD112 /* TN_ScoreViewController.swift */,
 				0B44A4221C1686E5007BD112 /* Nodes */,
 				0B30414F1C173AEC00359AC5 /* UI_Elements */,
 			);
@@ -213,14 +213,6 @@
 				0B49D5BC1BF65D54000C5CA5 /* TN_GameScene.sks */,
 			);
 			name = UI_Elements;
-			sourceTree = "<group>";
-		};
-		0B44A4211C1684DA007BD112 /* Score */ = {
-			isa = PBXGroup;
-			children = (
-				0B44A41F1C167FC3007BD112 /* TN_ScoreViewController.swift */,
-			);
-			name = Score;
 			sourceTree = "<group>";
 		};
 		0B44A4221C1686E5007BD112 /* Nodes */ = {
