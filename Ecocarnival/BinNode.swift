@@ -38,7 +38,7 @@ class BinNode: SKSpriteNode {
      Trash bin for all trash nodes
     */
     class func trashbin(location: CGPoint) -> BinNode {
-        let sprite = BinNode(imageNamed: "TN_trashbin.png")
+        let sprite = BinNode(imageNamed: "TN_trashbin_v2.png")
         sprite.name = Constants.trash
         sprite.anchorPoint = CGPointMake(0, 0.5) // Attaches to left of screen
         sprite.setupBin(location, physicsSize: CGSize(width:10, height: sprite.size.height))

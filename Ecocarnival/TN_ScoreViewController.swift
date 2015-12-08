@@ -22,6 +22,13 @@ class TN_ScoreViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         appDelegate.dataManager.loadHighScores()
         self.scoreTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        // Load the BG image
+        let backgroundImageView = UIImageView(image: UIImage(named: "Scoreboard"))
+        backgroundImageView.frame = view.frame
+        backgroundImageView.contentMode = .ScaleAspectFill
+        view.addSubview(backgroundImageView)
+        view.sendSubviewToBack(backgroundImageView)
     }
     
     override func viewWillLayoutSubviews() {

@@ -38,8 +38,9 @@
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I9H-pe-5TN">
                                 <rect key="frame" x="113" y="378" width="374" height="214"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S4J-cR-5eQ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="LightsOut_banner" translatesAutoresizingMaskIntoConstraints="NO" id="S4J-cR-5eQ">
                                         <rect key="frame" x="20" y="130" width="334" height="64"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="218" id="3ll-cS-h4M"/>
                                             <constraint firstAttribute="height" constant="64" id="4DX-2v-dTd"/>
@@ -133,8 +134,9 @@
                                     <outlet property="delegate" destination="G5m-Pt-Krc" id="W15-Im-uDo"/>
                                 </connections>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7wb-on-Jss">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Score_banner" translatesAutoresizingMaskIntoConstraints="NO" id="7wb-on-Jss">
                                 <rect key="frame" x="20" y="0.0" width="560" height="108"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="560" id="I8u-oh-ohP"/>
                                     <constraint firstAttribute="height" constant="108" id="tx1-au-Jdf"/>
@@ -198,5 +200,7 @@
     </scenes>
     <resources>
         <image name="Banner" width="475" height="105"/>
+        <image name="LightsOut_banner" width="245" height="100"/>
+        <image name="Score_banner" width="536" height="174"/>
     </resources>
 </document>
