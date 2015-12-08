@@ -17,6 +17,8 @@ class Dialog_UIView:UIView {
     
     var catView:UIImageView?
     
+    var confettiView:ConfettiView?
+    
     var wordContainer:UIView? // Contains the dialog
     var textContainer:UITextView?
     
@@ -134,6 +136,25 @@ class Dialog_UIView:UIView {
         removeScore()
         removeNewTrashDisplay()
         removeContinueButton()
+    }
+    
+    /**
+     Shower the confetti everywhere! Only lasts a second. Too much confetti is a bad thing
+    */
+    func showerConfetti() {
+        setupConfetti()
+        if (confettiView?.superview == nil) { // Don't want to allow unlimited showers
+            self.addSubview(confettiView!)
+        }
+    }
+    
+    /**
+     Create the confetti element if it doesn't exist
+    */
+    func setupConfetti() {
+        if confettiView == nil {
+            confettiView = ConfettiView(frame: CGRect(x: 0, y: -10, width: self.frame.width, height: 20))
+        }
     }
     
     /**

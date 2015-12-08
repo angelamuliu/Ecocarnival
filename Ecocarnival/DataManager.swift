@@ -39,13 +39,15 @@ class DataManager {
     
     /**
      Checks to see if a score can go in the top 10. If so, it'll get added to the top 10!
+     Returns true if score got added to top. False if score wasn't good enough
     */
-    func addHighScore(score:Int) {
+    func addHighScore(score:Int) -> Bool {
         if score > 0 {
             if highScores.count < 10 {
                 highScores.append(score)
                 highScores.sortInPlace(>)
                 saveHighScores()
+                return true
             }
             if score > highScores[highScores.count - 1] {
                 highScores.append(score)
@@ -54,8 +56,10 @@ class DataManager {
                     highScores.removeAtIndex(highScores.count - 1)
                 }
                 saveHighScores()
+                return true
             }
         }
+        return false
     }
     
     /**

@@ -184,11 +184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ecocarnival/Dialog_UIView.swift"
-            timestampString = "470895209.004553"
+            timestampString = "471291714.786757"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "init(gameScene:text:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -200,11 +200,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ecocarnival/Dialog_UIView.swift"
-            timestampString = "471202340.634002"
+            timestampString = "471293239.120255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
             landmarkName = "setupRestartButton()"
             landmarkType = "5">
          </BreakpointContent>
@@ -216,11 +216,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ecocarnival/Dialog_UIView.swift"
-            timestampString = "471202340.634002"
+            timestampString = "471293239.120255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "addRestartButton()"
             landmarkType = "5">
          </BreakpointContent>
@@ -232,11 +232,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ecocarnival/Dialog_UIView.swift"
-            timestampString = "471202340.634002"
+            timestampString = "471293239.120255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "addRestartButton()"
             landmarkType = "5">
          </BreakpointContent>
@@ -248,11 +248,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ecocarnival/Dialog_UIView.swift"
-            timestampString = "471202340.634002"
+            timestampString = "471293239.120255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "addRestartButton()"
             landmarkType = "5">
          </BreakpointContent>
@@ -264,11 +264,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ecocarnival/TN_Model.swift"
-            timestampString = "471239287.912051"
+            timestampString = "471293699.199388"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "addNewThrowable()"
             landmarkType = "5">
          </BreakpointContent>
@@ -312,11 +312,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ecocarnival/TN_GameScene.swift"
-            timestampString = "471245013.779716"
+            timestampString = "471293459.404242"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "371"
-            endingLineNumber = "371"
+            startingLineNumber = "375"
+            endingLineNumber = "375"
             landmarkName = "pauseGameDialog()"
             landmarkType = "5">
          </BreakpointContent>
@@ -328,11 +328,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ecocarnival/TN_GameScene.swift"
-            timestampString = "471245013.779716"
+            timestampString = "471293459.404242"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "395"
-            endingLineNumber = "395"
+            startingLineNumber = "399"
+            endingLineNumber = "399"
             landmarkName = "connectContinueButton()"
             landmarkType = "5">
          </BreakpointContent>
@@ -360,11 +360,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ecocarnival/DataManager.swift"
-            timestampString = "471239392.973986"
+            timestampString = "471293239.120255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "addHighScore(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -430,6 +430,22 @@
             startingLineNumber = "43"
             endingLineNumber = "43"
             landmarkName = "viewDidDisappear(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ecocarnival/ConfettiView.swift"
+            timestampString = "471291828.956546"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "didMoveToSuperview()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

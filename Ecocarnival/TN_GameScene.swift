@@ -306,7 +306,12 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         self.scene!.paused = true
         self.modalView?.clear()
         
-        self.modalView!.resetText("Game over!\nFinal score")
+        if self.game.recordScore() { // Celebrate a new high score with confetti!
+            self.modalView!.resetText("New high score\nGreat job!")
+            self.modalView?.showerConfetti()
+        } else { // Not a new high score
+            self.modalView!.resetText("(Highest score: " + String(self.game.getHighestScore()) + ")\nThis run's score")
+        }
         connectResetButton()
         connectHomeButton()
         self.modalView!.addScore(self.game.score)
@@ -319,7 +324,6 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Slides the modal view back out and resets the game
     func resetGame(sender:UIButton!) {
-        self.game.recordScore()
         self.modalView!.slideDownDialog({ finished in
             self.modalView!.removeFromSuperview()
             self.game.resetGame()

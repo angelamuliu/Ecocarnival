@@ -100,8 +100,15 @@ class TN_Model {
         }
     }
     
-    func recordScore() {
-        appDelegate.dataManager.addHighScore(score)
+    /**
+     Record the score. Returns true if score was high score. False if not
+    */
+    func recordScore() -> Bool {
+        return appDelegate.dataManager.addHighScore(score)
+    }
+    
+    func getHighestScore() -> Int {
+        return appDelegate.dataManager.highScores[0]
     }
     
     func resetGame() {

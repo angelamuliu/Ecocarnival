@@ -18,6 +18,7 @@
 		0B1E634C1BF103C200C4F460 /* EcocarnivalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E634B1BF103C200C4F460 /* EcocarnivalUITests.swift */; };
 		0B1E635A1BF104F900C4F460 /* TN_GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E63591BF104F900C4F460 /* TN_GameScene.swift */; };
 		0B30414C1C17388000359AC5 /* magicSFX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B30414B1C17388000359AC5 /* magicSFX.mp3 */; };
+		0B30414E1C173AE300359AC5 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B30414D1C173AE300359AC5 /* ConfettiView.swift */; };
 		0B3FA0F01C153D4D00AA17AF /* Quirky Dog_speed2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FA0ED1C153D4D00AA17AF /* Quirky Dog_speed2.mp3 */; };
 		0B3FA0F11C153D4D00AA17AF /* Quirky Dog_speed3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FA0EE1C153D4D00AA17AF /* Quirky Dog_speed3.mp3 */; };
 		0B3FA0F21C153D4D00AA17AF /* Quirky Dog.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FA0EF1C153D4D00AA17AF /* Quirky Dog.mp3 */; };
@@ -39,7 +40,6 @@
 		0BB010291C15EB4F00F1087F /* LO_GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB010281C15EB4F00F1087F /* LO_GameViewController.swift */; };
 		0BB0102C1C15EB9200F1087F /* LO_GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB0102B1C15EB9200F1087F /* LO_GameScene.swift */; };
 		0BB0102E1C15EC3E00F1087F /* LO_GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0BB0102D1C15EC3E00F1087F /* LO_GameScene.sks */; };
-		0BB010301C15FCE000F1087F /* magicSFX.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0BB0102F1C15FCE000F1087F /* magicSFX.wav */; };
 		0BC3F0081BF3C5BB0040C009 /* TN_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC3F0071BF3C5BB0040C009 /* TN_Model.swift */; };
 		0BCE14131C11F58200F301BA /* README in Resources */ = {isa = PBXBuildFile; fileRef = 0BCE14121C11F58200F301BA /* README */; };
 		0BF25E7B1BFA6AB30044F247 /* UI_Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF25E7A1BFA6AB30044F247 /* UI_Components.swift */; };
@@ -80,6 +80,7 @@
 		0B1E634D1BF103C200C4F460 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B1E63591BF104F900C4F460 /* TN_GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TN_GameScene.swift; sourceTree = "<group>"; };
 		0B30414B1C17388000359AC5 /* magicSFX.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = magicSFX.mp3; sourceTree = "<group>"; };
+		0B30414D1C173AE300359AC5 /* ConfettiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		0B3FA0ED1C153D4D00AA17AF /* Quirky Dog_speed2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Quirky Dog_speed2.mp3"; sourceTree = "<group>"; };
 		0B3FA0EE1C153D4D00AA17AF /* Quirky Dog_speed3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Quirky Dog_speed3.mp3"; sourceTree = "<group>"; };
 		0B3FA0EF1C153D4D00AA17AF /* Quirky Dog.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Quirky Dog.mp3"; sourceTree = "<group>"; };
@@ -101,7 +102,6 @@
 		0BB010281C15EB4F00F1087F /* LO_GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LO_GameViewController.swift; sourceTree = "<group>"; };
 		0BB0102B1C15EB9200F1087F /* LO_GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LO_GameScene.swift; sourceTree = "<group>"; };
 		0BB0102D1C15EC3E00F1087F /* LO_GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LO_GameScene.sks; sourceTree = "<group>"; };
-		0BB0102F1C15FCE000F1087F /* magicSFX.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = magicSFX.wav; sourceTree = "<group>"; };
 		0BC3F0071BF3C5BB0040C009 /* TN_Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TN_Model.swift; sourceTree = "<group>"; };
 		0BCE14121C11F58200F301BA /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		0BF25E7A1BFA6AB30044F247 /* UI_Components.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UI_Components.swift; sourceTree = "<group>"; };
@@ -140,9 +140,7 @@
 				0BC3F0071BF3C5BB0040C009 /* TN_Model.swift */,
 				0B44A4211C1684DA007BD112 /* Score */,
 				0B44A4221C1686E5007BD112 /* Nodes */,
-				0B1B1EB31C0F6B7A0086320D /* Green_Glow.sks */,
-				0B1B1EB41C0F6B7A0086320D /* spark.png */,
-				0B49D5BC1BF65D54000C5CA5 /* TN_GameScene.sks */,
+				0B30414F1C173AEC00359AC5 /* UI_Elements */,
 			);
 			name = TrashNinja;
 			sourceTree = "<group>";
@@ -181,7 +179,7 @@
 				0B1BEFD11BFB73B8001EABE3 /* SplashViewController.swift */,
 				0B1BEFD31BFB7B27001EABE3 /* TrashNinja */,
 				0BB0102A1C15EB5C00F1087F /* LightsOut */,
-				0BF25E7A1BFA6AB30044F247 /* UI_Components.swift */,
+				0B30414D1C173AE300359AC5 /* ConfettiView.swift */,
 				0BA0A7941C1091A900491F49 /* Dialog_UIView.swift */,
 				0B7F183A1C121E9200BF29D4 /* Sounds */,
 			);
@@ -204,6 +202,17 @@
 				0B1E634D1BF103C200C4F460 /* Info.plist */,
 			);
 			path = EcocarnivalUITests;
+			sourceTree = "<group>";
+		};
+		0B30414F1C173AEC00359AC5 /* UI_Elements */ = {
+			isa = PBXGroup;
+			children = (
+				0BF25E7A1BFA6AB30044F247 /* UI_Components.swift */,
+				0B1B1EB41C0F6B7A0086320D /* spark.png */,
+				0B1B1EB31C0F6B7A0086320D /* Green_Glow.sks */,
+				0B49D5BC1BF65D54000C5CA5 /* TN_GameScene.sks */,
+			);
+			name = UI_Elements;
 			sourceTree = "<group>";
 		};
 		0B44A4211C1684DA007BD112 /* Score */ = {
@@ -240,7 +249,6 @@
 			isa = PBXGroup;
 			children = (
 				0B30414B1C17388000359AC5 /* magicSFX.mp3 */,
-				0BB0102F1C15FCE000F1087F /* magicSFX.wav */,
 				0B94441D1C15049D00A46F2A /* sadBoing.mp3 */,
 				0B7F183B1C121ED900BF29D4 /* hitTrash1.aiff */,
 			);
@@ -375,7 +383,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BB010301C15FCE000F1087F /* magicSFX.wav in Resources */,
 				0B3FA0F01C153D4D00AA17AF /* Quirky Dog_speed2.mp3 in Resources */,
 				0B3FA0F11C153D4D00AA17AF /* Quirky Dog_speed3.mp3 in Resources */,
 				0B30414C1C17388000359AC5 /* magicSFX.mp3 in Resources */,
@@ -422,6 +429,7 @@
 				0B1E632E1BF103C200C4F460 /* TN_GameViewController.swift in Sources */,
 				0BA0A79B1C10B9E600491F49 /* TextAssets.swift in Sources */,
 				0B44A41E1C167397007BD112 /* DataManager.swift in Sources */,
+				0B30414E1C173AE300359AC5 /* ConfettiView.swift in Sources */,
 				0B6B15681BF6EB9500370ABF /* BinNode.swift in Sources */,
 				0B49D5BF1BF65EB2000C5CA5 /* TrashNode.swift in Sources */,
 				0BB010291C15EB4F00F1087F /* LO_GameViewController.swift in Sources */,
