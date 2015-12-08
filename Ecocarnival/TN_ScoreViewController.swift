@@ -56,7 +56,8 @@ class TN_ScoreViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:UITableViewCell = self.scoreTable.dequeueReusableCellWithIdentifier("cell")! as UITableViewCell
-        cell.textLabel?.text = String(appDelegate.dataManager.highScores[indexPath.row])
+        cell.textLabel?.text = "#" + String(indexPath.row + 1) + ". " + String(appDelegate.dataManager.highScores[indexPath.row]) + " points"
+        cell.textLabel?.font = UIFont(name: "Helvetica-Bold", size: 18)
         return cell
     }
     
