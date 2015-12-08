@@ -49,7 +49,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     // Preloading SFX
     let sfx_correct = SKAction.playSoundFileNamed("hitTrash1.aiff", waitForCompletion: false)
     let sfx_incorrect = SKAction.playSoundFileNamed("sadBoing.mp3", waitForCompletion: false)
-    let sfx_magic = SKAction.playSoundFileNamed("magicSFX.wav", waitForCompletion: false)
+    let sfx_magic = SKAction.playSoundFileNamed("magicSFX.mp3", waitForCompletion: false)
     
     
     

@@ -17,6 +17,7 @@
 		0B1E63411BF103C200C4F460 /* EcocarnivalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E63401BF103C200C4F460 /* EcocarnivalTests.swift */; };
 		0B1E634C1BF103C200C4F460 /* EcocarnivalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E634B1BF103C200C4F460 /* EcocarnivalUITests.swift */; };
 		0B1E635A1BF104F900C4F460 /* TN_GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E63591BF104F900C4F460 /* TN_GameScene.swift */; };
+		0B30414C1C17388000359AC5 /* magicSFX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B30414B1C17388000359AC5 /* magicSFX.mp3 */; };
 		0B3FA0F01C153D4D00AA17AF /* Quirky Dog_speed2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FA0ED1C153D4D00AA17AF /* Quirky Dog_speed2.mp3 */; };
 		0B3FA0F11C153D4D00AA17AF /* Quirky Dog_speed3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FA0EE1C153D4D00AA17AF /* Quirky Dog_speed3.mp3 */; };
 		0B3FA0F21C153D4D00AA17AF /* Quirky Dog.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FA0EF1C153D4D00AA17AF /* Quirky Dog.mp3 */; };
@@ -78,6 +79,7 @@
 		0B1E634B1BF103C200C4F460 /* EcocarnivalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcocarnivalUITests.swift; sourceTree = "<group>"; };
 		0B1E634D1BF103C200C4F460 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B1E63591BF104F900C4F460 /* TN_GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TN_GameScene.swift; sourceTree = "<group>"; };
+		0B30414B1C17388000359AC5 /* magicSFX.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = magicSFX.mp3; sourceTree = "<group>"; };
 		0B3FA0ED1C153D4D00AA17AF /* Quirky Dog_speed2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Quirky Dog_speed2.mp3"; sourceTree = "<group>"; };
 		0B3FA0EE1C153D4D00AA17AF /* Quirky Dog_speed3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Quirky Dog_speed3.mp3"; sourceTree = "<group>"; };
 		0B3FA0EF1C153D4D00AA17AF /* Quirky Dog.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Quirky Dog.mp3"; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 		0B7F183D1C1220BB00BF29D4 /* SFX */ = {
 			isa = PBXGroup;
 			children = (
+				0B30414B1C17388000359AC5 /* magicSFX.mp3 */,
 				0BB0102F1C15FCE000F1087F /* magicSFX.wav */,
 				0B94441D1C15049D00A46F2A /* sadBoing.mp3 */,
 				0B7F183B1C121ED900BF29D4 /* hitTrash1.aiff */,
@@ -375,6 +378,7 @@
 				0BB010301C15FCE000F1087F /* magicSFX.wav in Resources */,
 				0B3FA0F01C153D4D00AA17AF /* Quirky Dog_speed2.mp3 in Resources */,
 				0B3FA0F11C153D4D00AA17AF /* Quirky Dog_speed3.mp3 in Resources */,
+				0B30414C1C17388000359AC5 /* magicSFX.mp3 in Resources */,
 				0BCE14131C11F58200F301BA /* README in Resources */,
 				0B3FA0F21C153D4D00AA17AF /* Quirky Dog.mp3 in Resources */,
 				0B1B1EB61C0F6B7A0086320D /* spark.png in Resources */,
