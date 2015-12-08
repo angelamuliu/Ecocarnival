@@ -32,45 +32,154 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="59s-ZD-44y">
-                                <rect key="frame" x="203" y="270" width="194" height="59"/>
-                                <color key="backgroundColor" red="1" green="0.47843137254901935" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="194" id="sd2-rL-JYC"/>
-                                    <constraint firstAttribute="height" constant="59" id="u0Y-66-tqS"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
-                                <state key="normal" title="Play Trash Ninja">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="4"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="BV1-FR-VrT" kind="presentation" id="RYm-SD-n7o"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Banner" translatesAutoresizingMaskIntoConstraints="NO" id="LHP-yE-fm9">
                                 <rect key="frame" x="20" y="35" width="560" height="128"/>
                             </imageView>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I9H-pe-5TN">
+                                <rect key="frame" x="113" y="378" width="374" height="214"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S4J-cR-5eQ">
+                                        <rect key="frame" x="20" y="130" width="334" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="218" id="3ll-cS-h4M"/>
+                                            <constraint firstAttribute="height" constant="64" id="4DX-2v-dTd"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Coming soon...a game about saving power!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJW-cA-hk9">
+                                        <rect key="frame" x="11" y="96" width="352" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="59s-ZD-44y">
+                                        <rect key="frame" x="20" y="20" width="194" height="59"/>
+                                        <color key="backgroundColor" red="1" green="0.47843137254901935" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="194" id="sd2-rL-JYC"/>
+                                            <constraint firstAttribute="height" constant="59" id="u0Y-66-tqS"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
+                                        <state key="normal" title="Play Trash Ninja">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="BV1-FR-VrT" kind="presentation" id="RYm-SD-n7o"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8wZ-jT-2K4">
+                                        <rect key="frame" x="222" y="20" width="132" height="59"/>
+                                        <color key="backgroundColor" red="1" green="0.60957343664473684" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <state key="normal" title="Scores">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="G5m-Pt-Krc" kind="show" id="qlP-fP-UdQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="8wZ-jT-2K4" secondAttribute="trailing" constant="20" id="KTF-Md-jdI"/>
+                                    <constraint firstItem="YJW-cA-hk9" firstAttribute="centerX" secondItem="I9H-pe-5TN" secondAttribute="centerX" id="VcW-v0-w35"/>
+                                    <constraint firstItem="S4J-cR-5eQ" firstAttribute="centerX" secondItem="I9H-pe-5TN" secondAttribute="centerX" id="fuv-RA-weK"/>
+                                    <constraint firstItem="59s-ZD-44y" firstAttribute="leading" secondItem="I9H-pe-5TN" secondAttribute="leading" constant="20" id="vr2-RG-liL"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="LHP-yE-fm9" firstAttribute="top" secondItem="EgA-tj-dx3" secondAttribute="bottom" constant="15" id="1k6-T5-vsE"/>
-                            <constraint firstItem="59s-ZD-44y" firstAttribute="centerY" secondItem="WsE-sd-wvF" secondAttribute="centerY" id="Bnt-7Q-DU7"/>
-                            <constraint firstItem="59s-ZD-44y" firstAttribute="centerX" secondItem="WsE-sd-wvF" secondAttribute="centerX" id="Fab-u2-aUX"/>
+                            <constraint firstItem="I9H-pe-5TN" firstAttribute="centerX" secondItem="WsE-sd-wvF" secondAttribute="centerX" id="7Oc-GI-Pgq"/>
                             <constraint firstItem="LHP-yE-fm9" firstAttribute="leading" secondItem="WsE-sd-wvF" secondAttribute="leadingMargin" id="cF9-Iv-W3I"/>
                             <constraint firstItem="LHP-yE-fm9" firstAttribute="trailing" secondItem="WsE-sd-wvF" secondAttribute="trailingMargin" id="hcX-MX-jOA"/>
                             <constraint firstItem="LHP-yE-fm9" firstAttribute="centerX" secondItem="WsE-sd-wvF" secondAttribute="centerX" id="jcR-yO-z0b"/>
+                            <constraint firstItem="7ek-N7-ZRL" firstAttribute="top" secondItem="I9H-pe-5TN" secondAttribute="bottom" constant="8" id="r45-C8-ZlJ"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ANz-eq-GsJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="393" y="356"/>
+        </scene>
+        <!--Score View Controller-->
+        <scene sceneID="lMr-fh-qfY">
+            <objects>
+                <viewController id="G5m-Pt-Krc" customClass="TN_ScoreViewController" customModule="Ecocarnival" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6lB-eK-duE"/>
+                        <viewControllerLayoutGuide type="bottom" id="jJc-b8-Ifi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gvx-US-pt1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FYv-Tw-nH6">
+                                <rect key="frame" x="20" y="122" width="560" height="399"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="G5m-Pt-Krc" id="Xid-5W-JZ0"/>
+                                    <outlet property="delegate" destination="G5m-Pt-Krc" id="W15-Im-uDo"/>
+                                </connections>
+                            </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7wb-on-Jss">
+                                <rect key="frame" x="20" y="0.0" width="560" height="108"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="560" id="I8u-oh-ohP"/>
+                                    <constraint firstAttribute="height" constant="108" id="tx1-au-Jdf"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="isu-of-FJk">
+                                <rect key="frame" x="217" y="534" width="166" height="46"/>
+                                <color key="backgroundColor" red="1" green="0.60957343664473684" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="166" id="4bK-Cz-a6y"/>
+                                    <constraint firstAttribute="height" constant="46" id="LY4-cp-HEK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="Back to Home">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="5oe-cb-6TT" kind="show" id="zza-jv-juD"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="isu-of-FJk" firstAttribute="centerX" secondItem="gvx-US-pt1" secondAttribute="centerX" id="3kQ-aZ-Oie"/>
+                            <constraint firstItem="jJc-b8-Ifi" firstAttribute="top" secondItem="isu-of-FJk" secondAttribute="bottom" constant="20" id="AaK-f8-kkL"/>
+                            <constraint firstItem="FYv-Tw-nH6" firstAttribute="leading" secondItem="gvx-US-pt1" secondAttribute="leadingMargin" id="Dnc-or-Xyo"/>
+                            <constraint firstItem="7wb-on-Jss" firstAttribute="top" secondItem="gvx-US-pt1" secondAttribute="topMargin" id="FrS-oB-Sfg"/>
+                            <constraint firstItem="isu-of-FJk" firstAttribute="top" secondItem="FYv-Tw-nH6" secondAttribute="bottom" constant="13" id="HU0-gv-jhw"/>
+                            <constraint firstItem="7wb-on-Jss" firstAttribute="centerX" secondItem="gvx-US-pt1" secondAttribute="centerX" id="IEl-TP-2je"/>
+                            <constraint firstItem="FYv-Tw-nH6" firstAttribute="trailing" secondItem="gvx-US-pt1" secondAttribute="trailingMargin" id="N6f-x8-DN0"/>
+                            <constraint firstItem="FYv-Tw-nH6" firstAttribute="top" secondItem="7wb-on-Jss" secondAttribute="bottom" constant="14" id="fQq-PM-I5C"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="scoreTable" destination="FYv-Tw-nH6" id="I2g-J6-ESA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="71O-ZA-X8v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-333" y="1123"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="EoP-ue-4nn">

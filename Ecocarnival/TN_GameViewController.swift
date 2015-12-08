@@ -14,16 +14,20 @@ import SpriteKit
 
 class TN_GameViewController: UIViewController {
     
+    var gameScene:TN_GameScene?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Replace the main view with our game scene
-        let scene = TN_GameScene(fileNamed: "TN_GameScene.sks")
-        scene!.scaleMode = .ResizeFill
-        scene?.viewController = self
+        if gameScene == nil {
+            // Replace the main view with our game scene
+            gameScene = TN_GameScene(fileNamed: "TN_GameScene.sks")
+            gameScene?.scaleMode = .ResizeFill
+            gameScene?.viewController = self
+        }
         
         let skView = self.view as! SKView
-        skView.presentScene(scene)
+        skView.presentScene(gameScene)
     }
     
     override func viewWillLayoutSubviews() {
@@ -35,6 +39,11 @@ class TN_GameViewController: UIViewController {
         return true
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        let skView = self.view as! SKView
+        skView.presentScene(nil)
+        self.gameScene = nil // Deallocate to remove scene from memory to prevent leak
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

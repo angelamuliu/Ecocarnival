@@ -20,6 +20,8 @@
 		0B3FA0F01C153D4D00AA17AF /* Quirky Dog_speed2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FA0ED1C153D4D00AA17AF /* Quirky Dog_speed2.mp3 */; };
 		0B3FA0F11C153D4D00AA17AF /* Quirky Dog_speed3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FA0EE1C153D4D00AA17AF /* Quirky Dog_speed3.mp3 */; };
 		0B3FA0F21C153D4D00AA17AF /* Quirky Dog.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FA0EF1C153D4D00AA17AF /* Quirky Dog.mp3 */; };
+		0B44A41E1C167397007BD112 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B44A41D1C167397007BD112 /* DataManager.swift */; };
+		0B44A4201C167FC3007BD112 /* TN_ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B44A41F1C167FC3007BD112 /* TN_ScoreViewController.swift */; };
 		0B49D5BD1BF65D54000C5CA5 /* TN_GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0B49D5BC1BF65D54000C5CA5 /* TN_GameScene.sks */; };
 		0B49D5BF1BF65EB2000C5CA5 /* TrashNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B49D5BE1BF65EB2000C5CA5 /* TrashNode.swift */; };
 		0B6B15681BF6EB9500370ABF /* BinNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6B15671BF6EB9500370ABF /* BinNode.swift */; };
@@ -79,6 +81,8 @@
 		0B3FA0ED1C153D4D00AA17AF /* Quirky Dog_speed2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Quirky Dog_speed2.mp3"; sourceTree = "<group>"; };
 		0B3FA0EE1C153D4D00AA17AF /* Quirky Dog_speed3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Quirky Dog_speed3.mp3"; sourceTree = "<group>"; };
 		0B3FA0EF1C153D4D00AA17AF /* Quirky Dog.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Quirky Dog.mp3"; sourceTree = "<group>"; };
+		0B44A41D1C167397007BD112 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		0B44A41F1C167FC3007BD112 /* TN_ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TN_ScoreViewController.swift; sourceTree = "<group>"; };
 		0B49D5BC1BF65D54000C5CA5 /* TN_GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = TN_GameScene.sks; path = ../TN_GameScene.sks; sourceTree = "<group>"; };
 		0B49D5BE1BF65EB2000C5CA5 /* TrashNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrashNode.swift; sourceTree = "<group>"; };
 		0B6B15671BF6EB9500370ABF /* BinNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinNode.swift; sourceTree = "<group>"; };
@@ -129,15 +133,11 @@
 		0B1BEFD31BFB7B27001EABE3 /* TrashNinja */ = {
 			isa = PBXGroup;
 			children = (
-				0B1E63591BF104F900C4F460 /* TN_GameScene.swift */,
-				0B6B15671BF6EB9500370ABF /* BinNode.swift */,
 				0B1E632D1BF103C200C4F460 /* TN_GameViewController.swift */,
+				0B1E63591BF104F900C4F460 /* TN_GameScene.swift */,
 				0BC3F0071BF3C5BB0040C009 /* TN_Model.swift */,
-				0B49D5BE1BF65EB2000C5CA5 /* TrashNode.swift */,
-				0BA0A79C1C10E86900491F49 /* PowerupNode.swift */,
-				0BA0A79E1C10E87400491F49 /* MiscNode.swift */,
-				0BA0A7961C10AEA400491F49 /* Throwable.swift */,
-				0BA0A7981C10B29400491F49 /* RecycleNode.swift */,
+				0B44A4211C1684DA007BD112 /* Score */,
+				0B44A4221C1686E5007BD112 /* Nodes */,
 				0B1B1EB31C0F6B7A0086320D /* Green_Glow.sks */,
 				0B1B1EB41C0F6B7A0086320D /* spark.png */,
 				0B49D5BC1BF65D54000C5CA5 /* TN_GameScene.sks */,
@@ -173,6 +173,7 @@
 				0B1E63321BF103C200C4F460 /* Assets.xcassets */,
 				0B6B15691BF7092C00370ABF /* Constants.swift */,
 				0BA0A79A1C10B9E600491F49 /* TextAssets.swift */,
+				0B44A41D1C167397007BD112 /* DataManager.swift */,
 				0B1E63371BF103C200C4F460 /* Info.plist */,
 				0B1E632F1BF103C200C4F460 /* Main.storyboard */,
 				0B1BEFD11BFB73B8001EABE3 /* SplashViewController.swift */,
@@ -201,6 +202,27 @@
 				0B1E634D1BF103C200C4F460 /* Info.plist */,
 			);
 			path = EcocarnivalUITests;
+			sourceTree = "<group>";
+		};
+		0B44A4211C1684DA007BD112 /* Score */ = {
+			isa = PBXGroup;
+			children = (
+				0B44A41F1C167FC3007BD112 /* TN_ScoreViewController.swift */,
+			);
+			name = Score;
+			sourceTree = "<group>";
+		};
+		0B44A4221C1686E5007BD112 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				0B6B15671BF6EB9500370ABF /* BinNode.swift */,
+				0BA0A7961C10AEA400491F49 /* Throwable.swift */,
+				0B49D5BE1BF65EB2000C5CA5 /* TrashNode.swift */,
+				0BA0A7981C10B29400491F49 /* RecycleNode.swift */,
+				0BA0A79E1C10E87400491F49 /* MiscNode.swift */,
+				0BA0A79C1C10E86900491F49 /* PowerupNode.swift */,
+			);
+			name = Nodes;
 			sourceTree = "<group>";
 		};
 		0B7F183A1C121E9200BF29D4 /* Sounds */ = {
@@ -395,6 +417,7 @@
 				0BF25E7B1BFA6AB30044F247 /* UI_Components.swift in Sources */,
 				0B1E632E1BF103C200C4F460 /* TN_GameViewController.swift in Sources */,
 				0BA0A79B1C10B9E600491F49 /* TextAssets.swift in Sources */,
+				0B44A41E1C167397007BD112 /* DataManager.swift in Sources */,
 				0B6B15681BF6EB9500370ABF /* BinNode.swift in Sources */,
 				0B49D5BF1BF65EB2000C5CA5 /* TrashNode.swift in Sources */,
 				0BB010291C15EB4F00F1087F /* LO_GameViewController.swift in Sources */,
@@ -405,6 +428,7 @@
 				0BC3F0081BF3C5BB0040C009 /* TN_Model.swift in Sources */,
 				0B6B156A1BF7092C00370ABF /* Constants.swift in Sources */,
 				0B1BEFD21BFB73B8001EABE3 /* SplashViewController.swift in Sources */,
+				0B44A4201C167FC3007BD112 /* TN_ScoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

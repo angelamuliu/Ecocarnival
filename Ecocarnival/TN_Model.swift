@@ -100,6 +100,10 @@ class TN_Model {
         }
     }
     
+    func recordScore() {
+        appDelegate.dataManager.addHighScore(score)
+    }
+    
     func resetGame() {
         score = 0
         life = 5

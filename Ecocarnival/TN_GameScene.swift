@@ -319,6 +319,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Slides the modal view back out and resets the game
     func resetGame(sender:UIButton!) {
+        self.game.recordScore()
         self.modalView!.slideDownDialog({ finished in
             self.modalView!.removeFromSuperview()
             self.game.resetGame()
@@ -336,7 +337,9 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func backToHome(sender:UIButton!) {
+        self.game.recordScore()
         self.game.quitGame()
+        self.paused = true
         self.viewController!.dismissViewControllerAnimated(true, completion: nil)
     }
     
