@@ -63,6 +63,18 @@ class Throwable:SKSpriteNode {
     // Class Functions
 
     /**
+     Given a name, returns true if the name matches up and the SKSpriteNode is a throwable
+    */
+    class func isThrowable(node:SKNode) -> Bool {
+        if let name = node.name {
+            if name == Constants.trash || name == Constants.recycle || name == Constants.misc || name == Constants.powerup {
+                return true
+            }
+        }
+        return false
+    }
+    
+    /**
      Given an array of dictionaries representing sets of image names and descriptions, chooses a random dictionary
      */
     class func chooseNode(imageSet:[[String:String]]) -> [String:String] {

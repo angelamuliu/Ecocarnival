@@ -15,11 +15,16 @@ struct Constants {
     static let zBin = CGFloat(10)
     static let zUI = CGFloat(100)
     
-    // Different types of trash and bins
+    // Different types of trash
     static let trash = "Trash"
     static let recycle = "Recycle"
     static let misc = "Misc"
     static let powerup = "Powerup"
+    
+    // Different types of bins
+    static let trashBin = "Trash Bin"
+    static let recycleBin = "Recycle Bin"
+    static let miscBin = "Misc Bin"
     
     // Collision categories for bins, trash, and non-collision items
     static let noCollisionCategory = UInt32(0)

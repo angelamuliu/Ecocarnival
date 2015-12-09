@@ -99,6 +99,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.scene!.paused = true
         countdownToUnpause()
+        
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -216,7 +217,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     // Applies an impulse to a trash node to 'toss' it up to the air
-    func tossTrash(trash: SKNode) {
+    func tossTrash(trash: SKNode) { 
         let upwardVelocity = CGVector(dx: 0.0, dy: 550.0 + Double(arc4random_uniform(120)))
         trash.physicsBody!.applyImpulse(upwardVelocity)
     }
@@ -298,6 +299,19 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    // Removes all trash, recycle, powerup, or misc nodes
+    func clearThrowables() {
+        var throwables = [SKNode]()
+        for node in self.children {
+            if Throwable.isThrowable(node) {
+                throwables.append(node)
+            }
+        }
+        for node in throwables {
+            node.removeFromParent()
+        }
+    }
+    
     // -------------------------------------------------------
     // Dialog UI View
     
@@ -334,6 +348,8 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             }
             self.scoreNodes = UI_Components.createScoreNodes(self.game.score, topRightCorner: CGPoint(x:self.size.width, y: self.size.height))
             self.attachScoreToSKScene()
+            
+            self.clearThrowables() // Clear the screen of remaining throwables
             
             UI_Components.updateLifeNodes(self.game.life, lifeNodes: self.lifeNodes)
             
