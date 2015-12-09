@@ -12,6 +12,8 @@ Copyright © 2015 amliu. All rights reserved.
 
 All image assets by Angela Mu Liu
 
+An iOS game (xCode 7, Swift 2) using SpriteKit. Swipe left to sort trash into a trash can, swipe right to sort recyclables into a recycle bin. Don't put animals in any bin though! When an incorrect move has been made, you lose a life, and when your life hits 0, it's game over. Luckily, you can regain life by touching life orbs that appear every now and again. As you hit certain scores, the game speeds up and introduces a random new trash.
+
 ------------------------------
 
 CREDITS
