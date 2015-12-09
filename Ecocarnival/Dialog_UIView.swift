@@ -153,7 +153,7 @@ class Dialog_UIView:UIView {
     */
     func setupConfetti() {
         if confettiView == nil {
-            confettiView = ConfettiView(frame: CGRect(x: 0, y: -10, width: self.frame.width, height: 20))
+            confettiView = ConfettiView(frame: CGRect(x: 0, y: -10, width: self.frame.width, height: 10))
         }
     }
     
