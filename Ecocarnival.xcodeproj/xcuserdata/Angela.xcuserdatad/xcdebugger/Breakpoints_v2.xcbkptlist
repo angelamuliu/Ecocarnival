@@ -312,7 +312,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ecocarnival/TN_GameScene.swift"
-            timestampString = "471295502.573173"
+            timestampString = "471370906.698722"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "376"
@@ -328,7 +328,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ecocarnival/TN_GameScene.swift"
-            timestampString = "471295502.573173"
+            timestampString = "471370906.698722"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "400"
@@ -440,7 +440,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ecocarnival/ConfettiView.swift"
-            timestampString = "471291828.956546"
+            timestampString = "471370602.690991"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "39"
@@ -478,6 +478,22 @@
             startingLineNumber = "52"
             endingLineNumber = "52"
             landmarkName = "showScoreAlert()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ecocarnival/ConfettiView.swift"
+            timestampString = "471370906.698722"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "didMoveToSuperview()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

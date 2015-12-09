@@ -368,7 +368,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     func pauseGameDialog() {
         self.scene!.paused = true
         self.modalView?.clear()
-        
+
         self.modalView?.resetText("Game has been paused!\nEnjoy the music in the meantime.")
         connectContinueButton()
         connectHomeButton()

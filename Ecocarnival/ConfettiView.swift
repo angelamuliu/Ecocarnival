@@ -10,7 +10,7 @@ import UIKit
 
 // Adapted from: http://www.raywenderlich.com/77983/make-letter-word-game-uikit-swift-part-33
 /**
- A UIView that contains a CAEmitterLayer, allowing it to spew confetti everywhere
+ A UIView that contains CAEmitterLayers, allowing it to spew confetti everywhere
 */
 class ConfettiView: UIView {
     private var emitter:CAEmitterLayer!
@@ -26,7 +26,7 @@ class ConfettiView: UIView {
     
     override init(frame:CGRect) {
         super.init(frame:frame)
-        //initialize the emitter
+        // Initialize the first emitter
         emitter = self.layer as! CAEmitterLayer
         emitter.emitterPosition = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)
         emitter.emitterSize = self.bounds.size
@@ -40,52 +40,80 @@ class ConfettiView: UIView {
         if self.superview == nil {
             return
         }
-        if let texture = UIImage(named: "spark") {
+        emitter.emitterCells = [CAEmitterCell]()
+        if let texture = UIImage(named: "Confetti") {
             // The emitter cell is what actually emits the particles
             let emitterCell = CAEmitterCell()
             
             emitterCell.contents = texture.CGImage
-            emitterCell.name = "cell"
-            emitterCell.birthRate = 50 // How many particles per second
+            emitterCell.name = "confetti"
+            emitterCell.birthRate = 30 // How many particles per second
             emitterCell.lifetime = 4 // How long each particle lives for in seconds
             
             // Simulating downwards gravity on the particles
-            emitterCell.yAcceleration = 10
+            emitterCell.yAcceleration = 20
+            
+            emitterCell.spin = 1.0 // Confetti twirls around kinda. Radians
+            emitterCell.spinRange = 0.5
+            
+            emitterCell.alphaSpeed = -1.0/emitterCell.lifetime/2.0 // The fading away effect
             
             emitterCell.velocity = 160 // Base begining velocity of particle
             emitterCell.velocityRange = 40 // Range of velocity -> 160 - 200
             
-            emitterCell.scaleRange = 0.8 // The particle will spawn at range of 0.5x to 1.5x the original size
+            emitterCell.scale = 0.5
+            emitterCell.scaleRange = 0.3 // The particle will spawn at range of 0.5x to 1.5x the original size
             
             emitterCell.color = Constants.orangeColor.CGColor // The base color
-            emitterCell.blueRange = 0.5 // And we can + - 50% blue or green
-            emitterCell.greenRange = 0.5
+            emitterCell.blueRange = 0.7 // And we can + - 50% blue or green
+            emitterCell.greenRange = 0.7
             
             emitterCell.emissionRange = CGFloat(M_PI) // Angle of how particles are emitted. We just do 180 on bottom
-            emitter.emitterCells = [emitterCell]
+            emitter.emitterCells?.append(emitterCell)
+        }
+        
+        if let dotTexture = UIImage(named: "Dot") {
+            let emitterCell = CAEmitterCell()
             
-            // The confetti doesn't last forever... it disappears in a few seconds
-            // First we dispatch a job to disable the emitter
-            var delay = Int64(0.1 * Double(NSEC_PER_SEC))
-            var delayTime = dispatch_time(DISPATCH_TIME_NOW, delay)
-            dispatch_after(delayTime, dispatch_get_main_queue()) {
-                self.disableEmitterCell()
-            }
+            emitterCell.contents = dotTexture.CGImage
+            emitterCell.name = "dot"
+            emitterCell.birthRate = 50
+            emitterCell.lifetime = 4
+            emitterCell.yAcceleration = 40
+            emitterCell.alphaSpeed = -1.0/emitterCell.lifetime/2.0
+            emitterCell.velocity = 180
+            emitterCell.velocityRange = 40
+            emitterCell.scale = 0.1
             
-            // Then we dispatch a job to remove the emitter from the parent view
-            delay = Int64(5 * Double(NSEC_PER_SEC))
-            delayTime = dispatch_time(DISPATCH_TIME_NOW, delay)
-            dispatch_after(delayTime, dispatch_get_main_queue()) {
-                self.removeFromSuperview()
-            }
+            emitterCell.redRange = 0.33
+            emitterCell.greenRange = 0.33
+            
+            emitterCell.emissionRange = CGFloat(M_PI) // Angle of how particles are emitted. We just do 180 on bottom
+            emitter.emitterCells?.append(emitterCell)
+        }
+        
+        // The confetti doesn't last forever... it disappears in a few seconds
+        // First we dispatch a job to disable the emitter
+        var delay = Int64(0.1 * Double(NSEC_PER_SEC))
+        var delayTime = dispatch_time(DISPATCH_TIME_NOW, delay)
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.disableEmitterCells()
+        }
+        
+        // Then we dispatch a job to remove the emitter from the parent view
+        delay = Int64(5 * Double(NSEC_PER_SEC))
+        delayTime = dispatch_time(DISPATCH_TIME_NOW, delay)
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.removeFromSuperview()
         }
     }
     
     /**
      Stops the shower of confetti
     */
-    func disableEmitterCell() {
-        emitter.setValue(0, forKeyPath: "emitterCells.cell.birthRate")
+    func disableEmitterCells() {
+        emitter.setValue(0, forKeyPath: "emitterCells.confetti.birthRate")
+        emitter.setValue(0, forKeyPath: "emitterCells.dot.birthRate")
     }
 
 }
