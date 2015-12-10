@@ -2,7 +2,7 @@
 
 <p>
 Created by Angela Liu <br />
-Copyright (c) 2015 amliu. All rights reserved.<br />
+*Copyright (c) 2015 amliu. All rights reserved.*<br />
 All image assets by Angela Mu Liu
 </p>
 
@@ -10,12 +10,12 @@ All image assets by Angela Mu Liu
 <p>
     An iOS game combining learning and fun all in one! Swipe left to sort trash into a trash can, swipe right to sort recyclables into a recycle bin. Don't put animals in any bin though! When an incorrect move has been made, you lose a life, and when your life hits 0, it's game over. Luckily, you can regain life by touching life orbs that appear every now and again. As you hit certain scores, the game speeds up and introduces a random new trash.
     <br />
-    Inspired by Fruit Ninja, but you'll find that this game has its own twist...You're not cutting the trash, for instance.
+    (Inspired by Fruit Ninja, but you'll find that this game has its own twist...You're not cutting the trash, for instance.)
 </p>
 
 #### Specs
 + iOS only
-+ Developed with iPhone in mide
++ Developed with iPhone in mind
 + Swift 2 using Spritekit
 + xCode 7
 
