@@ -51,6 +51,9 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     let sfx_incorrect = SKAction.playSoundFileNamed("sadBoing.mp3", waitForCompletion: false)
     let sfx_magic = SKAction.playSoundFileNamed("magicSFX.mp3", waitForCompletion: false)
     
+    // Flag used to check if user has finished a game or paused mid way and quit to home
+    var finishedGame = false
+    
     
     
     // -------------------------------------------------------
@@ -202,7 +205,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addNewThrowable() {
-        let newTrash = game.generateRandomTrash(CGPoint(x: self.frame.size.width/2, y: -50))
+        let newTrash = game.generateRandomTrash(CGPoint(x: chooseSpawnPoint(), y: -50))
         self.addChild(newTrash)
         if (newTrash.name! == Constants.powerup) {
             tossTrash(newTrash) // Powerups have particle effects which have visual bugs when spun
@@ -228,6 +231,18 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     func spinTrash(trash: SKNode) {
         let spinForce = 0.15 + (CGFloat(arc4random_uniform(50))/100.0)
         trash.physicsBody!.applyAngularImpulse(spinForce)
+    }
+    
+    func chooseSpawnPoint() -> CGFloat {
+        let point = arc4random_uniform(3)
+        switch point {
+        case 0:
+            return self.frame.size.width/2
+        case 1:
+            return 20 + self.frame.size.width/2
+        default:
+            return -20 + self.frame.size.width/2
+        }
     }
     
     // Increases score in our model and updates any necessay sprites on the UI
@@ -322,11 +337,12 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         self.scene!.paused = true
         self.modalView?.clear()
         
+        self.finishedGame = true
+        
         if self.game.recordScore() { // Celebrate a new high score with confetti!
             self.modalView!.resetText("New high score\nGreat job!")
             self.modalView?.showerConfetti()
         } else { // Not a new high score
-            
             self.modalView!.resetText("(Highest score: " + String(self.game.getHighestScore()) + ")\nThis run's score")
         }
         connectResetButton()
@@ -352,6 +368,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
             self.attachScoreToSKScene()
             
             self.clearThrowables() // Clear the screen of remaining throwables
+            self.finishedGame = false
             
             UI_Components.updateLifeNodes(self.game.life, lifeNodes: self.lifeNodes)
             
@@ -360,7 +377,9 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func backToHome(sender:UIButton!) {
-        self.game.recordScore()
+        if !(finishedGame) { // The game over dialog automatically records score, so we don't want to record twice
+            self.game.recordScore()
+        }
         self.game.quitGame()
         self.paused = true
         self.viewController!.dismissViewControllerAnimated(true, completion: nil)
