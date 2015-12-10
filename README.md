@@ -2,14 +2,8 @@
 ***
 <p>
 Created by Angela Liu <br />
-Copyright (c) 2015 amliu. All rights reserved.
-</p>
-
-<p>
-![logo](./Ecocarnival/Assets.xcassets/TrashNinja.spriteatlas/TN_misc1.imageset/TN_misc1.png)
-![logo](./Ecocarnival/Assets.xcassets/TrashNinja.spriteatlas/TN_trash1.imageset/TN_trash1.png)
-![logo](./Ecocarnival/Assets.xcassets/TrashNinja.spriteatlas/TN_recycle1.imageset/TN_recycle1.png)
-<br />All image assets by Angela Mu Liu
+Copyright (c) 2015 amliu. All rights reserved.<br />
+All image assets by Angela Mu Liu
 </p>
 
 #### What's the game?
