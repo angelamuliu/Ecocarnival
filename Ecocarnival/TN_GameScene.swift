@@ -217,8 +217,10 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     // Applies an impulse to a trash node to 'toss' it up to the air
-    func tossTrash(trash: SKNode) { 
-        let upwardVelocity = CGVector(dx: 0.0, dy: 550.0 + Double(arc4random_uniform(120)))
+    func tossTrash(trash: SKNode) {
+        let baseToss = self.frame.size.height * 1.58
+        let tossRange = UInt32(self.frame.size.height * 0.21)
+        let upwardVelocity = CGVector(dx: 0.0, dy: baseToss + CGFloat(arc4random_uniform(tossRange)))
         trash.physicsBody!.applyImpulse(upwardVelocity)
     }
     
