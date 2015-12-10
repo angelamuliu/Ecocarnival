@@ -40,7 +40,6 @@
 		0BB0102C1C15EB9200F1087F /* LO_GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB0102B1C15EB9200F1087F /* LO_GameScene.swift */; };
 		0BB0102E1C15EC3E00F1087F /* LO_GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0BB0102D1C15EC3E00F1087F /* LO_GameScene.sks */; };
 		0BC3F0081BF3C5BB0040C009 /* TN_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC3F0071BF3C5BB0040C009 /* TN_Model.swift */; };
-		0BCE14131C11F58200F301BA /* README in Resources */ = {isa = PBXBuildFile; fileRef = 0BCE14121C11F58200F301BA /* README */; };
 		0BF25E7B1BFA6AB30044F247 /* UI_Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF25E7A1BFA6AB30044F247 /* UI_Components.swift */; };
 /* End PBXBuildFile section */
 
@@ -101,7 +100,6 @@
 		0BB0102B1C15EB9200F1087F /* LO_GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LO_GameScene.swift; sourceTree = "<group>"; };
 		0BB0102D1C15EC3E00F1087F /* LO_GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LO_GameScene.sks; sourceTree = "<group>"; };
 		0BC3F0071BF3C5BB0040C009 /* TN_Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TN_Model.swift; sourceTree = "<group>"; };
-		0BCE14121C11F58200F301BA /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		0BF25E7A1BFA6AB30044F247 /* UI_Components.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UI_Components.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,7 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				0B1E63291BF103C200C4F460 /* AppDelegate.swift */,
-				0BCE14121C11F58200F301BA /* README */,
 				0B1E63321BF103C200C4F460 /* Assets.xcassets */,
 				0B6B15691BF7092C00370ABF /* Constants.swift */,
 				0BA0A79A1C10B9E600491F49 /* TextAssets.swift */,
@@ -375,7 +372,6 @@
 				0B3FA0F01C153D4D00AA17AF /* Quirky Dog_speed2.mp3 in Resources */,
 				0B3FA0F11C153D4D00AA17AF /* Quirky Dog_speed3.mp3 in Resources */,
 				0B30414C1C17388000359AC5 /* magicSFX.mp3 in Resources */,
-				0BCE14131C11F58200F301BA /* README in Resources */,
 				0B3FA0F21C153D4D00AA17AF /* Quirky Dog.mp3 in Resources */,
 				0B49D5BD1BF65D54000C5CA5 /* TN_GameScene.sks in Resources */,
 				0B1E63331BF103C200C4F460 /* Assets.xcassets in Resources */,

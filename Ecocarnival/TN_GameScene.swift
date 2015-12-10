@@ -233,6 +233,7 @@ class TN_GameScene: SKScene, SKPhysicsContactDelegate {
         trash.physicsBody!.applyAngularImpulse(spinForce)
     }
     
+    // Just chooses some point + - 20 from the center
     func chooseSpawnPoint() -> CGFloat {
         let point = arc4random_uniform(3)
         switch point {
