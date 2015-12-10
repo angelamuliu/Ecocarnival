@@ -1,5 +1,5 @@
 # Ecocarnival
-***
+
 <p>
 Created by Angela Liu <br />
 Copyright (c) 2015 amliu. All rights reserved.<br />
