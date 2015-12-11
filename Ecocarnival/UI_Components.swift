@@ -88,13 +88,21 @@ class UI_Components:NSObject {
             let prevTopRightCorner = scoreNodes[0].position
             let scoreNode = SKSpriteNode(imageNamed: getScoreNodeNumber(scoreArr[scoreArr.count - scoreNodes.count - 1]))
             scoreNode.zPosition = Constants.zUI
-            scoreNode.position = CGPoint(x: prevTopRightCorner.x - scoreNode.size.width, y: prevTopRightCorner.y)
+            
+            // QUICK FIX: Hardcoding the distance between numbers
+            // In future, look into why stretching occurs now all of the sudden
+//            scoreNode.position = CGPoint(x: prevTopRightCorner.x - scoreNode.size.width, y: prevTopRightCorner.y)
+            scoreNode.position = CGPoint(x: prevTopRightCorner.x - 17, y: prevTopRightCorner.y)
             scoreNode.anchorPoint = CGPoint(x: 0, y: 1)
+            
             scoreNodes.insert(scoreNode, atIndex: 0)
         }
         
         for (var i = 0; i < scoreNodes.count; i++) { // Updating textures to match new number
             scoreNodes[i].texture = SKTexture(imageNamed:getScoreNodeNumber(scoreArr[i]))
+            
+            // Comment below line out later or figure out above bug
+            scoreNodes[i].size = SKTexture(imageNamed:getScoreNodeNumber(scoreArr[i])).size()
         }
     }
     
